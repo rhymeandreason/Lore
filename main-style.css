@@ -1,0 +1,272 @@
+
+  *{
+    margin:0; padding:0;
+  }
+  body {
+    font-family: 'Barlow', sans-serif;
+    color: #303336;
+  }
+  #main-nav{
+    position:absolute;
+    bottom:16px;
+    left:0px;
+    width: 100%;
+  }
+  #main-nav img{
+    height:36px;
+  }
+  #journal{
+    float: left;
+    margin: 10px;
+  }
+  #backpack{
+    float: right;
+    margin: 10px;
+  }
+  .card {
+    width: 100%;
+    min-width: 250px;
+    height: 100%;
+    min-height: 420px;
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: white;
+    display: none;
+    overflow-x: hidden;
+  }
+
+  #place-popup-card{
+  }
+  .close{
+    position: fixed;
+    top: 12px;
+    left: 12px;
+  }
+  .close:active {
+    transform: scale(1.2);
+  }
+
+  #place-content{
+    width: 100%;
+    height:100%;
+    display: block;
+  }
+
+  .npc_icon{
+    position: absolute;
+    top: 30%;
+    right: 12px;
+    text-align: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, #A9EFFC, #65D9F8);
+    box-shadow: 0px 2px 6px rgba(10, 47, 56, 0.2);
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .npc_icon img{
+    //width: 30px;
+    height: 32px;
+    margin-top: -24px;
+    position: relative;
+    top:50%;
+    vertical-align: middle;
+  }
+
+  #npc-popup-card {
+    z-index: 15;
+
+    background-image: url("npc/spelunker-main.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+  #npc-text{
+    background-color: white;
+    border: 2px solid #303336;
+    border-radius: 36px;
+    padding:  8px 24px 12px 24px;
+    width: 70%;
+    margin: auto;
+    position: relative;
+    top: 40%;
+    font-size: 20px;
+    line-height: 26px;
+  }
+  #npc-text img{
+    position: absolute;
+    top: -24px;
+    left: 36px;
+  }
+  #npc-responses {
+    position: absolute;
+    bottom: 12px;
+    margin: 24px;
+    width: 80%;
+    text-align: center;
+
+  }
+  #npc-responses span{
+    background-color: white;
+    border-radius: 24px;
+    padding: 12px 20px;
+    box-shadow: 0px 4px 0px #303336;
+    border: 1px solid black;
+    display: inline-block;
+    clear: both;
+    margin-bottom: 18px;
+  }
+
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+  .marker {
+    border-radius: 50%;
+    background-size: contain;
+  }
+  .marker img{
+    width: 100%;
+    filter: drop-shadow(1px 1px 0 white)
+          drop-shadow(-1px -1px 0 white);
+  }
+
+  .popup::-webkit-scrollbar {
+    display: none;
+  }
+
+  .popup {
+    display: none;
+    width: 100%;
+    height: 100%;
+    //padding-top: 70%;
+    //background-image: url("oak-tree-bg.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center top;
+  }
+  .place-image{
+    width:100%;
+  }
+  .place-description{
+    width: 75%;
+    margin: 16px auto;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    color: #4A4A4A;
+  }
+
+  .card h2{
+    font-size: 24px;
+    text-align: center;
+      margin-top: 16px;
+  }
+  .player{
+    width: 20px;
+    height: 20px;
+    radius: 50%;
+    background-color: orange;
+  }
+
+  .marker img:hover{
+    transform: scale(1.1);
+  }
+  .marker img:active{
+    transform: scale(1.2);
+  }
+  .level-1 {
+  }
+  .level-2 {
+    display:none;
+  }
+  .level-3, .level-4, .level-2{
+    display:none;
+  }
+
+  .daily-items {
+    width: 100%;
+    text-align: center;
+  }
+  .popup h3{
+    font-family: Signpainter, 'Sacramento', cursive;
+    font-size: 28px;
+    margin-top:16px;
+    margin-bottom: 8px;
+    font-weight: normal;
+    //opacity: .6;
+    color:gray;
+  }
+  .daily-items span{
+    display:inline-block;
+    text-align: center;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 8px;
+    background-color: rgba(0,0,0,.05);
+    position:relative;
+  }
+  .daily-items img{
+    height: 44px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .daily-items img:active {
+    transform: scale(1.2);
+  }
+  #inventory {
+    margin-top: 8px;
+    overflow-y: scroll;
+  }
+  #inventory .item{
+    display:inline-block;
+    float: left;
+    text-align: center;
+    //width: 44px;
+    width: 33.3%;
+    height: 62px;
+    //padding: 10px;
+    margin-top: 16px;
+  }
+  #inventory .item img{
+    height: 44px;
+    display: inline-block;
+  }
+  #inventory .quantity{
+    font-size: 14px;
+    text-align: center;
+    display:inline-block;
+    float: left;
+    width:100%;
+  }
+
+  #add-item-anim {
+    position: absolute;
+    z-index: 12;
+    bottom: 26px;
+    right: 10px;
+    width: 35px;
+    text-align: center;
+    display: none;
+  }
+  #add-item-anim span{
+    width: 100%;
+    display: inline-inline-block;
+    text-align: center;
+    position: relative;
+  }
+  #add-item-anim img {
+    width: 100%;
+  }
+  #add-item-anim #new-item {
+    width: 60%;
+    position: relative;
+    bottom: 0px;
+    //bottom: -34px;
+  }

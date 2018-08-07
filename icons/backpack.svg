@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="43px" height="45px" viewBox="0 0 43 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>backpack</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8-Copy-5" transform="translate(-311.000000, -615.000000)">
+            <g id="backpack" transform="translate(311.000000, 615.000000)">
+                <ellipse id="XMLID_11035_" fill="#45413C" fill-rule="nonzero" opacity="0.15" cx="19.5" cy="42.3" rx="19" ry="1.8"></ellipse>
+                <path d="M21.4,1.1 L21.4,15 L23.2,16.9 L26.2,16.9 C26.2,12.9 26.2,6.5 26.2,4.7 C26.2,2.5 24.3,0.5 21.4,1.1 Z" id="XMLID_11034_" stroke="#45413C" fill="#009FD9" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M20.4,1.4 C16.9,2.7 15.1,8.2 15.1,8.2 L18.1,11.5 L18.4,9.4 C18.4,9.4 22.3,1.9 26.2,4.8 C26.2,2.2 23.8,0.1 20.4,1.4 Z" id="XMLID_11033_" stroke="#45413C" fill="#4ACFFF" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M28,6.7 C32.4,6.5 37.5,8.5 37.5,22.1 C37.5,32.7 36.8,35.4 31.3,37.7 L32.5,40.8 C40.1,39.2 42,35.1 42,22.8 C42,8 38.6,5.7 32.5,5.7 C30.9,5.8 29.4,6.1 28,6.7 Z" id="XMLID_11032_" fill="#00B8F0" fill-rule="nonzero"></path>
+                <path d="M36.2,12.5 C39.6,13.6 41.6,17 41.9,26.1 C41.9,25.1 42,24 42,22.9 C42,8.1 38.6,5.8 32.5,5.8 C30.9,5.8 29.4,6.2 28,6.7 C31,6.5 34.4,7.4 36.2,12.5 Z" id="Shape" fill="#009FD9" fill-rule="nonzero"></path>
+                <path d="M28,6.7 C32.4,6.5 37.5,8.5 37.5,22.1 C37.5,32.7 36.8,35.4 31.3,37.7 L32.5,40.8 C40.1,39.2 42,35.1 42,22.8 C42,8 38.6,5.7 32.5,5.7 C30.9,5.8 29.4,6.1 28,6.7 Z" id="XMLID_11031_" stroke="#45413C" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M40.8,11.6 C39.3,6.8 36.5,5.8 32.5,5.8 C26.3,5.8 21.4,11.3 21.4,11.3 L22,13 L26,13.2 C31.6,8.4 38.8,6.6 40.8,11.6 Z" id="XMLID_11030_" stroke="#45413C" fill="#4ACFFF" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M19.3,43.6 C19.7,43.7 20,43.8 20.4,43.9 L20.4,25.5 L0.9,17.4 L0.9,35.2 C0.9,35.7 1.2,36.1 1.6,36.3 L19.3,43.6 Z" id="XMLID_11029_" fill="#00B8F0" fill-rule="nonzero"></path>
+                <path d="M19.3,41.6 C19.7,41.7 20.4,41.6 20.4,41.1 L20.4,23.4 L0.9,15.3 L0.9,33.1 C0.9,33.6 1.2,34 1.6,34.2 L19.3,41.6 Z" id="XMLID_11028_" fill="#009FD9" fill-rule="nonzero"></path>
+                <path d="M19.3,43.6 C19.7,43.7 20,43.8 20.4,43.9 L20.4,25.5 L0.9,17.4 L0.9,35.2 C0.9,35.7 1.2,36.1 1.6,36.3 L19.3,43.6 Z" id="XMLID_11027_" stroke="#45413C" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M31,14.4 C28,13.1 18.2,9.1 12.4,7.3 C6.6,5.5 0.8,9.1 0.8,17.4 L0.8,29.6 C0.8,31 1.7,32.3 3,32.9 L17,38.7 C18.6,39.3 20.3,38.2 20.3,36.5 L20.3,25.5 L31,14.4 Z" id="XMLID_11026_" fill="#00B8F0" fill-rule="nonzero"></path>
+                <path d="M12.4,12.4 C16.7,13.7 23.2,16.3 27.5,18 L31,14.4 C28,13.1 18.2,9.1 12.4,7.3 C6.6,5.5 0.8,9.1 0.8,17.4 L0.8,22.5 C0.9,14.2 6.7,10.6 12.4,12.4 Z" id="XMLID_11025_" fill="#4ACFFF" fill-rule="nonzero"></path>
+                <path d="M31,14.4 C28,13.1 18.2,9.1 12.4,7.3 C6.6,5.5 0.8,9.1 0.8,17.4 L0.8,29.6 C0.8,31 1.7,32.3 3,32.9 L17,38.7 C18.6,39.3 20.3,38.2 20.3,36.5 L20.3,25.5 L31,14.4 Z" id="XMLID_11024_" stroke="#45413C" stroke-linecap="round" stroke-linejoin="round"></path>
+                <ellipse id="XMLID_11023_" stroke="#45413C" fill="#E8F4FA" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round" cx="4.9" cy="28.4" rx="1.4" ry="2"></ellipse>
+                <ellipse id="XMLID_11022_" stroke="#45413C" fill="#E8F4FA" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round" cx="16" cy="33" rx="1.4" ry="2"></ellipse>
+                <path d="M27.3,14 C22.7,14.9 20.4,18.8 20.4,25.5 C20.4,31.7 20.4,42.4 20.4,43.9 C20.8,43.9 21.2,43.9 21.6,43.9 L33.3,42 C33.9,41.9 34.3,41.4 34.3,40.8 L34.3,23.2 C34.3,16.4 31.9,13.1 27.3,14 Z" id="XMLID_11021_" fill="#00B8F0" fill-rule="nonzero"></path>
+                <path d="M27.3,14 C22.7,14.9 20.4,18.8 20.4,25.5 C20.4,26.5 20.4,27.5 20.4,28.6 C20.4,21.9 22.8,18 27.3,17.1 C31.9,16.2 34.2,19.5 34.2,26.4 L34.2,23.3 C34.3,16.4 31.9,13.1 27.3,14 Z" id="XMLID_11020_" fill="#009FD9" fill-rule="nonzero"></path>
+                <path d="M27.3,14 C22.7,14.9 20.4,18.8 20.4,25.5 C20.4,31.7 20.4,42.4 20.4,43.9 C20.8,43.9 21.2,43.9 21.6,43.9 L33.3,42 C33.9,41.9 34.3,41.4 34.3,40.8 L34.3,23.2 C34.3,16.4 31.9,13.1 27.3,14 Z" id="XMLID_11019_" stroke="#45413C" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M20.4,26.2 L20.4,30.8 L28.3,29.5 C28.9,29.4 29.3,28.9 29.3,28.3 L29.3,26.3 C29.3,25.6 28.7,25 27.9,25.1 L20.4,26.2 Z" id="XMLID_11018_" stroke="#45413C" fill="#00B8F0" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M28.4,31.9 L27.5,29.2 C27.3,28.7 26.8,28.3 26.3,28.4 C25.7,28.5 25.4,29 25.4,29.5 L25.5,32.4 C25.5,33.1 26.1,33.6 26.8,33.4 L27.5,33.3 C28.2,33.2 28.6,32.5 28.4,31.9 Z" id="Shape" stroke="#45413C" fill="#E8F4FA" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

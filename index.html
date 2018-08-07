@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <link rel="icon" sizes="192x192" href="LL-android.png">
+  <link rel="apple-touch-icon" href="LL.png"/>
+
+
+<meta charset=utf-8 />
+<title>Local Lore: Oakland</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+<script src='jquery-2.1.0.min.js'></script>
+<script src='moment.js'></script>
+<script src='player.js'></script>
+<script src='items.js'></script>
+<script src='quest.js'></script>
+<script src='place.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+<link href='animate.min.css' rel='stylesheet' />
+<link href='main-style.css' rel='stylesheet' />
+
+<style>
+.statusbar-overlay{
+  background-color: rgba(131,228,239,.5);
+}
+</style>
+
+</head>
+
+<body>
+  <audio id="sound-pop">
+    <source src="sounds/pop.ogg" type="audio/ogg">
+  </audio>
+  <audio id="sound-bg" >
+    <source src="sounds/TownTheme.mp3" type="audio/mp3">
+  </audio>
+
+<div id='map'></div>
+
+<div id="place-popup-card" class="card">
+  <img src="icons/close.svg" class="close"/>
+  <div id="place-content"></div>
+</div>
+
+<div id="npc-popup-card" class="card">
+  <img src="icons/close.svg" class="close"/>
+  <div id="npc-text" class="animated fadeIn"></div>
+  <div id="npc-item"></div>
+  <div id="npc-responses"></div>
+</div>
+
+<div id="inventory-card" class="card">
+  <img src="icons/close.svg" class="close"/>
+  <h2>My Stuff</h2>
+  <div id="currency"></div>
+  <div id="inventory"></div>
+</div>
+
+<div id="main-nav">
+  <div id="backpack"><img src="icons/backpack.svg" /></div>
+  <div id="journal"><img src="icons/journal.svg" /></div>
+</div>
+
+<div id="add-item-anim">
+  <span><img id="new-item" src="icons/acorn.svg"/></span>
+  <span style="z-index:25;"><img src="icons/backpack.svg" /></span>
+</div>
+
+<span id='player'></span>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqcnRsbTFiNTJ4aWwzNCJ9.Dbd2av6hgoRurCjn5i0UPw';
+
+  moment().format();
+  var start = moment();
+  var later = moment().add(5, 'm');
+
+  function respawn(){
+    //has it been 5 minutes?
+    console.log('checking respawn');
+    if (moment().isAfter(later)){
+      console.log("respawn event");
+      later = moment().add(2, 'm');
+    }
+  }
+
+  //window.setInterval(respawn, 5000);
+
+  var bg_music = document.getElementById("sound-bg");
+  bg_music.volume = .2;
+
+  var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/rhymeandreason/cjjf890109lsh2srrs76gocfu',
+      center: [-122.258216, 37.801343],
+      zoom: 14
+  });
+  map.setMinZoom(14);
+  map.setMaxZoom(18);
+
+
+var geoJson = {
+  "type": "FeatureCollection",
+  "features": [{
+      "type": "Feature",
+      "geometry": {
+          "type": "Point",
+          "coordinates": [-122.26934,37.80411]
+      },
+      "properties": {
+          "id": "basil-pizza",
+          "title": "Basil Pizzeria",
+          "description": "",
+          "category": "food",
+          "className": "food level-3",
+          "itemDrops": ['pizza'],
+          "radius": 10,
+          "icon": {
+              "iconUrl": "543-pizza-1.svg",
+              "iconSize": [50, 50], // size of the icon
+              "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+              "popupAnchor": [0, -25] // point from which the popup should open relative to the iconAnchor
+          },
+          "dialog": ["The sandwiches are made with pizza dough bread fresh from the oven.",
+                    "Can't go wrong with a classic margherita pizza."]
+      }
+  }, {
+      "type": "Feature",
+      "geometry": {
+          "type": "Point",
+          "coordinates": [-122.27537,
+                    37.80219]
+      },
+      "properties": {
+          "id": "b-dama",
+          "title": "B-Dama",
+          "description": "",
+          "category": "food",
+          "className": "food level-3",
+          "itemDrops": ['onigiri'],
+          "radius": 10,
+          "icon": {
+              "iconUrl": "546-rice-ball.svg",
+              "iconSize": [50, 50],
+              "iconAnchor": [50, 50],
+              "popupAnchor": [0, -55],
+          },
+          "dialog": ["The karage (fried chicken) here is super good!",
+          "At lunch they have combo sets. I like the salmon set the best."]
+      }
+    }]
+};
+
+addMarkerInfo("caffe-817",  "Caffe 817", [  -122.274850, 37.801119],"",
+            "567-hot-beverage-2.svg", 50, 'food', []);
+
+addMarkerInfo("malonga",  "Malonga Casquelourd Center", [-122.265980, 37.802945],"",
+            "malonga.png", 50, 'dance', []);
+
+addMarkerInfo("buddhist-temple",  "Buddhist Church of Oakland", [-122.267660, 37.798410],"",
+            "buddhist-temple.png", 55, 'landmark level-4', []);
+
+addMarkerInfo("chinese-junk",  "Junk Boat in Lincoln Park", [-122.268312, 37.800003],
+"This popular local play structure was originally built by the Wa Sung Community Service Club in 1961. It was inspired by an oceangoing junk called the Free China which sailed from Formosa to San Francisco in 1955. The play area and current junk boat was designed and built in 2003 to meet modern safety standards. It is currently closed for repairs.",
+            "chinese-junk.png", 80, 'landmark', []);
+
+addMarkerInfo("scottish-rite",  "Oakland Scottish Rite Center", [-122.261906, 37.802874],
+"The Scottish Rite Center was built in 1883, just three decades after the then-young city of Oakland was first incorporated into Alameda County. There are private, members-only sections of the temple, but the historic building also opens for public events — everything from weddings to Super Bowl parties — and is home to the Childhood Language Center, a nonprofit speech clinic.",
+            "scottish-rite.png", 80, 'landmark level-4', []);
+
+addMarkerInfo("veterans-building",  "Veterans Memorial Building", [-122.261421, 37.811031],
+"Constructed in 1926, the Veterans Memorial Building has an auditorium and two floors. It is also home of the Lake Merritt Dance Center, which offers dance lessons throughout the week.",
+            "veterans-building.png", 90, 'landmark', []);
+
+addMarkerInfo("bandstand",  "Edoff Memorial Bandstand", [-122.260152, 37.807674],
+"Built in 1918 for the Oakland Municipal Band, the Edoff Memorial Bandstand was fashioned in the likeness of another bandstand in Milan. Though the band doesn’t get funding from the city anymore, it still performs here each summer. You can check out its free concerts starting on July 4th and each subsequent Sunday in July.",
+            "bandstand.png", 60, 'landmark level-4', []);
+
+addMarkerInfo("rotary-nature-center",  "Rotary Nature Center", [-122.256209, 37.807142],
+"Built in 1953, it helps maintain and protect the lake and other open spaces in Oakland. The Center offers natural science presentations and summer camps for youth. It also houses various exhibits, including a working observation beehive and some live animals.",
+            "rotary-totem.png", 50, 'landmark', []);
+
+addMarkerInfo("schilling-garden",  "Schilling Garden", [-122.263911, 37.805963],
+"Schilling Garden, a nineteenth-century lakeside estate, was owned by August Schilling, cofounder of the A. Schilling spice company. The family opened the gardens to public viewings around 1911 and for years it was known as a place for high-class parties and weddings. Although the gardens are no longer open to the public, and are much smaller than they once were, people have been known to peek through the gates — which have an “A” for August — to have a look.",
+            "schilling-garden.png", 40, 'landmark', []);
+
+addMarkerInfo("cathedral-building",  "Cathedral Building", [-122.270248, 37.80621],"",
+            "cathedral-building.png", 50, 'landmark level-4', []);
+
+addMarkerInfo("oaklandish",  "Oaklandish", [-122.270664, 37.804881],
+"Hip locally inspired apparel",
+            "oaklandish.png", 40, 'store level-4', []);
+
+addMarkerInfo("fox-theater",  "Fox Theater", [-122.270115, 37.808004],"",
+            "fox_theater.png", 90, 'landmark', []);
+
+addMarkerInfo("E14",  "E14 Gallery", [-122.273844, 37.801179],"",
+            "600-artist-palette.svg", 50, 'gallery level-3', []);
+
+addMarkerInfo("flax-art",  "FLAX Art & Design", [-122.275509, 37.807162],"",
+            "600-artist-palette.svg", 50, 'art-supply level-3', []);
+
+addMarkerInfo("kon-tiki",  "The Kon-Tiki", [-122.268653, 37.803238],"",
+            "572-tropical-drink.svg", 50, 'food level-3', []);
+
+addMarkerInfo("shandong",  "Shandong Restaurant", [  -122.270016, 37.800587],"",
+            "dumpling.png", 40, 'food', []);
+
+addMarkerInfo("alice-cafe",  "Alice Bakery Cafe", [ -122.268380, 37.799706],"",
+            "556-cookie.svg", 50, 'food level-2', []);
+
+addMarkerInfo("luckyduck-cafe",  "Luckyduck Bicycle Cafe", [ -122.268660, 37.801724],"",
+            "567-hot-beverage-2.svg", 50, 'food level-3', []);
+
+addMarkerInfo("little-giant",  "Little Giant", [-122.269855, 37.809155],"",
+            "551-soft-ice-cream-1.svg", 50, 'food level-3', []);
+
+addMarkerInfo("donut-savant",  "Donut Savant", [-122.268533, 37.808374],"",
+            "554-doughnut-1.svg", 50, 'food level-3', []);
+
+addMarkerInfo("aburya",  "Aburya", [-122.267637, 37.805969],"",
+            "538-poultry-leg.svg", 50, 'food level-3', []);
+
+addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
+"Oak trees are sacred to the local Ohlone people, who lived in this area thousands of years before European settlers. <br><br> Mayor John L. Davie planted this coast live oak in front of City Hall in 1917. It was named to honor Oakland’s most famous author, who died in November 1916.",
+          "acorn.png", 40, 'landmark level-2', []);
+
+  addMarkerInfo("omca",  "Oakland Museum of Art", [-122.26437, 37.79846],
+  "Artifacts & interactive displays in a modern building focusing on state art, history & science.",
+            "lake merritt bear.png", 60, 'landmark', []);
+
+  addMarkerInfo("fairyland",  "Children's Fairyland", [-122.260697, 37.808927],
+  "Built in 1950, Fairyland is one of the earliest themed amusement parks in the United States, and was an inspiration for Walt Disney. Its Storybook Puppet Theater, which opened in 1956, is the oldest continuously operating puppet theater in the United States.",
+              "fairyland.png", 70, 'landmark', []);
+
+  addMarkerInfo("stanford-house",  "Camron-Stanford House", [-122.26197481,37.801230850],
+  "The last of the beautiful 19th century mansions that once surrounded Lake Merritt and was the home to five influential families before becoming the first museum in the City of Oakland.",
+              "stanford house.png", 80, 'landmark',[]);
+
+  addMarkerInfo("gondola",  "Lake Merritt Gondola", [-122.257533, 37.80242614],[],
+              "gondola.png", 80, 'landmark',[]);
+
+  addMarkerInfo("ampitheater",  "Henry J. Kaiser Ampitheater", [-122.261545, 37.7975516],
+  "An Oakland landmark built in 1914. It served as a makeshift hospital during the 1918 flu pandemic. <br><br>It's been used for concerts (from Elvis to the Grateful Dead), science fiction conventions, roller derby tournaments, symphony performances and public speaking events (from Bill Clinton to the Dalai Lama). Unfortunately it's been closed since 2006.",
+              "ampitheater.png", 100, 'landmark level-4',[]);
+
+  addMarkerInfo("torii-gate",  "Torii Gate Garden", [-122.25826, 37.806107],
+  "The Fukuoka Junior Chamber of Commerce gave the Torii Gate to the City of Oakland in 1969. In 2002, on the 40th anniversary of their connection, the gate was rebuilt.",
+              "japanese garden.png", 60, 'landmark',[]);
+
+  addMarkerInfo("bellevue-staten",  "Bellevue-Staten Building", [-122.25377, 37.807864],"",
+              "bellevue-staten.png", 60, 'landmark',[]);
+
+  addMarkerInfo("christ-cathedral",  "Cathedral of Christ the Light", [-122.2631, 37.810398],"",
+              "cathedral.png", 80, 'landmark',[]);
+
+  addMarkerInfo("lucky-grocery",  "Lucky", [-122.2533394 ,37.7996664],"",
+              "527-red-apple.svg", 50, "grocery level-3",[]);
+
+  addMarkerInfo("pergola",  "Pergola and Collonade", [-122.2496 ,37.8086],
+                "Designed by architect Walter Reed in 1913, it was first constructed with a fountain at its center, and benches overlooking the lake. It was formerly nicknamed 'El Embarcadero’, which is now the name of the cross-street.<br><br>It was renovated in 2007 as part of Measure DD.",
+                "pergola.png", 100, "landmark",[]);
+
+  addMarkerInfo("boating-center",  "Lake Merritt Boating Center", [-122.2577 ,37.8051],"",
+                "kayak.png", 80, "landmark level-4",[]);
+
+  addMarkerInfo("library-main",  "Oakland Public Library", [-122.2636 ,37.8011],
+  "Main branch library with extensive section on local history",
+                "book.svg", 50, "library level-3",[]);
+
+  addMarkerInfo("tribune-tower",  "Oakland Tribune Tower", [-122.2707,	37.8032],
+                "The Oakland Tribune moved into the adjacent building after the 1906 SF earthquake. Publisher Joseph Knowland commissioned the tower inspired by the campanile of Saint Mark’s Basilica in Venice, Italy. Completed in 1923, it was the tallest skyscraper in the East Bay.",
+                "tribune.png", 40, "landmark",[]);
+
+  addMarkerInfo("city-hall",  "Oakland City Hall", [-122.2722 ,	37.8052],
+  "When completed in 1914, it was the tallest building west of the Mississippi. The building was designed by New York-based architecture firm Palmer & Hornbostel in 1910, who won the $5,000 grand prize in a nationwide competition out of 27 competing designs. After damage in the 1989 Loma Prieta earthquake, it was seismically retrofit for $85 million and can now move 18-20 inches laterally in an earthquake.<br><br> In 2011, it was the main protest site of the Occupy Oakland movement.",
+                "city hall.png", 35, "landmark",[]);
+
+function addMarkerInfo(id, title, location, description, icon, size, category, dialog){
+  var marker = {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": location
+    },
+    "properties": {
+        "id": id,
+        "title": title,
+        "category": category,
+        "className": category,
+        "description": description,
+        "itemDrops": ["acorn", "red_apple", "acorn"],
+        "radius": 10,
+        "img": "places/"+id+".jpg",
+        "icon": {
+            "iconUrl": icon,
+            "iconSize": [size, size],
+            "iconAnchor": [25, 25],
+            "popupAnchor": [0, -55]
+        },
+        "dialog": dialog
+    }
+  }
+  geoJson.features.push(marker);
+}
+
+
+// add markers to map
+  geoJson.features.forEach(function(marker) {
+    // create a DOM element for the marker
+    var el = document.createElement('div');
+    el.className = 'marker '+ marker.properties.className;
+    $( el ).data( "name", marker.properties.id);
+    var img = document.createElement("IMG");
+    img.src = "icons/"+marker.properties.icon.iconUrl;
+    img.className='animated bounceIn';
+    el.append(img);
+    el.style.width = marker.properties.icon.iconSize[0] + 'px';
+
+    var popup = document.createElement("div");
+    popup.className = 'popup';
+    popup.id = marker.properties.id;
+    $(popup).append("<img class='place-image' src='"+marker.properties.img+"' />");
+    $(popup).append("<h2 class='animated fadeInUp'>"+marker.properties.title+"</h2>");
+    $(popup).append("<p class='place-description animated fadeIn delay-1s'>"+marker.properties.description+"</p>");
+
+    if (marker.properties.itemDrops){
+      var div = document.createElement("div");
+      div.className = 'daily-items';
+      if (marker.properties.category.includes('food') || marker.properties.category.includes('grocery')){
+        $(div).html("<h3 class='animated fadeIn delay-1s'>Daily Special</h3>");
+      }
+
+      var drops = marker.properties.itemDrops;
+      for (var i=0; i<drops.length; i++){
+        var item1 = "<span class='animated bounceIn delay-1s'><img class='animated jackInTheBox' src='icons/"+items[drops[i]]+"' onclick='addItem(this, \""+drops[i]+"\")' /></span>";
+        $(div).append(item1);
+      }
+      $(popup).append(div);
+    }
+
+    $("#place-content").append(popup);
+    // add marker to map
+    new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+  });
+
+  map.on('zoom',function(){
+    //make the food landmarks show up on zoom 15
+    if (map.getZoom() > 14.5){
+      //console.log(" level 3");
+      $(".level-4").show();
+    } else {
+      $(".level-4").hide();
+    }
+
+
+    if (map.getZoom() > 15){
+      //console.log(" level 3");
+      $(".level-3").show();
+    } else {
+      $(".level-3").hide();
+    }
+
+    if (map.getZoom() > 16.7){
+      //console.log(" level 5");
+      $(".level-2").show();
+    } else {
+      $(".level-2").hide();
+    }
+
+
+  });
+
+function distance (x, y, x0, y0){
+    return Math.sqrt((x -= x0) * x + (y -= y0) * y);
+}
+
+//Show Place
+$(".marker").click(function(){
+  var id = $( this ).data( "name");
+  check_quest_progress(id);
+  $("#place-popup-card").fadeIn();
+  $(".popup").hide();
+  $("#"+id).show();
+});
+
+$(".close").click(function(){
+  $(this).parent().fadeOut();
+});
+$("#backpack").click(function(){
+  updateInventory();
+  $("#inventory-card").fadeIn();
+});
+$("#journal").click(function(){
+
+});
+
+function updateInventory(){
+  var inventory = Object.keys(Player.inventory);
+  $("#inventory").html("");
+  for (var i=0; i<inventory.length; i++) {
+    var count = Player.inventory[inventory[i]];
+    if (count >0){
+      var item = "<span class='item'><img src='"+items[inventory[i]]+"' /><span class='quantity'>"+count+"</span></span>";
+      $("#inventory").append(item);
+    }
+  }
+}
+
+function getDistance(){
+  var x = $(".mapboxgl-user-location-dot").position().left;
+  var y = $(".mapboxgl-user-location-dot").position().top;
+  $(".marker").each(function(i){
+    console.log(distance(x, $( this ).position().left, y, $( this ).position().top));
+  });
+}
+
+function playAudio(id){
+  var sound = document.getElementById(id);
+  //if (!sound.paused){
+    sound.play();
+  //}
+
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+function showPosition(position) {
+    var message = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    console.log(message);
+
+    var el = document.createElement('div');
+    el.className = 'marker player';
+
+    player_marker = new mapboxgl.Marker(el)
+        .setLngLat([position.coords.longitude, position.coords.latitude])
+        .addTo(map);
+
+    navigator.geolocation.getCurrentPosition(updatePosition);
+}
+
+function updatePosition(position){
+  player_marker.setLngLat([position.coords.longitude, position.coords.latitude]);
+}
+
+var player_marker;
+getLocation();
+
+</script>
+
+</body>
+
+
+</html>
