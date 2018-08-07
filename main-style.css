@@ -168,6 +168,7 @@
     height: 20px;
     radius: 50%;
     background-color: orange;
+    display: none;
   }
 
   .marker img:hover{
