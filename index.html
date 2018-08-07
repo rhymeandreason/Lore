@@ -15,6 +15,7 @@
 <title>Local Lore: Oakland</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 <script src='jquery-2.1.0.min.js'></script>
 <script src='moment.js'></script>
 <script src='player.js'></script>
@@ -159,6 +160,12 @@ var geoJson = {
     }]
 };
 
+addMarkerInfo("haley-law",  "Haley Law Office", [-122.272317, 37.807024],"",
+            "haley-law.png", 50, 'landmark level-4', []);
+
+addMarkerInfo("perservation-park",  "Preservation Park", [ -122.276437, 37.805538],"",
+            "preservation-park.png", 50, 'landmark', []);
+
 addMarkerInfo("paramount",  "Paramount Theater", [ -122.268012, 37.809610],"",
             "paramount-theater.png", 40, 'landmark', []);
 
@@ -195,8 +202,8 @@ addMarkerInfo("schilling-garden",  "Schilling Garden", [-122.263911, 37.805963],
 "Schilling Garden, a nineteenth-century lakeside estate, was owned by August Schilling, cofounder of the A. Schilling spice company. The family opened the gardens to public viewings around 1911 and for years it was known as a place for high-class parties and weddings. Although the gardens are no longer open to the public, and are much smaller than they once were, people have been known to peek through the gates — which have an “A” for August — to have a look.",
             "schilling-garden.png", 40, 'landmark', []);
 
-addMarkerInfo("cathedral-building",  "Cathedral Building", [-122.270248, 37.80621],"",
-            "cathedral-building.png", 50, 'landmark level-4', []);
+//addMarkerInfo("cathedral-building",  "Cathedral Building", [-122.270248, 37.80621],"",
+//            "cathedral-building.png", 50, 'landmark level-4', []);
 
 addMarkerInfo("oaklandish",  "Oaklandish", [-122.270664, 37.804881],
 "Hip locally inspired apparel",
@@ -320,8 +327,9 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
   geoJson.features.forEach(function(marker) {
     // create a DOM element for the marker
     var el = document.createElement('div');
-    el.className = 'marker '+ marker.properties.className;
+    el.className = 'marker '+ marker.properties.className + " "+ marker.properties.id;
     $( el ).data( "name", marker.properties.id);
+    //$(el).attr('data-name', marker.properties.id);
     var img = document.createElement("IMG");
     img.src = "icons/"+marker.properties.icon.iconUrl;
     img.className='animated bounceIn';
@@ -384,12 +392,6 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
 
   });
 
-
-
-function distance (x, y, x0, y0){
-    return Math.sqrt((x -= x0) * x + (y -= y0) * y);
-}
-
 //Show Place
 $(".marker").click(function(){
   var id = $( this ).data( "name");
@@ -422,20 +424,32 @@ function updateInventory(){
   }
 }
 
-function getDistance(){
-  var x = $(".mapboxgl-user-location-dot").position().left;
-  var y = $(".mapboxgl-user-location-dot").position().top;
-  $(".marker").each(function(i){
-    console.log(distance(x, $( this ).position().left, y, $( this ).position().top));
-  });
-}
-
 function playAudio(id){
   var sound = document.getElementById(id);
   //if (!sound.paused){
     sound.play();
   //}
 
+}
+function checkDistance(){
+  geoJson.features.forEach(function(marker){
+    var loc = [marker.geometry.coordinates[1], marker.geometry.coordinates[0]];
+    var player_loc = [player_position.latitude, player_position.longitude];
+//console.log(loc);
+    var distance = turf.distance(loc, player_loc, {units: 'miles'});
+
+    if (distance > .2){
+      var el = $("."+marker.properties.id);
+      el.css("filter", "grayscale("+distance*100+"%)");
+      console.log(el);
+      //console.log(marker.properties.id+ " : "+distance);
+    } else {
+
+    }
+
+
+    //el.css("filter", "grayscale(80%)");
+  });
 }
 
 function getLocation() {
@@ -465,13 +479,16 @@ function showPosition(position) {
 
 function updatePosition(position){
   player_marker.setLngLat([position.coords.longitude, position.coords.latitude]);
-  //console.log("watching position");
+  player_position = position.coords;
   $(".player").show();
+  //checkDistance();
+
 }
 
 var player_marker;
 var el = document.createElement('div');
 el.className = 'marker player';
+var player_position;
 player_marker = new mapboxgl.Marker(el)
   .setLngLat([-122.258216, 37.801343])
   .addTo(map);
