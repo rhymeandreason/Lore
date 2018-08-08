@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="29px" viewBox="0 0 33 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>dialog</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="Landmark-Card" transform="translate(-295.000000, -215.000000)" stroke="#45413C">
+            <g id="Group-3" transform="translate(296.000000, 216.000000)">
+                <g id="dialog">
+                    <path d="M0,2.36169484 C0,1.05767769 1.0680212,0 2.38479093,0 L28.6163501,0 C29.9331198,0 31,1.05767769 31,2.36169484 L31,20.6642648 C31,21.968282 29.9331198,23.0259597 28.6163501,23.0259597 L20.2695819,23.0259597 L20.2695819,25.6351239 C20.2695819,26.1876927 19.9341137,26.6848917 19.4195009,26.8962012 C18.9037471,27.1075107 18.311543,26.989991 17.9178813,26.6001418 L14.3076045,23.0259597 L2.38479093,23.0259597 C1.0680212,23.0259597 0,21.968282 0,20.6642648 L0,2.36169484 Z" id="Stroke-21-Copy" fill="#FFFFFF"></path>
+                    <path d="M4.96,7.36363636 L18.6,7.36363636" id="Stroke-33-Copy" stroke-linecap="round"></path>
+                    <path d="M4.96,11.0454545 L22.32,11.0454545" id="Stroke-35-Copy" stroke-linecap="round"></path>
+                    <path d="M4.96,14.7272727 L22.32,14.7272727" id="Stroke-37-Copy" stroke-linecap="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

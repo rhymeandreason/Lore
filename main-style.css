@@ -86,6 +86,12 @@
     z-index: 5;
   }
 
+  .npc_icon img.chatty{
+    top: -12px;
+    left: -28px;
+  }
+
+
   .small-talk{
     width: 177px;
     display: inline-block;
