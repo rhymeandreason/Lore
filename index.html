@@ -161,7 +161,7 @@ var geoJson = {
 };
 
 addMarkerInfo("haley-law",  "Haley Law Office", [-122.272317, 37.807024],"",
-            "haley-law.png", 50, 'landmark level-4', []);
+            "haley-law.png", 50, 'landmark level-4', ["This is my favorite building in Oakland. It looks like it's made of Legos!"]);
 
 addMarkerInfo("preservation-park",  "Preservation Park", [ -122.276437, 37.805538],"",
             "preservation-park.png", 50, 'landmark', []);
@@ -170,7 +170,7 @@ addMarkerInfo("paramount",  "Paramount Theater", [ -122.268012, 37.809610],"",
             "paramount-theater.png", 40, 'landmark', []);
 
 addMarkerInfo("caffe-817",  "Caffe 817", [  -122.274850, 37.801119],"",
-            "567-hot-beverage-2.svg", 50, 'food', []);
+            "567-hot-beverage-2.svg", 50, 'food', ["The lattes here are fantastic.", "Get a chocolate chip cookie, you won't regret it!"]);
 
 addMarkerInfo("malonga",  "Malonga Casquelourd Center", [-122.265980, 37.802945],"",
             "malonga.png", 50, 'dance', []);
@@ -180,11 +180,11 @@ addMarkerInfo("buddhist-temple",  "Buddhist Church of Oakland", [-122.267660, 37
 
 addMarkerInfo("chinese-junk",  "Junk Boat in Lincoln Park", [-122.268312, 37.800003],
 "This popular local play structure was originally built by the Wa Sung Community Service Club in 1961. It was inspired by an oceangoing junk called the Free China which sailed from Formosa to San Francisco in 1955. The play area and current junk boat was designed and built in 2003 to meet modern safety standards. It is currently closed for repairs.",
-            "chinese-junk.png", 80, 'landmark', []);
+            "chinese-junk.png", 80, 'landmark', ["Will be great to see this when they finish the repairs!"]);
 
 addMarkerInfo("scottish-rite",  "Oakland Scottish Rite Center", [-122.261906, 37.802874],
 "The Scottish Rite Center was built in 1883, just three decades after the then-young city of Oakland was first incorporated into Alameda County. There are private, members-only sections of the temple, but the historic building also opens for public events — everything from weddings to Super Bowl parties — and is home to the Childhood Language Center, a nonprofit speech clinic.",
-            "scottish-rite.png", 80, 'landmark level-4', []);
+            "scottish-rite.png", 80, 'landmark level-4', ["The men's restroom has a barber shop inside!"]);
 
 addMarkerInfo("veterans-building",  "Veterans Memorial Building", [-122.261421, 37.811031],
 "Constructed in 1926, the Veterans Memorial Building has an auditorium and two floors. It is also home of the Lake Merritt Dance Center, which offers dance lessons throughout the week.",
@@ -207,7 +207,7 @@ addMarkerInfo("schilling-garden",  "Schilling Garden", [-122.263911, 37.805963],
 
 addMarkerInfo("oaklandish",  "Oaklandish", [-122.270664, 37.804881],
 "Hip locally inspired apparel",
-            "oaklandish.png", 40, 'store level-4', []);
+            "oaklandish.png", 40, 'store level-4', ["Best spot for Oakland t-shirts!", "The company sponsors community projects every year. And they offer t-shirt printing services."]);
 
 addMarkerInfo("fox-theater",  "Fox Theater", [-122.270115, 37.808004],"",
             "fox_theater.png", 90, 'landmark', []);
@@ -228,7 +228,7 @@ addMarkerInfo("alice-cafe",  "Alice Bakery Cafe", [ -122.268380, 37.799706],"",
             "556-cookie.svg", 50, 'food level-2', ["I love the red bean buns here, they're cute and delicious!"]);
 
 addMarkerInfo("luckyduck-cafe",  "Luckyduck Bicycle Cafe", [ -122.268660, 37.801724],"",
-            "567-hot-beverage-2.svg", 50, 'food level-3', []);
+            "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"]);
 
 addMarkerInfo("little-giant",  "Little Giant", [-122.269855, 37.809155],"",
             "551-soft-ice-cream-1.svg", 50, 'food level-3', ["If you come on a Sunday, sundae toppings are free!"]);
@@ -237,7 +237,7 @@ addMarkerInfo("donut-savant",  "Donut Savant", [-122.268533, 37.808374],"",
             "554-doughnut-1.svg", 50, 'food level-3', []);
 
 addMarkerInfo("aburya",  "Aburya", [-122.267637, 37.805969],"",
-            "538-poultry-leg.svg", 50, 'food level-3', []);
+            "538-poultry-leg.svg", 50, 'food level-3', ["My favorite fried chicken place!", "Wonder if I should get the fried avocado...hmmm..."]);
 
 addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 "Oak trees are sacred to the local Ohlone people, who lived in this area thousands of years before European settlers. <br><br> Mayor John L. Davie planted this coast live oak in front of City Hall in 1917. It was named to honor Oakland’s most famous author, who died in November 1916.",
@@ -245,7 +245,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 
   addMarkerInfo("omca",  "Oakland Museum of Art", [-122.26437, 37.79846],
   "Artifacts & interactive displays in a modern building focusing on state art, history & science.",
-            "lake merritt bear.png", 60, 'landmark', []);
+            "lake merritt bear.png", 60, 'landmark', ["I went to the Black Pather show here a while back too.", "I usually come here on Friday nights when tickets are half-off."]);
 
   addMarkerInfo("fairyland",  "Children's Fairyland", [-122.260697, 37.808927],
   "Built in 1950, Fairyland is one of the earliest themed amusement parks in the United States, and was an inspiration for Walt Disney. Its Storybook Puppet Theater, which opened in 1956, is the oldest continuously operating puppet theater in the United States.",
@@ -426,7 +426,7 @@ $(".close").click(function(e){
   if (e.target.parentNode.id == "npc-popup-card"){
     //if you close a npc card
     $("."+current_npc).each(function(i){
-      var el =this.parentNode.parentNode.parentNode
+      var el =this.parentNode.parentNode.parentNode;
       //console.log(el.id);
       if( el.id != NPC[current_npc].location ){
         el.removeChild(this);
