@@ -34,7 +34,7 @@ LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must under
               options: [    { response: "Okay, thanks!", next: 'exit' }
               ],
               //item: 'apple',
-            quest: "Oak-ness Monster"
+              quest: "Oak-ness Monster"
           };
 
 
@@ -66,7 +66,13 @@ function NPC_chat(name){
   $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
 
   if (quest){
-
+    var num = 0;
+    if (Player.quests_progress.hasOwnProperty(quest)){
+      num = Player.quests_progress[quest];
+      Player.quests_progress[quest] = num+1;
+    } else {
+      Player.quests_progress[quest] = 1;
+    }
   }
 
   if (item){

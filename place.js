@@ -3,12 +3,21 @@ function check_quest_progress(place){
 
   if (NPC['Spelunker'].location == null && $("#"+place).hasClass('landmark')){
     //first landmark
-    var npc = "<span class='npc_icon animated bounceInRight delay-2s Spelunker' id='Spelunker' onclick='NPC_chat(\"Spelunker\")'><img src='npc/spelunker.svg' /><img class='chatty' src='icons/chatty.svg'/></span>";
+    var npc = "<span class='npc_icon animated bounceInRight delay-2s Spelunker' onclick='NPC_chat(\"Spelunker\")'><img src='npc/spelunker.svg' /><img class='chatty' src='icons/chatty.svg'/></span>";
     //need code to remove from previous landmarks if you don't click him at the first landmark? Or when we have more quests he can spawn in a specific location
-    var existing = document.getElementById("Spelunker");
+    var existing = document.getElementsByClassName("Spelunker");
+    if (existing.length > 0){
+      $(".Spelunker").remove();
+      section.append(npc);
+    } else {
+      section.append(npc);
+    }
+    //console.log("checking " +place);
+    /*
     if (document.getElementById(place).contains(existing) == false){
       section.append(npc);
     }
+    */
   }
 }
 

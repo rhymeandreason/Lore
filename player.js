@@ -10,8 +10,8 @@ var Player = {
     "beginner":1,
     "explorer":0
   },
-  "quests_progress": [],
-  "quests_complete": [],
+  "quests_progress": {},
+  "quests_complete": {},
   "landmarks": [],
   "places": [],
   "coins": 10,
@@ -37,7 +37,7 @@ function addItem(el, name){
     num = Player.inventory[name]+1;
   }
   Player.inventory[name] = num;
-  console.log(name + " : "+Player.inventory[name]);
+  //console.log(name + " : "+Player.inventory[name]);
   playAudio("sound-pop");
 
   $(el).fadeOut();
