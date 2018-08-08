@@ -337,9 +337,24 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
     el.style.width = marker.properties.icon.iconSize[0] + 'px';
 
     var popup = document.createElement("div");
-    popup.className = 'popup';
+    popup.className = 'popup ' + marker.properties.className;
     popup.id = marker.properties.id;
-    $(popup).append("<div class='place-header'><img class='place-image' src='"+marker.properties.img+"' /><div class='npc-section'></div></div>");
+
+    var place_header = document.createElement("div");
+    place_header.className = 'place-header';
+    var place_img = document.createElement("IMG");
+    place_img.src = "places/"+marker.properties.id+".jpg";
+    place_img.className = "place-image";
+    place_header.append(place_img);
+
+    var npc_section = document.createElement("div");
+    npc_section.className = 'npc-section';
+    for (var i=0; i<marker.properties.dialog.length; i++){
+      spawn_random_NPC(marker.properties.dialog[i], npc_section);
+    }
+
+    place_header.append(npc_section);
+    $(popup).append(place_header);
     $(popup).append("<h2 class='animated fadeInUp'>"+marker.properties.title+"</h2>");
     $(popup).append("<p class='place-description animated fadeIn delay-1s'>"+marker.properties.description+"</p>");
 
@@ -410,9 +425,11 @@ $(".close").click(function(e){
   }
   if (e.target.parentNode.id == "npc-popup-card"){
     //if you close a npc card
-    $("."+current_npc).each(function(){
-      if( this.parentNode.id != NPC[current_npc].location ){
-        this.parentNode.removeChild(this);
+    $("."+current_npc).each(function(i){
+      var el =this.parentNode.parentNode.parentNode
+      //console.log(el.id);
+      if( el.id != NPC[current_npc].location ){
+        el.removeChild(this);
       }
     });
     current_npc = null;

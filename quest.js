@@ -53,15 +53,14 @@ var NPC = {
 
 function NPC_chat(name){
   $("#npc-popup-card").fadeIn();
-  current_npc = name;
-
   var character = NPC[name];
+  current_npc = name;
   character.location = current_place; //save where you interacted with the character
+
   var display_text = character.dialog[character.progress].text;
   var options = character.dialog[character.progress].options;
   var item = character.dialog[character.progress].item;
   $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
-  console.log(options.length);
 
   if (item){
     console.log(item);

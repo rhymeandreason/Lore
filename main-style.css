@@ -83,6 +83,23 @@
     position: relative;
     top:50%;
     vertical-align: middle;
+    z-index: 5;
+  }
+
+  .small-talk{
+    width: 177px;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    font-size: 13px;
+    height: 44px;
+    vertical-align: center;
+    padding: 10px 84px 10px 40px;
+    text-align: left;
+    line-height: 18px;
+    background-color: rgb(255,255,255,.85);
+    border-radius: 32px;
+    display: none;
   }
 
   #npc-popup-card {
