@@ -31,8 +31,17 @@ LM_Spelunker[6] = { text: "It's a monster that lives in Lake Merritt. And if con
                        ]
           };
 LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by a <b>library</b> or the <b>Oakland Museum</b>.",
-              options: [    { response: "Okay, thanks!", next: 'exit' }
-              ],
+              options: [    { response: "Okay, thanks!", next: 'exit' },
+              {condition: function(){
+                 console.log("testing condition");
+                 if (Player.coins > 15){
+                   return true;
+                 } else {
+                   return false;
+                 }
+               },
+              response:"I have enough coins", next: 'exit'}
+                        ],
               //item: 'apple',
               quest: "Oak-ness Monster"
           };
@@ -85,10 +94,27 @@ function NPC_chat(name){
   $("#npc-responses").html("");
   for (var i=0; i < options.length; i++){
     var entry = options[i];
+    var click;
     if (entry.next == 'exit'){
-      var response = "<span class='animated fadeInUp' onclick = 'NPC_chat_exit()'> " + entry.response + "</span>";
+      click = "NPC_chat_exit()";
     } else {
-      var response = "<span class='animated fadeInUp' onclick = 'NPC_chat_next(\""+name+"\", \""+entry.next + "\")'> " + entry.response + "</span>";
+      click = "NPC_chat_next(\""+name+"\", \""+entry.next + "\")";
+    }
+
+      if (entry.hasOwnProperty('condition')){
+        //evaluate condition for displaying that response
+        //console.log(i+" has a condition");
+        if (entry.condition() == true) {
+          //console.log(i+" condition is true");
+          var response = "<span class='animated fadeInUp' onclick = '"+click+"'> " + entry.response + "</span>";
+          $("#npc-responses").append(response);
+        }
+      } else {
+        //console.log(i+" doesn't have a condition");
+        var response = "<span class='animated fadeInUp' onclick = '"+click+"'> " + entry.response + "</span>";
+        $("#npc-responses").append(response);
+      }
+
     }
     /*
     if (entry.next == 'exit'){
@@ -101,8 +127,7 @@ function NPC_chat(name){
       });
     }
     */
-    $("#npc-responses").append(response);
-  }
+
 }
 
 function NPC_chat_next(npc_name, num){
