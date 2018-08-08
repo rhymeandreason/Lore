@@ -32,7 +32,9 @@ LM_Spelunker[6] = { text: "It's a monster that lives in Lake Merritt. And if con
           };
 LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by a <b>library</b> or the <b>Oakland Museum</b>.",
               options: [    { response: "Okay, thanks!", next: 'exit' }
-                       ]
+              ],
+              //item: 'apple',
+            quest: "Oak-ness Monster"
           };
 
 
@@ -60,11 +62,16 @@ function NPC_chat(name){
   var display_text = character.dialog[character.progress].text;
   var options = character.dialog[character.progress].options;
   var item = character.dialog[character.progress].item;
+  var quest = character.dialog[character.progress].quest;
   $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
+
+  if (quest){
+
+  }
 
   if (item){
     console.log(item);
-    var quest_item = "<span class='animated bounceIn'><img class='animated jackInTheBox' src='"+items[item]+"' onclick='addItem(this.parent, \""+item+"\")' /></span>";
+    var quest_item = "<span class='animated bounceIn'><img class='animated jackInTheBox' src='icons/"+items[item]+"' onclick='addItem(this.parentNode, \""+item+"\")' /></span>";
     $("#npc-item").append(quest_item);
   } else {
     //console.log("no item");

@@ -2,6 +2,7 @@ var items = {
   "acorn": "acorn.svg",
   "coin": "coin.svg",
   "red_apple": "527-red-apple.svg",
+  "apple": "527-red-apple.svg",
   "pear": "528-pear.svg",
   "strawberry": "531-strawberry-1.svg",
   "lemon": "526-lemon.svg",

@@ -124,7 +124,8 @@
     width: 70%;
     margin: auto;
     position: relative;
-    top: 40%;
+    //top: 40%;
+    margin-top:270px;
     font-size: 20px;
     line-height: 26px;
   }
@@ -251,6 +252,23 @@
   .daily-items img:active {
     transform: scale(1.2);
   }
+
+  #npc-item{
+    width: 100%;
+    text-align: center;
+  }
+  #npc-item span{
+    display:inline-block;
+    text-align: center;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 8px;
+    background-color: rgba(0,0,0,.05);
+    position:relative;
+  }
+
   #inventory {
     margin-top: 8px;
     overflow-y: scroll;
@@ -279,7 +297,7 @@
 
   #add-item-anim {
     position: absolute;
-    z-index: 12;
+    z-index: 15;
     bottom: 26px;
     right: 10px;
     width: 35px;
