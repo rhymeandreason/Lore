@@ -146,7 +146,7 @@ var geoJson = {
           "description": "",
           "category": "food",
           "className": "food level-3",
-          "itemDrops": ['onigiri'],
+          "itemDrops": ['onigiri', "rice-bowl", "sushi"],
           "radius": 10,
           "icon": {
               "iconUrl": "546-rice-ball.svg",
@@ -161,140 +161,151 @@ var geoJson = {
 };
 
 addMarkerInfo("haley-law",  "Haley Law Office", [-122.272317, 37.807024],"",
-            "haley-law.png", 50, 'landmark level-4', ["This is my favorite building in Oakland. It looks like it's made of Legos!"]);
+            "haley-law.png", 50, 'landmark level-4', ["This is my favorite building in Oakland. It looks like it's made of Legos!"],[]);
 
 addMarkerInfo("preservation-park",  "Preservation Park", [ -122.276437, 37.805538],"",
-            "preservation-park.png", 50, 'landmark', []);
+            "preservation-park.png", 50, 'landmark', [],[]);
 
 addMarkerInfo("paramount",  "Paramount Theater", [ -122.268012, 37.809610],"",
-            "paramount-theater.png", 40, 'landmark', []);
+            "paramount-theater.png", 40, 'landmark', [],[]);
 
 addMarkerInfo("caffe-817",  "Caffe 817", [  -122.274850, 37.801119],"",
-            "567-hot-beverage-2.svg", 50, 'food', ["The lattes here are fantastic.", "Get a chocolate chip cookie, you won't regret it!"]);
+            "567-hot-beverage-2.svg", 50, 'food', ["The lattes here are fantastic.", "Get a chocolate chip cookie, you won't regret it!"],["coffee", "cookie"]);
 
 addMarkerInfo("malonga",  "Malonga Casquelourd Center", [-122.265980, 37.802945],"",
-            "malonga.png", 50, 'dance', []);
+            "malonga.png", 50, 'dance', [],[]);
 
 addMarkerInfo("buddhist-temple",  "Buddhist Church of Oakland", [-122.267660, 37.798410],"",
-            "buddhist-temple.png", 55, 'landmark level-4', []);
+            "buddhist-temple.png", 55, 'landmark level-4', [],[]);
 
 addMarkerInfo("chinese-junk",  "Junk Boat in Lincoln Park", [-122.268312, 37.800003],
 "This popular local play structure was originally built by the Wa Sung Community Service Club in 1961. It was inspired by an oceangoing junk called the Free China which sailed from Formosa to San Francisco in 1955. The play area and current junk boat was designed and built in 2003 to meet modern safety standards. It is currently closed for repairs.",
-            "chinese-junk.png", 80, 'landmark', ["Will be great to see this when they finish the repairs!"]);
+            "chinese-junk.png", 80, 'landmark', ["Will be great to see this when they finish the repairs!"],[]);
 
 addMarkerInfo("scottish-rite",  "Oakland Scottish Rite Center", [-122.261906, 37.802874],
 "The Scottish Rite Center was built in 1883, just three decades after the then-young city of Oakland was first incorporated into Alameda County. There are private, members-only sections of the temple, but the historic building also opens for public events — everything from weddings to Super Bowl parties — and is home to the Childhood Language Center, a nonprofit speech clinic.",
-            "scottish-rite.png", 80, 'landmark level-4', ["The men's restroom has a barber shop inside!"]);
+            "scottish-rite.png", 80, 'landmark level-4', ["The men's restroom has a barber shop inside!"],[]);
 
 addMarkerInfo("veterans-building",  "Veterans Memorial Building", [-122.261421, 37.811031],
 "Constructed in 1926, the Veterans Memorial Building has an auditorium and two floors. It is also home of the Lake Merritt Dance Center, which offers dance lessons throughout the week.",
-            "veterans-building.png", 90, 'landmark', []);
+            "veterans-building.png", 90, 'landmark', [],[]);
 
 addMarkerInfo("bandstand",  "Edoff Memorial Bandstand", [-122.260152, 37.807674],
 "Built in 1918 for the Oakland Municipal Band, the Edoff Memorial Bandstand was fashioned in the likeness of another bandstand in Milan. Though the band doesn’t get funding from the city anymore, it still performs here each summer. You can check out its free concerts starting on July 4th and each subsequent Sunday in July.",
-            "bandstand.png", 60, 'landmark level-4', []);
+            "bandstand.png", 60, 'landmark level-4', [],[]);
 
 addMarkerInfo("rotary-nature-center",  "Rotary Nature Center", [-122.256209, 37.807142],
 "Built in 1953, it helps maintain and protect the lake and other open spaces in Oakland. The Center offers natural science presentations and summer camps for youth. It also houses various exhibits, including a working observation beehive and some live animals.",
-            "rotary-totem.png", 50, 'landmark', []);
+            "rotary-totem.png", 50, 'landmark', [],[]);
 
 addMarkerInfo("schilling-garden",  "Schilling Garden", [-122.263911, 37.805963],
 "Schilling Garden, a nineteenth-century lakeside estate, was owned by August Schilling, cofounder of the A. Schilling spice company. The family opened the gardens to public viewings around 1911 and for years it was known as a place for high-class parties and weddings. Although the gardens are no longer open to the public, and are much smaller than they once were, people have been known to peek through the gates — which have an “A” for August — to have a look.",
-            "schilling-garden.png", 40, 'landmark', []);
+            "schilling-garden.png", 40, 'landmark', [],[]);
 
 //addMarkerInfo("cathedral-building",  "Cathedral Building", [-122.270248, 37.80621],"",
 //            "cathedral-building.png", 50, 'landmark level-4', []);
 
 addMarkerInfo("oaklandish",  "Oaklandish", [-122.270664, 37.804881],
 "Hip locally inspired apparel",
-            "oaklandish.png", 40, 'store level-4', ["Best spot for Oakland t-shirts!", "The company sponsors community projects every year. And they offer t-shirt printing services."]);
+            "oaklandish.png", 40, 'store level-4', ["Best spot for Oakland t-shirts!", "The company sponsors community projects every year. And they offer t-shirt printing services."],["acorn"]);
 
 addMarkerInfo("fox-theater",  "Fox Theater", [-122.270115, 37.808004],"",
-            "fox_theater.png", 90, 'landmark', []);
+            "fox_theater.png", 90, 'landmark', [],[]);
 
 //addMarkerInfo("E14",  "E14 Gallery", [-122.273844, 37.801179],"",
   //          "600-artist-palette.svg", 50, 'gallery level-3', []);
 
 addMarkerInfo("flax-art",  "FLAX Art & Design", [-122.275509, 37.807162],"",
-            "600-artist-palette.svg", 50, 'art-supply level-3', []);
+            "600-artist-palette.svg", 50, 'art-supply level-3', [],["acorn"]);
 
 addMarkerInfo("kon-tiki",  "The Kon-Tiki", [-122.268653, 37.803238],"",
-            "572-tropical-drink.svg", 50, 'food level-3', ["This place used to be called Longitude, and it was empty. Guess the new name helps!"]);
+            "572-tropical-drink.svg", 50, 'food level-3', ["This place used to be called Longitude, and it was empty. Guess the new name helps!"],["mai-tai"]);
 
 addMarkerInfo("shandong",  "Shandong Restaurant", [  -122.270016, 37.800587],"",
-            "dumpling.png", 40, 'food', ["This place is too popular now, there's always a line out the door.", "Make sure to order the 'special' hand cut noodles."]);
+            "dumpling.png", 40, 'food', ["This place is too popular now, there's always a line out the door.", "Make sure to order the 'special' hand cut noodles."],["rice-bowl"]);
 
 addMarkerInfo("alice-cafe",  "Alice Bakery Cafe", [ -122.268380, 37.799706],"",
-            "556-cookie.svg", 50, 'food level-2', ["I love the red bean buns here, they're cute and delicious!"]);
+            "556-cookie.svg", 50, 'food level-2', ["I love the red bean buns here, they're cute and delicious!"],"cookie");
 
 addMarkerInfo("luckyduck-cafe",  "Luckyduck Bicycle Cafe", [ -122.268660, 37.801724],"",
-            "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"]);
+            "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"], ["coffee"]);
 
 addMarkerInfo("little-giant",  "Little Giant", [-122.269855, 37.809155],"",
-            "551-soft-ice-cream-1.svg", 50, 'food level-3', ["If you come on a Sunday, sundae toppings are free!"]);
+            "551-soft-ice-cream-1.svg", 50, 'food level-3', ["If you come on a Sunday, sundae toppings are free!"],["soft-serve"]);
 
 addMarkerInfo("donut-savant",  "Donut Savant", [-122.268533, 37.808374],"",
-            "554-doughnut-1.svg", 50, 'food level-3', []);
+            "554-doughnut-1.svg", 50, 'food level-3', [],["donut"]);
 
 addMarkerInfo("aburya",  "Aburya", [-122.267637, 37.805969],"",
-            "538-poultry-leg.svg", 50, 'food level-3', ["My favorite fried chicken place!", "Wonder if I should get the fried avocado...hmmm..."]);
+            "538-poultry-leg.svg", 50, 'food level-3', ["My favorite fried chicken place!", "Wonder if I should get the fried avocado...hmmm..."],["drumstick", "rice-bowl"]);
 
 addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 "Oak trees are sacred to the local Ohlone people, who lived in this area thousands of years before European settlers. <br><br> Mayor John L. Davie planted this coast live oak in front of City Hall in 1917. It was named to honor Oakland’s most famous author, who died in November 1916.",
-          "acorn.png", 40, 'landmark level-2', []);
+          "acorn.png", 40, 'landmark level-2', [],[]);
 
   addMarkerInfo("omca",  "Oakland Museum of Art", [-122.26437, 37.79846],
   "Artifacts & interactive displays in a modern building focusing on state art, history & science.",
-            "lake merritt bear.png", 60, 'landmark', ["I went to the Black Pather show here a while back too.", "I usually come here on Friday nights when tickets are half-off."]);
+            "lake merritt bear.png", 60, 'landmark', ["I went to the Black Pather show here a while back too.", "I usually come here on Friday nights when tickets are half-off."],[]);
 
   addMarkerInfo("fairyland",  "Children's Fairyland", [-122.260697, 37.808927],
   "Built in 1950, Fairyland is one of the earliest themed amusement parks in the United States, and was an inspiration for Walt Disney. Its Storybook Puppet Theater, which opened in 1956, is the oldest continuously operating puppet theater in the United States.",
-              "fairyland.png", 70, 'landmark', []);
+              "fairyland.png", 70, 'landmark', [],[]);
 
   addMarkerInfo("stanford-house",  "Camron-Stanford House", [-122.26197481,37.801230850],
   "The last of the beautiful 19th century mansions that once surrounded Lake Merritt and was the home to five influential families before becoming the first museum in the City of Oakland.",
-              "stanford house.png", 80, 'landmark',[]);
+              "stanford house.png", 80, 'landmark',[],[]);
 
   addMarkerInfo("gondola",  "Lake Merritt Gondola", [-122.257533, 37.80242614],[],
-              "gondola.png", 80, 'landmark',[]);
+              "gondola.png", 80, 'landmark',[],[]);
 
   addMarkerInfo("ampitheater",  "Henry J. Kaiser Ampitheater", [-122.261545, 37.7975516],
   "An Oakland landmark built in 1914. It served as a makeshift hospital during the 1918 flu pandemic. <br><br>It's been used for concerts (from Elvis to the Grateful Dead), science fiction conventions, roller derby tournaments, symphony performances and public speaking events (from Bill Clinton to the Dalai Lama). Unfortunately it's been closed since 2006.",
-              "ampitheater.png", 100, 'landmark level-4',[]);
+              "ampitheater.png", 100, 'landmark level-4',[],[]);
 
   addMarkerInfo("torii-gate",  "Torii Gate Garden", [-122.25826, 37.806107],
   "The Fukuoka Junior Chamber of Commerce gave the Torii Gate to the City of Oakland in 1969. In 2002, on the 40th anniversary of their connection, the gate was rebuilt.",
-              "japanese garden.png", 60, 'landmark',[]);
+              "japanese garden.png", 60, 'landmark',[],[]);
 
   addMarkerInfo("bellevue-staten",  "Bellevue-Staten Building", [-122.25377, 37.807864],"",
-              "bellevue-staten.png", 60, 'landmark',[]);
+              "bellevue-staten.png", 60, 'landmark',[],[]);
 
   addMarkerInfo("christ-cathedral",  "Cathedral of Christ the Light", [-122.2631, 37.810398],"",
-              "cathedral.png", 80, 'landmark',[]);
+              "cathedral.png", 80, 'landmark',[],[]);
 
   addMarkerInfo("lucky-grocery",  "Lucky", [-122.2533394 ,37.7996664],"",
-              "527-red-apple.svg", 50, "grocery level-3",[]);
+              "527-red-apple.svg", 50, "grocery level-3",[],[]);
 
   addMarkerInfo("pergola",  "Pergola and Collonade", [-122.2496 ,37.8086],
                 "Designed by architect Walter Reed in 1913, it was first constructed with a fountain at its center, and benches overlooking the lake. It was formerly nicknamed 'El Embarcadero’, which is now the name of the cross-street.<br><br>It was renovated in 2007 as part of Measure DD.",
-                "pergola.png", 100, "landmark",[]);
+                "pergola.png", 100, "landmark",[],[]);
 
   addMarkerInfo("boating-center",  "Lake Merritt Boating Center", [-122.2577 ,37.8051],"",
-                "kayak.png", 80, "landmark level-4",[]);
+                "kayak.png", 80, "landmark level-4",[],[]);
 
   addMarkerInfo("library-main",  "Oakland Public Library", [-122.2636 ,37.8011],
   "Main branch library with extensive section on local history",
-                "book.svg", 50, "library level-3",[]);
+                "book.svg", 50, "library level-3",[],[]);
 
   addMarkerInfo("tribune-tower",  "Oakland Tribune Tower", [-122.2707,	37.8032],
                 "The Oakland Tribune moved into the adjacent building after the 1906 SF earthquake. Publisher Joseph Knowland commissioned the tower inspired by the campanile of Saint Mark’s Basilica in Venice, Italy. Completed in 1923, it was the tallest skyscraper in the East Bay.",
-                "tribune.png", 40, "landmark",[]);
+                "tribune.png", 40, "landmark",[],[]);
 
   addMarkerInfo("city-hall",  "Oakland City Hall", [-122.2722 ,	37.8052],
   "When completed in 1914, it was the tallest building west of the Mississippi. The building was designed by New York-based architecture firm Palmer & Hornbostel in 1910, who won the $5,000 grand prize in a nationwide competition out of 27 competing designs. After damage in the 1989 Loma Prieta earthquake, it was seismically retrofit for $85 million and can now move 18-20 inches laterally in an earthquake.<br><br> In 2011, it was the main protest site of the Occupy Oakland movement.",
-                "city hall.png", 35, "landmark",[]);
+                "city hall.png", 35, "landmark",[],[]);
 
-function addMarkerInfo(id, title, location, description, icon, size, category, dialog){
+function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops){
+  var drop_items;
+  if (drops.length>0){
+    drop_items = drops;
+  } else {
+    if (category.includes("landmark")){
+      drop_items = ['acorn', "acorn", "acorn"];
+    } else {
+      drop_items = ["acorn"];
+    }
+  }
+
   var marker = {
     "type": "Feature",
     "geometry": {
@@ -307,7 +318,7 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
         "category": category,
         "className": category,
         "description": description,
-        "itemDrops": ["acorn", "red_apple", "acorn"],
+        "itemDrops": drop_items,
         "radius": 10,
         "img": "places/"+id+".jpg",
         "icon": {

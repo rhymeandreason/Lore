@@ -17,7 +17,7 @@ function getRandomInt(min, max) {
 }
 
 function spawn_random_NPC(text, parent){
-  console.log(text);
+  //console.log(text);
   var img = "npc/person"+getRandomInt(1,3)+".svg";
   var npc = "<span class='npc_icon generic-npc animated bounceInRight delay-1s' onclick='generic_chat(this)'><img src='"+img+"' /><span class='small-talk'>"+text+"</span></span>";
   $(parent).append(npc);

@@ -10,7 +10,8 @@ var Player = {
     "beginner":1,
     "explorer":0
   },
-  "quests": [],
+  "quests_progress": [],
+  "quests_complete": [],
   "landmarks": [],
   "places": [],
   "coins": 10,

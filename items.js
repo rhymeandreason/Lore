@@ -14,7 +14,13 @@ var items = {
   "soft_serve": "551-soft-ice-cream-1.svg",
   "cherries": "530-cherries.svg",
   "pizza": "543-pizza-1.svg",
-  "onigiri": "546-rice-ball.svg"
+  "onigiri": "546-rice-ball.svg",
+  "donut": "554-doughnut-1.svg",
+  "sushi": "549-sushi.svg",
+  "mai-tai": "572-tropical-drink.svg",
+  "beer": "577-beer-mug.svg",
+  "rice-bowl": "547-cooked-rice.svg",
+  "cookie": "556-cookie.svg"
 }
 
 //recipes are 2 or 3 items
