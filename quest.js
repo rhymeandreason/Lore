@@ -39,13 +39,13 @@ LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must under
 var NPC = {
   "Spelunker": {
     "name": "Dr. Otis Spelunker",
-    "locations": [],
+    "location": null,
     "dialog": LM_Spelunker,
     "progress": 0
   },
   "Bailey": {
     "name": "Dr. Richard Bailey",
-    "locations": [],
+    "location": null,
     "dialog": "",
     "progress": 0
   }
@@ -53,12 +53,14 @@ var NPC = {
 
 function NPC_chat(name){
   $("#npc-popup-card").fadeIn();
+  current_npc = name;
 
   var character = NPC[name];
+  character.location = current_place; //save where you interacted with the character
   var display_text = character.dialog[character.progress].text;
   var options = character.dialog[character.progress].options;
   var item = character.dialog[character.progress].item;
-  $("#npc-text").html("<img src='chat-bubble.svg' />"+display_text);
+  $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
   console.log(options.length);
 
   if (item){

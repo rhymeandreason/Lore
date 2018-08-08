@@ -40,7 +40,7 @@ function addItem(el, name){
   playAudio("sound-pop");
 
   $(el).fadeOut();
-  $("#new-item").attr('src', items[name]);
+  $("#new-item").attr('src', "icons/"+items[name]);
   $("#add-item-anim").fadeIn();
   $("#add-item-anim #new-item").css("bottom","20px");
   $("new-item").attr('src', )

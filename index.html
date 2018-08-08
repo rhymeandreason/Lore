@@ -47,19 +47,19 @@
 <div id='map'></div>
 
 <div id="place-popup-card" class="card">
-  <img src="icons/close.svg" class="close"/>
+  <img src="icons/close-x.svg" class="close"/>
   <div id="place-content"></div>
 </div>
 
 <div id="npc-popup-card" class="card">
-  <img src="icons/close.svg" class="close"/>
+  <img src="icons/close-x.svg" class="close"/>
   <div id="npc-text" class="animated fadeIn"></div>
   <div id="npc-item"></div>
   <div id="npc-responses"></div>
 </div>
 
 <div id="inventory-card" class="card">
-  <img src="icons/close.svg" class="close"/>
+  <img src="icons/close-x.svg" class="close"/>
   <h2>My Stuff</h2>
   <div id="currency"></div>
   <div id="inventory"></div>
@@ -339,7 +339,7 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
     var popup = document.createElement("div");
     popup.className = 'popup';
     popup.id = marker.properties.id;
-    $(popup).append("<img class='place-image' src='"+marker.properties.img+"' />");
+    $(popup).append("<div class='place-header'><img class='place-image' src='"+marker.properties.img+"' /><div class='npc-section'></div></div>");
     $(popup).append("<h2 class='animated fadeInUp'>"+marker.properties.title+"</h2>");
     $(popup).append("<p class='place-description animated fadeIn delay-1s'>"+marker.properties.description+"</p>");
 
@@ -395,14 +395,32 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
 //Show Place
 $(".marker").click(function(){
   var id = $( this ).data( "name");
+  current_place = id;
   check_quest_progress(id);
   $("#place-popup-card").fadeIn();
   $(".popup").hide();
   $("#"+id).show();
 });
 
-$(".close").click(function(){
+$(".close").click(function(e){
+  //console.log(e.target.parentNode.id);
+  if (e.target.parentNode.id == "place-popup-card"){
+    //if you close a place card
+    current_place = null;
+  }
+  if (e.target.parentNode.id == "npc-popup-card"){
+    //if you close a npc card
+    $("."+current_npc).each(function(){
+      if( this.parentNode.id != NPC[current_npc].location ){
+        this.parentNode.removeChild(this);
+      }
+    });
+    current_npc = null;
+
+  }
+
   $(this).parent().fadeOut();
+
 });
 $("#backpack").click(function(){
   updateInventory();
@@ -418,7 +436,7 @@ function updateInventory(){
   for (var i=0; i<inventory.length; i++) {
     var count = Player.inventory[inventory[i]];
     if (count >0){
-      var item = "<span class='item'><img src='"+items[inventory[i]]+"' /><span class='quantity'>"+count+"</span></span>";
+      var item = "<span class='item'><img src='icons/"+items[inventory[i]]+"' /><span class='quantity'>"+count+"</span></span>";
       $("#inventory").append(item);
     }
   }
@@ -438,17 +456,14 @@ function checkDistance(){
 //console.log(loc);
     var distance = turf.distance(loc, player_loc, {units: 'miles'});
 
-    if (distance > .2){
+    if (distance > active_radius){
       var el = $("."+marker.properties.id);
       el.css("filter", "grayscale("+distance*100+"%)");
+
       console.log(el);
       //console.log(marker.properties.id+ " : "+distance);
     } else {
-
     }
-
-
-    //el.css("filter", "grayscale(80%)");
   });
 }
 
@@ -484,6 +499,10 @@ function updatePosition(position){
   //checkDistance();
 
 }
+
+var active_radius = .2;
+var current_place = null;
+var current_npc = null;
 
 var player_marker;
 var el = document.createElement('div');
