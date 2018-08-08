@@ -12,8 +12,8 @@ var Player = {
   },
   "quests_progress": {},
   "quests_complete": {},
-  "landmarks": [],
-  "places": [],
+  "landmarks": {},
+  "places": {},
   "coins": 10,
   "playtime": 0,
   "join_date": 0

@@ -32,19 +32,19 @@ LM_Spelunker[6] = { text: "It's a monster that lives in Lake Merritt. And if con
           };
 LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by a <b>library</b> or the <b>Oakland Museum</b>.",
               options: [    { response: "Okay, thanks!", next: 'exit' },
-              {condition: function(){
-                 console.log("testing condition");
-                 if (Player.coins > 15){
-                   return true;
-                 } else {
-                   return false;
-                 }
-               },
-              response:"I have enough coins", next: 'exit'}
+                            {condition: function(){
+                               console.log("testing condition");
+                               if (Player.coins > 15){
+                                 return true;
+                               } else {
+                                 return false;
+                               }
+                             },
+                            response:"I have enough coins", next: 'exit'}
                         ],
               //item: 'apple',
               quest: "Oak-ness Monster"
-          };
+              };
 
 
 var NPC = {

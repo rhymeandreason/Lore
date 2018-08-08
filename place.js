@@ -12,13 +12,10 @@ function check_quest_progress(place){
     } else {
       section.append(npc);
     }
-    //console.log("checking " +place);
-    /*
-    if (document.getElementById(place).contains(existing) == false){
-      section.append(npc);
-    }
-    */
   }
+
+
+
 }
 
 function getRandomInt(min, max) {

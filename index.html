@@ -65,6 +65,16 @@
   <div id="inventory"></div>
 </div>
 
+<div id="journal-card" class="card">
+  <img src="icons/close-x.svg" class="close"/>
+  <div class="card-tabs">
+  <span class="tab active" onclick="showTab(this,'landmarks')">Places</span>
+  <span class="tab" onclick="showTab(this,'quests')">Quests</span>
+  </div>
+  <div class="tab-content" id="landmarks">Here are landmarks</div>
+  <div class="tab-content" id="quests">Here are quests</div>
+</div>
+
 <div id="main-nav">
   <div id="backpack"><img src="icons/backpack.svg" /></div>
   <div id="journal"><img src="icons/journal.svg" /></div>
@@ -167,7 +177,7 @@ addMarkerInfo("preservation-park",  "Preservation Park", [ -122.276437, 37.80553
             "preservation-park.png", 50, 'landmark', [],[]);
 
 addMarkerInfo("paramount",  "Paramount Theater", [ -122.268012, 37.809610],"",
-            "paramount-theater.png", 40, 'landmark', [],[]);
+            "paramount.png", 40, 'landmark', [],[]);
 
 addMarkerInfo("caffe-817",  "Caffe 817", [  -122.274850, 37.801119],"",
             "567-hot-beverage-2.svg", 50, 'food', ["The lattes here are fantastic.", "Get a chocolate chip cookie, you won't regret it!"],["coffee", "cookie"]);
@@ -196,7 +206,7 @@ addMarkerInfo("bandstand",  "Edoff Memorial Bandstand", [-122.260152, 37.807674]
 
 addMarkerInfo("rotary-nature-center",  "Rotary Nature Center", [-122.256209, 37.807142],
 "Built in 1953, it helps maintain and protect the lake and other open spaces in Oakland. The Center offers natural science presentations and summer camps for youth. It also houses various exhibits, including a working observation beehive and some live animals.",
-            "rotary-totem.png", 50, 'landmark', [],[]);
+            "rotary-nature-center.png", 50, 'landmark', [],[]);
 
 addMarkerInfo("schilling-garden",  "Schilling Garden", [-122.263911, 37.805963],
 "Schilling Garden, a nineteenth-century lakeside estate, was owned by August Schilling, cofounder of the A. Schilling spice company. The family opened the gardens to public viewings around 1911 and for years it was known as a place for high-class parties and weddings. Although the gardens are no longer open to the public, and are much smaller than they once were, people have been known to peek through the gates — which have an “A” for August — to have a look.",
@@ -210,7 +220,7 @@ addMarkerInfo("oaklandish",  "Oaklandish", [-122.270664, 37.804881],
             "oaklandish.png", 40, 'store level-4', ["Best spot for Oakland t-shirts!", "The company sponsors community projects every year. And they offer t-shirt printing services."],["acorn"]);
 
 addMarkerInfo("fox-theater",  "Fox Theater", [-122.270115, 37.808004],"",
-            "fox_theater.png", 90, 'landmark', [],[]);
+            "fox-theater.png", 90, 'landmark', [],[]);
 
 //addMarkerInfo("E14",  "E14 Gallery", [-122.273844, 37.801179],"",
   //          "600-artist-palette.svg", 50, 'gallery level-3', []);
@@ -241,11 +251,11 @@ addMarkerInfo("aburya",  "Aburya", [-122.267637, 37.805969],"",
 
 addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 "Oak trees are sacred to the local Ohlone people, who lived in this area thousands of years before European settlers. <br><br> Mayor John L. Davie planted this coast live oak in front of City Hall in 1917. It was named to honor Oakland’s most famous author, who died in November 1916.",
-          "acorn.png", 40, 'landmark level-2', [],[]);
+          "acorn.png", 40, 'level-2', [],[]);
 
   addMarkerInfo("omca",  "Oakland Museum of Art", [-122.26437, 37.79846],
   "Artifacts & interactive displays in a modern building focusing on state art, history & science.",
-            "lake merritt bear.png", 60, 'landmark', ["I went to the Black Pather show here a while back too.", "I usually come here on Friday nights when tickets are half-off."],[]);
+            "omca.png", 60, 'landmark', ["I went to the Black Pather show here a while back too.", "I usually come here on Friday nights when tickets are half-off."],[]);
 
   addMarkerInfo("fairyland",  "Children's Fairyland", [-122.260697, 37.808927],
   "Built in 1950, Fairyland is one of the earliest themed amusement parks in the United States, and was an inspiration for Walt Disney. Its Storybook Puppet Theater, which opened in 1956, is the oldest continuously operating puppet theater in the United States.",
@@ -253,7 +263,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 
   addMarkerInfo("stanford-house",  "Camron-Stanford House", [-122.26197481,37.801230850],
   "The last of the beautiful 19th century mansions that once surrounded Lake Merritt and was the home to five influential families before becoming the first museum in the City of Oakland.",
-              "stanford house.png", 80, 'landmark',[],[]);
+              "stanford-house.png", 80, 'landmark',[],[]);
 
   addMarkerInfo("gondola",  "Lake Merritt Gondola", [-122.257533, 37.80242614],[],
               "gondola.png", 80, 'landmark',[],[]);
@@ -264,13 +274,13 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 
   addMarkerInfo("torii-gate",  "Torii Gate Garden", [-122.25826, 37.806107],
   "The Fukuoka Junior Chamber of Commerce gave the Torii Gate to the City of Oakland in 1969. In 2002, on the 40th anniversary of their connection, the gate was rebuilt.",
-              "japanese garden.png", 60, 'landmark',[],[]);
+              "torii-gate.png", 60, 'landmark',[],[]);
 
   addMarkerInfo("bellevue-staten",  "Bellevue-Staten Building", [-122.25377, 37.807864],"",
               "bellevue-staten.png", 60, 'landmark',[],[]);
 
   addMarkerInfo("christ-cathedral",  "Cathedral of Christ the Light", [-122.2631, 37.810398],"",
-              "cathedral.png", 80, 'landmark',[],[]);
+              "christ-cathedral.png", 80, 'landmark',[],[]);
 
   addMarkerInfo("lucky-grocery",  "Lucky", [-122.2533394 ,37.7996664],"",
               "527-red-apple.svg", 50, "grocery level-3",[],[]);
@@ -280,7 +290,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
                 "pergola.png", 100, "landmark",[],[]);
 
   addMarkerInfo("boating-center",  "Lake Merritt Boating Center", [-122.2577 ,37.8051],"",
-                "kayak.png", 80, "landmark level-4",[],[]);
+                "boating-center.png", 80, "landmark level-4",[],[]);
 
   addMarkerInfo("library-main",  "Oakland Public Library", [-122.2636 ,37.8011],
   "Main branch library with extensive section on local history",
@@ -288,11 +298,11 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 
   addMarkerInfo("tribune-tower",  "Oakland Tribune Tower", [-122.2707,	37.8032],
                 "The Oakland Tribune moved into the adjacent building after the 1906 SF earthquake. Publisher Joseph Knowland commissioned the tower inspired by the campanile of Saint Mark’s Basilica in Venice, Italy. Completed in 1923, it was the tallest skyscraper in the East Bay.",
-                "tribune.png", 40, "landmark",[],[]);
+                "tribune-tower.png", 40, "landmark",[],[]);
 
   addMarkerInfo("city-hall",  "Oakland City Hall", [-122.2722 ,	37.8052],
   "When completed in 1914, it was the tallest building west of the Mississippi. The building was designed by New York-based architecture firm Palmer & Hornbostel in 1910, who won the $5,000 grand prize in a nationwide competition out of 27 competing designs. After damage in the 1989 Loma Prieta earthquake, it was seismically retrofit for $85 million and can now move 18-20 inches laterally in an earthquake.<br><br> In 2011, it was the main protest site of the Occupy Oakland movement.",
-                "city hall.png", 35, "landmark",[],[]);
+                "city-hall.png", 35, "landmark",[],[]);
 
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops){
   var drop_items;
@@ -415,18 +425,32 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
       $(".level-2").hide();
     }
 
-
   });
+
+$(".active").click();
 
 //Show Place
 $(".marker").click(function(){
   var id = $( this ).data( "name");
   current_place = id;
+  if ($( this ).hasClass('landmark')){
+    if (!Player.landmarks.hasOwnProperty(id)){
+      Player.landmarks[id] = moment();
+    }
+  }
+
   check_quest_progress(id);
   $("#place-popup-card").fadeIn();
   $(".popup").hide();
   $("#"+id).show();
 });
+
+function showTab(el,id){
+  $(".active").removeClass('active');
+  $(".tab-content").hide();
+  $("#"+id).fadeIn();
+  $(el).addClass('active');
+}
 
 $(".close").click(function(e){
   //console.log(e.target.parentNode.id);
@@ -455,7 +479,8 @@ $("#backpack").click(function(){
   $("#inventory-card").fadeIn();
 });
 $("#journal").click(function(){
-
+  updateJournal();
+  $("#journal-card").fadeIn();
 });
 
 function updateInventory(){
@@ -467,6 +492,23 @@ function updateInventory(){
       var item = "<span class='item'><img src='icons/"+items[inventory[i]]+"' /><span class='quantity'>"+count+"</span></span>";
       $("#inventory").append(item);
     }
+  }
+}
+
+function updateJournal(){
+  var landmarks = Object.keys(Player.landmarks);
+  $("#landmarks").html("");
+  for (var i=0; i<landmarks.length; i++) {
+    var date = Player.landmarks[landmarks[i]].format('MMM Do YYYY<br> h:mm a');
+      var place = "<span class='place'><img src='icons/"+landmarks[i]+".png' /><span class='journal-date'>"+date+"</span></span>";
+      $("#landmarks").append(place);
+  }
+
+  var quests = Object.keys(Player.quests_progress);
+  $("#quests").html("");
+  for (var i=0; i<quests.length; i++) {
+    var quest = "<span class='quest'>"+quests[i]+"</span>";
+    $("#quests").append(quest);
   }
 }
 
