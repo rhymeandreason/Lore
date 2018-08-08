@@ -32,14 +32,7 @@ LM_Spelunker[6] = { text: "It's a monster that lives in Lake Merritt. And if con
           };
 LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by a <b>library</b> or the <b>Oakland Museum</b>.",
               options: [    { response: "Okay, thanks!", next: 'exit' },
-                            {condition: function(){
-                               console.log("testing condition");
-                               if (Player.coins > 15){
-                                 return true;
-                               } else {
-                                 return false;
-                               }
-                             },
+                            {condition: ['coins', 15],
                             response:"I have enough coins", next: 'exit'}
                         ],
               //item: 'apple',
@@ -60,6 +53,20 @@ var NPC = {
     "dialog": "",
     "progress": 0
   }
+}
+
+function Quest_Conditions(property, value) {
+  if (property == 'quest'){
+    return Player.quests_progress.hasOwnProperty(value);
+  }
+  if (property == 'coins'){
+    if (Player.coins >= value){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
 
 function NPC_chat(name){
@@ -104,7 +111,7 @@ function NPC_chat(name){
       if (entry.hasOwnProperty('condition')){
         //evaluate condition for displaying that response
         //console.log(i+" has a condition");
-        if (entry.condition() == true) {
+        if (Quest_Conditions(entry.condition[0],entry.condition[1]) == true) {
           //console.log(i+" condition is true");
           var response = "<span class='animated fadeInUp' onclick = '"+click+"'> " + entry.response + "</span>";
           $("#npc-responses").append(response);
@@ -137,4 +144,31 @@ function NPC_chat_next(npc_name, num){
 
 function NPC_chat_exit(){
   $("#npc-popup-card").fadeOut();
+}
+
+/////functions to save json data
+
+function encode( s ) {
+    var out = [];
+    for ( var i = 0; i < s.length; i++ ) {
+        out[i] = s.charCodeAt(i);
+    }
+    return new Uint8Array( out );
+}
+
+function SaveData(obj, filename){
+  var data = encode( JSON.stringify(obj, null, 4) );
+
+    var blob = new Blob( [ data ], {
+        type: 'application/octet-stream'
+    });
+
+    url = URL.createObjectURL( blob );
+    var link = document.createElement( 'a' );
+    link.setAttribute( 'href', url );
+    link.setAttribute( 'download', filename+'.json' );
+
+    var event = document.createEvent( 'MouseEvents' );
+    event.initMouseEvent( 'click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+    link.dispatchEvent( event );
 }
