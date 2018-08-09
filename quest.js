@@ -39,12 +39,29 @@ LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must under
 
 var LM_Librarian = [];
 LM_Librarian[0] = { "text": "Hello, do you need help with anything?",
-             options: [   { condition: ['quest', 'Oak-ness Monster'], response: "Do you have any info on the Oak-ness Monster?", next: 1 },
-                          {  response: "Got any recommended reading?", next: 'exit' }
+             options: [   { condition: ['quest', 'Oak-ness Monster'], response: "Do you have any info on the Oak-ness Monster?", next: 2 },
+                          {  response: "Got any recommended reading?", next: 1 }
                       ]
            };
-LM_Librarian[1] = { "text": "Perhaps you can try some books about Oakland history. We have a whole section.",
+LM_Librarian[1] = { "text": "Check out our section of featured local authors. ",
+           options: [    {  response: "Thanks!", next: 'exit reset' }
+                    ]
+         };
+LM_Librarian[2] = { "text": "Not sure about a monster...Perhaps you can try some books about Oakland history. We have a whole section.",
+            options: [  {  response: "Okay, is there a book in particular that you recommend?", next: 3 },
+                        {  response: "Do you have any info about Lake Merritt specifically?", next: 4 }
+                     ]
+          };
+LM_Librarian[3] = { "text": "'Oakland, A Story of a City' by Beth Bagwell is your best bet.",
             options: [    {  response: "Thanks!", next: 'exit' }
+                     ]
+          };
+LM_Librarian[4] = { "text": "You should look up the man it's named after, Dr. Samuel B. Merritt. He's quite an interesting character.",
+            options: [    {  response: "How so?", next: '5' }
+                     ]
+          };
+LM_Librarian[5] = { "text": "He did so many things...Doctor, entreprenuer, mayor, real estate developer. He built the <b>Camron-Stanford House</b>, which is nearby.",
+            options: [    {  response: "That's interesting. Thanks!", next: 'exit' }
                      ]
           };
 
@@ -119,6 +136,8 @@ function NPC_chat(name){
     var click;
     if (entry.next == 'exit'){
       click = "NPC_chat_exit()";
+    } else if (entry.next =='exit reset'){
+      click = "NPC_chat_exit_reset(\""+name+"\")";
     } else {
       click = "NPC_chat_next(\""+name+"\", \""+entry.next + "\")";
     }
@@ -158,6 +177,11 @@ function NPC_chat_next(npc_name, num){
 }
 
 function NPC_chat_exit(){
+  $("#npc-popup-card").fadeOut();
+}
+
+function NPC_chat_exit_reset(npc_name){
+  NPC[npc_name].progress = 0;
   $("#npc-popup-card").fadeOut();
 }
 
