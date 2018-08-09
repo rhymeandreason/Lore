@@ -14,8 +14,13 @@ function check_quest_progress(place){
     }
   }
 
+}
 
+function attach_NPC(name, location_id){
+  var img = "npc/"+name+".svg";
+  var npc = "<span class='npc_icon animated bounceInRight delay-1s' onclick='NPC_chat(\""+name+"\")'><img src='"+img+"' /><img class='chatty' src='icons/chatty.svg'/></span>";
 
+  $("#"+location_id+" .npc-section").append(npc);
 }
 
 function getRandomInt(min, max) {

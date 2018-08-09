@@ -75,20 +75,21 @@
     box-shadow: 0px 2px 6px rgba(10, 47, 56, 0.2);
     display: inline-block;
     vertical-align: middle;
+    position: relative;
   }
   .npc_icon img{
     //width: 30px;
     height: 32px;
-    margin-top: -24px;
     position: relative;
-    top:50%;
+    top:22%;
     vertical-align: middle;
     z-index: 5;
   }
 
   .npc_icon img.chatty{
-    top: -12px;
-    left: -28px;
+    top: 0px;
+    left: -21px;
+    position: absolute;
   }
 
 
@@ -332,6 +333,10 @@
   }
   .card-tabs{
     text-align: center;
+    width:100%;
+    position: fixed;
+    bottom: 0px;
+    background-color: rgba(255,255,255,.7);
   }
   .card .tab{
     font-size: 24px;
@@ -379,4 +384,11 @@
 
   .tab-content{
     display: none;
+  }
+
+  .placeholder {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    margin-top: 48px;
   }

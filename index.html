@@ -258,7 +258,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
             "omca.png", 60, 'landmark', ["I went to the Black Pather show here a while back too.", "I usually come here on Friday nights when tickets are half-off."],[]);
 
   addMarkerInfo("fairyland",  "Children's Fairyland", [-122.260697, 37.808927],
-  "Built in 1950, Fairyland is one of the earliest themed amusement parks in the United States, and was an inspiration for Walt Disney. Its Storybook Puppet Theater, which opened in 1956, is the oldest continuously operating puppet theater in the United States.",
+  "Built in 1950, Fairyland is one of the earliest themed amusement parks in the United States, and was an inspiration for Walt Disney.",
               "fairyland.png", 70, 'landmark', [],[]);
 
   addMarkerInfo("stanford-house",  "Camron-Stanford House", [-122.26197481,37.801230850],
@@ -293,7 +293,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
                 "boating-center.png", 80, "landmark level-4",[],[]);
 
   addMarkerInfo("library-main",  "Oakland Public Library", [-122.2636 ,37.8011],
-  "Main branch library with extensive section on local history",
+  "Main branch library",
                 "book.svg", 50, "library level-3",[],[]);
 
   addMarkerInfo("tribune-tower",  "Oakland Tribune Tower", [-122.2707,	37.8032],
@@ -503,12 +503,18 @@ function updateJournal(){
       var place = "<span class='place'><img src='icons/"+landmarks[i]+".png' /><span class='journal-date'>"+date+"</span></span>";
       $("#landmarks").append(place);
   }
+  if (landmarks.length == 0){
+    $("#landmarks").append("<p class='placeholder'>Visit some local landmarks. <br>Your journeys will be recorded here.</p>");
+  }
 
   var quests = Object.keys(Player.quests_progress);
   $("#quests").html("");
   for (var i=0; i<quests.length; i++) {
     var quest = "<span class='quest'>"+quests[i]+"</span>";
     $("#quests").append(quest);
+  }
+  if (quests.length == 0){
+    $("#quests").append("<p class='placeholder'>Visit local landmarks to discover quests!</p>");
   }
 }
 
@@ -583,6 +589,8 @@ player_marker = new mapboxgl.Marker(el)
   .addTo(map);
 
 //getLocation();
+
+attach_NPC('Librarian', 'library-main');
 
 </script>
 

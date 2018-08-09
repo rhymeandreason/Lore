@@ -1,6 +1,4 @@
 var LM_Spelunker = []; // Lake Merritt Quest
-
-// create event objects and store them in the array
 LM_Spelunker[0] = { "text": "Nice day to be walking around in Oakland.",
              options: [    { "response": "Yes it's such a nice day!", "next": 1 }
                       ]
@@ -39,12 +37,28 @@ LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must under
               quest: "Oak-ness Monster"
               };
 
+var LM_Librarian = [];
+LM_Librarian[0] = { "text": "Hello, do you need help with anything?",
+             options: [   { condition: ['quest', 'Oak-ness Monster'], response: "Do you have any info on the Oak-ness Monster?", next: 1 },
+                          {  response: "Got any recommended reading?", next: 'exit' }
+                      ]
+           };
+LM_Librarian[1] = { "text": "Perhaps you can try some books about Oakland history. We have a whole section.",
+            options: [    {  response: "Thanks!", next: 'exit' }
+                     ]
+          };
 
 var NPC = {
   "Spelunker": {
     "name": "Dr. Otis Spelunker",
     "location": null,
     "dialog": LM_Spelunker,
+    "progress": 0
+  },
+  "Librarian": {
+    "name": "Mandy",
+    "location": null,
+    "dialog": LM_Librarian,
     "progress": 0
   },
   "Bailey": {
@@ -66,8 +80,9 @@ function Quest_Conditions(property, value) {
       return false;
     }
   }
-
 }
+
+
 
 function NPC_chat(name){
   $("#npc-popup-card").fadeIn();
