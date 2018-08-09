@@ -138,8 +138,8 @@
   #npc-responses {
     position: absolute;
     bottom: 12px;
-    margin: 24px;
-    width: 80%;
+    margin-top: 24px;
+    width: 100%;
     text-align: center;
 
   }
@@ -152,6 +152,7 @@
     display: inline-block;
     clear: both;
     margin-bottom: 18px;
+    max-width: 80%;
   }
 
   #map { position:absolute; top:0; bottom:0; width:100%; }

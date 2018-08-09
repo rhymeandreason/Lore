@@ -53,7 +53,8 @@ LM_Librarian[2] = { "text": "Not sure about a monster...Perhaps you can try some
                      ]
           };
 LM_Librarian[3] = { "text": "'Oakland, A Story of a City' by Beth Bagwell is your best bet.",
-            options: [    {  response: "Thanks!", next: 'exit' }
+            options: [    {  response: "Thanks!", next: 'exit' },
+                          {  response: "Do you have any info about Lake Merritt specifically?", next: 4 }
                      ]
           };
 LM_Librarian[4] = { "text": "You should look up the man it's named after, Dr. Samuel B. Merritt. He's quite an interesting character.",
@@ -102,6 +103,7 @@ function Quest_Conditions(property, value) {
 
 
 function NPC_chat(name){
+  $("#npc-popup-card").css('background-image', "url(npc/"+name+"-main.png");
   $("#npc-popup-card").fadeIn();
   var character = NPC[name];
   current_npc = name;
