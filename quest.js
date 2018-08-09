@@ -114,6 +114,7 @@ function NPC_chat(name){
   var item = character.dialog[character.progress].item;
   var quest = character.dialog[character.progress].quest;
   $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
+  $("#npc-text").show();
 
   if (quest){
     var num = 0;
@@ -175,6 +176,7 @@ function NPC_chat(name){
 
 function NPC_chat_next(npc_name, num){
   NPC[npc_name].progress = num;
+  $("#npc-text").hide();
   NPC_chat(npc_name);
 }
 
@@ -185,6 +187,7 @@ function NPC_chat_exit(){
 function NPC_chat_exit_reset(npc_name){
   NPC[npc_name].progress = 0;
   $("#npc-popup-card").fadeOut();
+  $("#npc-text").hide();
 }
 
 /////functions to save json data

@@ -121,14 +121,14 @@
     background-color: white;
     border: 2px solid #303336;
     border-radius: 36px;
-    padding:  8px 24px 12px 24px;
+    padding:  14px 24px 18px 24px;
     width: 70%;
     margin: auto;
     position: relative;
     //top: 40%;
     margin-top:270px;
     font-size: 20px;
-    line-height: 26px;
+    line-height: 28px;
   }
   #npc-text img{
     position: absolute;
