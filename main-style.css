@@ -36,6 +36,8 @@
     background-color: white;
     display: none;
     overflow-x: hidden;
+    overflow-y: scroll; /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
   }
 
   #place-popup-card{
