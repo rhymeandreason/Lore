@@ -89,6 +89,11 @@
 
 <span id='player'></span>
 
+<div id="error-dialog" class="animated fadeInUp">
+  <p>You don't have enough acorns to purchase this item.</p>
+  <span class="ok-button">Okay</span>
+</div>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqcnRsbTFiNTJ4aWwzNCJ9.Dbd2av6hgoRurCjn5i0UPw';
 
@@ -429,7 +434,8 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
       shop.className = 'shop';
       var shop_items = Object.keys(marker.properties.shop);
       for (var i=0; i<shop_items.length; i++){
-        var item1 = "<span class='shop_item animated fadeInUp delay-2s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\")' /><span class='price'>"+marker.properties.shop[shop_items[i]]+"</span></span>";
+        var price = marker.properties.shop[shop_items[i]];
+        var item1 = "<span class='shop_item animated fadeInUp delay-2s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\","+price+" )' /><span class='price'>"+price+"</span></span>";
         $(shop).append(item1);
       }
       $(popup).append(shop);
@@ -513,8 +519,12 @@ $(".close").click(function(e){
   }
 
   $(this).parent().fadeOut();
-
 });
+
+$(".ok-button").click(function(e){
+  $(this).parent().fadeOut();
+});
+
 $("#backpack").click(function(){
   updateInventory();
   $("#inventory-card").fadeIn();
@@ -536,6 +546,7 @@ function updateInventory(){
   }
 
   var purchases = Object.keys(Player.purchases);
+  $("#purchases").html("");
   for (var i=0; i<purchases.length; i++) {
     var count = Player.purchases[purchases[i]];
     if (count >0){
@@ -642,6 +653,11 @@ player_marker = new mapboxgl.Marker(el)
 //getLocation();
 
 attach_NPC('Librarian', 'library-main');
+
+var GameData= {
+  "store_restock": moment(),
+  "game_start": moment()
+}
 
 </script>
 

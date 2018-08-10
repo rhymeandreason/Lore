@@ -49,21 +49,29 @@ function addItem(el, name){
   $("#add-item-anim #new-item").animate({bottom: '-32px'}, "slow", function(){$("#add-item-anim").fadeOut('fast');});
 }
 
-function buyItem(el, name){
-  var num = 1;
-  if (Player.purchases.hasOwnProperty(name)){
-    num = Player.purchases[name]+1;
-  }
-  Player.purchases[name] = num;
-  //console.log(name + " : "+Player.inventory[name]);
-  playAudio("sound-pop");
+function buyItem(el, name, price){
+  //we're going to do prices in acorns for now
+  if (Player.inventory.acorn >= price){
+    Player.inventory.acorn-=price;
 
-  $(el).fadeOut();
-  $("#new-item").attr('src', "shops/"+name+".png");
-  $("#add-item-anim").fadeIn();
-  $("#add-item-anim #new-item").css("bottom","20px");
-  $("new-item").attr('src', )
-  $("#add-item-anim #new-item").animate({bottom: '-32px'}, "slow", function(){$("#add-item-anim").fadeOut('fast');});
+    var num = 1;
+    if (Player.purchases.hasOwnProperty(name)){
+      num = Player.purchases[name]+1;
+    }
+    Player.purchases[name] = num;
+    //console.log(name + " : "+Player.inventory[name]);
+    playAudio("sound-pop");
+
+    $(el).fadeOut();
+    $("#new-item").attr('src', "shops/"+name+".png");
+    $("#add-item-anim").fadeIn();
+    $("#add-item-anim #new-item").css("bottom","20px");
+    $("new-item").attr('src', )
+    $("#add-item-anim #new-item").animate({bottom: '-32px'}, "slow", function(){$("#add-item-anim").fadeOut('fast');});
+  } else {
+    //you don't have enough acorns
+    $("#error-dialog").show();
+  }
 }
 
 function addPlace(name){
