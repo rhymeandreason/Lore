@@ -266,9 +266,52 @@
     position:relative;
   }
 
-  #inventory {
+  .shop {
+    border-top: 2px solid #EEEEEE;
+    width:90%;
+    margin: auto;
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+  .shop_item, #purchases .item{
+    display:inline-block;
+    float: left;
+    text-align: center;
+    width: 33.3%;
+    height: 100px;
+    margin-top: 16px;
+  }
+  .shop_item img, #purchases .item img{
+    height: 70px;
+    width:80%;
+    object-fit: contain;
+    display: inline-block;
+  }
+  .shop_item .price::before{
+    content: "";
+    background-image: url("icons/acorn.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    display:inline-block;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top:2px;
+    margin-right: 4px;
+  }
+  .shop_item .price{
+    font-size: 14px;
+    text-align: center;
+    display:inline-block;
+    float: left;
+    width:100%;
+  }
+
+  #inventory, #purchases {
+    width: 90%;
+    margin: auto;
     margin-top: 8px;
-    overflow-y: scroll;
+    //overflow-y: scroll;
   }
   #inventory .item{
     display:inline-block;
@@ -284,7 +327,7 @@
     height: 44px;
     display: inline-block;
   }
-  #inventory .quantity{
+  #inventory .quantity, #purchases .quantity{
     font-size: 14px;
     text-align: center;
     display:inline-block;

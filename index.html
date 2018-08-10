@@ -22,6 +22,7 @@
 <script src='items.js'></script>
 <script src='quest.js'></script>
 <script src='place.js'></script>
+<script src='shops.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
@@ -63,6 +64,7 @@
   <h2>My Stuff</h2>
   <div id="currency"></div>
   <div id="inventory"></div>
+  <div id="purchases"></div>
 </div>
 
 <div id="journal-card" class="card">
@@ -141,7 +143,8 @@ var geoJson = {
               "popupAnchor": [0, -25] // point from which the popup should open relative to the iconAnchor
           },
           "dialog": ["The sandwiches are made with pizza dough bread fresh from the oven.",
-                    "Can't go wrong with a classic margherita pizza."]
+                    "Can't go wrong with a classic margherita pizza."],
+          "shop": pizza_shop
       }
   }, {
       "type": "Feature",
@@ -165,9 +168,36 @@ var geoJson = {
               "popupAnchor": [0, -55],
           },
           "dialog": ["The karage (fried chicken) here is super good!",
-          "At lunch they have combo sets. I like the salmon set the best."]
+          "At lunch they have combo sets. I like the salmon set the best."],
+          "shop": dimsum_shop
       }
-    }]
+    },{
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-122.254895,
+                      37.799250]
+        },
+        "properties": {
+            "id": "pietisserie",
+            "title": "Pietisserie",
+            "description": "The best pies this side of the bay",
+            "category": "food",
+            "className": "food level-3",
+            "itemDrops": ['coffee'],
+            "radius": 10,
+            "icon": {
+                "iconUrl": "561-shortcake.svg",
+                "iconSize": [50, 50],
+                "iconAnchor": [50, 50],
+                "popupAnchor": [0, -55],
+            },
+            "dialog": ["Oh look, now they do breakfast here, that's new!",
+                      "The choclate raspberry pie is to die for."],
+            "shop": pie_shop
+        }
+      }
+  ]
 };
 
 addMarkerInfo("haley-law",  "Haley Law Office", [-122.272317, 37.807024],"",
@@ -394,6 +424,17 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
       $(popup).append(div);
     }
 
+    if (marker.properties.shop){
+      var shop = document.createElement("div");
+      shop.className = 'shop';
+      var shop_items = Object.keys(marker.properties.shop);
+      for (var i=0; i<shop_items.length; i++){
+        var item1 = "<span class='shop_item animated fadeInUp delay-2s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\")' /><span class='price'>"+marker.properties.shop[shop_items[i]]+"</span></span>";
+        $(shop).append(item1);
+      }
+      $(popup).append(shop);
+    }
+
     $("#place-content").append(popup);
     // add marker to map
     new mapboxgl.Marker(el)
@@ -493,6 +534,16 @@ function updateInventory(){
       $("#inventory").append(item);
     }
   }
+
+  var purchases = Object.keys(Player.purchases);
+  for (var i=0; i<purchases.length; i++) {
+    var count = Player.purchases[purchases[i]];
+    if (count >0){
+      var item = "<span class='item'><img src='shops/"+purchases[i]+".png' /><span class='quantity'>"+count+"</span></span>";
+      $("#purchases").append(item);
+    }
+  }
+
 }
 
 function updateJournal(){

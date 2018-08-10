@@ -21,7 +21,8 @@ var items = {
   "mai-tai": "572-tropical-drink.svg",
   "beer": "577-beer-mug.svg",
   "rice-bowl": "547-cooked-rice.svg",
-  "cookie": "556-cookie.svg"
+  "cookie": "556-cookie.svg",
+  "cake": "561-shortcake.svg"
 }
 
 //recipes are 2 or 3 items
