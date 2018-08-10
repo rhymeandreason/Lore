@@ -6,6 +6,40 @@
     font-family: 'Barlow', sans-serif;
     color: #303336;
   }
+  #debug-button{
+    z-index: 10;
+    position: absolute;
+    display: inline-block;
+    top: 5px;
+    left: 5px;
+  }
+  #debug {
+    padding: 64px;
+  }
+  #debug span{
+    display: block;
+    float: left;
+    font-size: 24px;
+    position: relative;
+    left: 48px;
+    margin-bottom: 40px;
+    clear: both;
+  }
+  #debug input[type='checkbox']{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: -48px;
+    top: -5px
+  }
+
+  #debug input[type='number']{
+    font-size: 24px;
+    position: absolute;
+    left: -80px;
+    width: 66px;
+  }
+
   #main-nav{
     position:absolute;
     bottom:16px;
@@ -196,11 +230,18 @@
   .marker {
     border-radius: 50%;
     background-size: contain;
+    filter: grayscale(90%);
   }
   .marker img{
     width: 100%;
     filter: drop-shadow(1px 1px 0 white)
           drop-shadow(-1px -1px 0 white);
+  }
+  .active-marker{
+    filter: grayscale(0%); !important
+  }
+  .player {
+    filter: grayscale(0%); !important
   }
 
   .popup::-webkit-scrollbar {
@@ -320,7 +361,8 @@
   }
   .shop_item img, #purchases .item img{
     height: 70px;
-    width:80%;
+    //width:80%;
+    width:65%;
     object-fit: contain;
     display: inline-block;
   }

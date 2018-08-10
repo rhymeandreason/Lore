@@ -81,6 +81,7 @@
   <div id="backpack"><img src="icons/backpack.svg" /></div>
   <div id="journal"><img src="icons/journal.svg" /></div>
 </div>
+<span id="debug-button">Debug</span>
 
 <div id="add-item-anim">
   <span><img id="new-item" src="icons/acorn.svg"/></span>
@@ -92,6 +93,12 @@
 <div id="error-dialog" class="animated fadeInUp">
   <p>You don't have enough acorns to purchase this item.</p>
   <span class="ok-button">Okay</span>
+</div>
+
+<div id="debug" class="card">
+  <img src="icons/close-x.svg" class="close"/>
+  <span><input type="checkbox" id="track_location"/> Track Location</span>
+  <span><input id="distance_input" type="number" value=".2" step=".05"> Active Distance km</span>
 </div>
 
 <script>
@@ -174,7 +181,7 @@ var geoJson = {
           },
           "dialog": ["The karage (fried chicken) here is super good!",
           "At lunch they have combo sets. I like the salmon set the best."],
-          "shop": dimsum_shop
+          "shop": sushi_shop
       }
     },{
         "type": "Feature",
@@ -267,13 +274,13 @@ addMarkerInfo("kon-tiki",  "The Kon-Tiki", [-122.268653, 37.803238],"",
             "572-tropical-drink.svg", 50, 'food level-3', ["This place used to be called Longitude, and it was empty. Guess the new name helps!"],["mai-tai"]);
 
 addMarkerInfo("shandong",  "Shandong Restaurant", [  -122.270016, 37.800587],"",
-            "dumpling.png", 40, 'food', ["This place is too popular now, there's always a line out the door.", "Make sure to order the 'special' hand cut noodles."],["rice-bowl"]);
+            "dumpling.png", 40, 'food', ["This place is too popular now, there's always a line out the door.", "Make sure to order the 'special' hand cut noodles."],["rice-bowl"], dimsum_shop);
 
 addMarkerInfo("alice-cafe",  "Alice Bakery Cafe", [ -122.268380, 37.799706],"",
             "556-cookie.svg", 50, 'food level-2', ["I love the red bean buns here, they're cute and delicious!"],"cookie");
 
 addMarkerInfo("luckyduck-cafe",  "Luckyduck Bicycle Cafe", [ -122.268660, 37.801724],"",
-            "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"], ["coffee"]);
+            "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"], ["coffee"], taco_shop);
 
 addMarkerInfo("little-giant",  "Little Giant", [-122.269855, 37.809155],"",
             "551-soft-ice-cream-1.svg", 50, 'food level-3', ["If you come on a Sunday, sundae toppings are free!"],["soft-serve"]);
@@ -339,7 +346,10 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
   "When completed in 1914, it was the tallest building west of the Mississippi. The building was designed by New York-based architecture firm Palmer & Hornbostel in 1910, who won the $5,000 grand prize in a nationwide competition out of 27 competing designs. After damage in the 1989 Loma Prieta earthquake, it was seismically retrofit for $85 million and can now move 18-20 inches laterally in an earthquake.<br><br> In 2011, it was the main protest site of the Occupy Oakland movement.",
                 "city-hall.png", 35, "landmark",[],[]);
 
-function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops){
+  addMarkerInfo("James-cupcake",  "James and the Giant Cupcake", [-122.267142 ,	37.805555],
+  "","561-shortcake.svg", 50, "food level-3",[],[], cupcake_shop);
+
+function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
   var drop_items;
   if (drops.length>0){
     drop_items = drops;
@@ -372,7 +382,8 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
             "iconAnchor": [25, 25],
             "popupAnchor": [0, -55]
         },
-        "dialog": dialog
+        "dialog": dialog,
+        "shop": shop
     }
   }
   geoJson.features.push(marker);
@@ -478,9 +489,20 @@ $(".active").click();
 
 //Show Place
 $(".marker").click(function(){
+  //console.log(this);
   var id = $( this ).data( "name");
+  if (isTracking ){
+    if ($( this ).hasClass( "active-marker")){
+      showLocation(this, id);
+    }
+  } else {
+    showLocation(this, id);
+  }
+});
+
+function showLocation(el, id){
   current_place = id;
-  if ($( this ).hasClass('landmark')){
+  if ($( el ).hasClass('landmark')){
     if (!Player.landmarks.hasOwnProperty(id)){
       Player.landmarks[id] = moment();
     }
@@ -490,7 +512,7 @@ $(".marker").click(function(){
   $("#place-popup-card").fadeIn();
   $(".popup").hide();
   $("#"+id).show();
-});
+}
 
 function showTab(el,id){
   $(".active").removeClass('active');
@@ -532,6 +554,9 @@ $("#backpack").click(function(){
 $("#journal").click(function(){
   updateJournal();
   $("#journal-card").fadeIn();
+});
+$("#debug-button").click(function(){
+  $("#debug").fadeIn();
 });
 
 function updateInventory(){
@@ -588,59 +613,54 @@ function playAudio(id){
 
 }
 function checkDistance(){
-  geoJson.features.forEach(function(marker){
-    var loc = [marker.geometry.coordinates[1], marker.geometry.coordinates[0]];
-    var player_loc = [player_position.latitude, player_position.longitude];
-//console.log(loc);
-    var distance = turf.distance(loc, player_loc, {units: 'miles'});
+  if (player_position){
+    geoJson.features.forEach(function(marker){
+      var loc = [marker.geometry.coordinates[1], marker.geometry.coordinates[0]];
+      var player_loc = [player_position.latitude, player_position.longitude];
+  //console.log(loc);
+      var distance = turf.distance(loc, player_loc, {units: 'kilometers'});
 
-    if (distance > active_radius){
-      var el = $("."+marker.properties.id);
-      el.css("filter", "grayscale("+distance*100+"%)");
+      if (distance > active_radius){
+        var el = $("."+marker.properties.id);
+        //el.css("filter", "grayscale("+distance*100+"%)");
+        $("."+marker.properties.id).removeClass("active-marker");
+        //console.log(marker.properties.id+ " : "+distance);
+      } else {
+        $("."+marker.properties.id).addClass("active-marker");
+      }
+    });
+  }
 
-      console.log(el);
-      //console.log(marker.properties.id+ " : "+distance);
-    } else {
-    }
-  });
 }
 
 function getLocation() {
     if (navigator.geolocation) {
         //navigator.geolocation.getCurrentPosition(showPosition);
-        navigator.geolocation.watchPosition(updatePosition);
-
+        geo_id = navigator.geolocation.watchPosition(updatePosition);
+        $(".player").show();
+        location_logger = setInterval(checkDistance, 1000);
     } else {
         console.log("Geolocation is not supported by this browser.");
     }
   }
 
-function showPosition(position) {
-    var message = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-    console.log(message);
-/*
-    var el = document.createElement('div');
-    el.className = 'marker player';
-
-    player_marker = new mapboxgl.Marker(el)
-        .setLngLat([position.coords.longitude, position.coords.latitude])
-        .addTo(map);
-*/
-    navigator.geolocation.watchPosition(updatePosition);
-}
-
 function updatePosition(position){
   player_marker.setLngLat([position.coords.longitude, position.coords.latitude]);
   player_position = position.coords;
-  $(".player").show();
+  isTracking=true;
+  //$(".player").show();
   //checkDistance();
-
 }
 
 var active_radius = .2;
 var current_place = null;
 var current_npc = null;
+var location_logger;
+var geo_id;
+var isTracking = false;
+
+$( "#track_location" ).prop( "checked", isTracking);
+$("#distance_input").val(active_radius);
 
 var player_marker;
 var el = document.createElement('div');
@@ -650,7 +670,24 @@ player_marker = new mapboxgl.Marker(el)
   .setLngLat([-122.258216, 37.801343])
   .addTo(map);
 
-//getLocation();
+$("#track_location").change(function(){
+  if ( $(this).is(":checked")){
+    $(".marker").removeClass("active-marker");
+    getLocation();
+  } else {
+    console.log("stop tracking location");
+    navigator.geolocation.clearWatch(geo_id);
+    $(".player").hide();
+    clearInterval(location_logger);
+    isTracking = false;
+    $(".marker").addClass("active-marker");
+  }
+});
+
+$("#distance_input").change(function(){
+  active_radius = parseFloat($(this).val());
+  console.log(active_radius);
+});
 
 attach_NPC('Librarian', 'library-main');
 
