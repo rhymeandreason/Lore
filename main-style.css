@@ -227,10 +227,15 @@
   }
 
   #map { position:absolute; top:0; bottom:0; width:100%; }
+
   .marker {
     border-radius: 50%;
     background-size: contain;
     filter: grayscale(90%);
+    -webkit-transition: filter 2s linear;
+    -moz-transition: filter 2s linear;
+    -o-transition: filter 2s linear;
+    transition: filter 2s linear;
   }
   .marker img{
     width: 100%;
@@ -240,6 +245,37 @@
   .active-marker{
     filter: grayscale(0%); !important
   }
+  .active-marker::after{
+    content: '';
+    width: 20px;
+    height: 20px;
+    //border: 10px solid #34DFF380;
+    background-color: #34DFF380;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: pulsate infinite 3s;
+    z-index: -1;
+  }
+  @-webkit-keyframes pulsate {
+  0% {
+    -webkit-transform: scale(.5, .5);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(5, 5);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.5, 1.5);
+    opacity: 0;
+  }
+}
+
   .player {
     filter: grayscale(0%); !important
   }

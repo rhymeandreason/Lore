@@ -680,7 +680,7 @@ $("#track_location").change(function(){
     $(".player").hide();
     clearInterval(location_logger);
     isTracking = false;
-    $(".marker").addClass("active-marker");
+    $(".marker").removeClass("active-marker");
   }
 });
 
