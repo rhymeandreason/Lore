@@ -504,7 +504,8 @@ function showLocation(el, id){
   current_place = id;
   if ($( el ).hasClass('landmark')){
     if (!Player.landmarks.hasOwnProperty(id)){
-      Player.landmarks[id] = moment();
+      Player.landmarks[id] = moment().format('MMM Do YYYY<br> h:mm a');
+      console.log(Player.landmarks[id]);
     }
   }
 
@@ -586,7 +587,7 @@ function updateJournal(){
   var landmarks = Object.keys(Player.landmarks);
   $("#landmarks").html("");
   for (var i=0; i<landmarks.length; i++) {
-    var date = Player.landmarks[landmarks[i]].format('MMM Do YYYY<br> h:mm a');
+    var date = Player.landmarks[landmarks[i]];
       var place = "<span class='place'><img src='icons/"+landmarks[i]+".png' /><span class='journal-date'>"+date+"</span></span>";
       $("#landmarks").append(place);
   }
@@ -652,7 +653,7 @@ function updatePosition(position){
   //checkDistance();
 }
 
-var active_radius = .2;
+var active_radius = .02;
 var current_place = null;
 var current_npc = null;
 var location_logger;
@@ -690,10 +691,49 @@ $("#distance_input").change(function(){
 });
 
 attach_NPC('Librarian', 'library-main');
+LoadGame();
+setInterval(SaveGame, 9000);
 
 var GameData= {
   "store_restock": moment(),
   "game_start": moment()
+}
+
+function SaveGame(){
+  console.log("saving game");
+  localStorage.setItem("LORE_Player", JSON.stringify(Player) );
+}
+
+function LoadGame(){
+  if (localStorage.getItem("LORE_Player")){
+    console.log("loading game");
+    Player =JSON.parse(localStorage.getItem("LORE_Player"));
+  }
+}
+
+function ClearData(){
+  localStorage.clear();
+  Player = {
+    "name" : "Mary",
+    "level": 1,
+    "inventory": {
+      "acorn": 1,
+      "red_apple": 1,
+      "coffee": 1
+    },
+    "purchases": {},
+    "badges": {
+      "beginner":1,
+      "explorer":0
+    },
+    "quests_progress": {},
+    "quests_complete": {},
+    "landmarks": {},
+    "places": {},
+    "coins": 10,
+    "playtime": 0,
+    "join_date": 0
+  }
 }
 
 </script>
