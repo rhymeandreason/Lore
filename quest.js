@@ -103,7 +103,7 @@ function Quest_Conditions(property, value) {
 
 
 function NPC_chat(name){
-  $("#npc-popup-card").css('background-image', "url(npc/"+name+"-main.png");
+  $("#npc-popup-card").css('background-image', "url('npc/"+name+"-main.png')");
   $("#npc-popup-card").fadeIn();
   var character = NPC[name];
   current_npc = name;
