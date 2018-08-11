@@ -695,6 +695,12 @@ attach_NPC('Librarian', 'library-main');
 LoadGame();
 setInterval(SaveGame, 9000);
 
+//Turn on location tracking by default if you are on mobile
+if (typeof window.orientation !== 'undefined') {
+  $("#track_location").click();
+}
+
+
 var GameData= {
   "store_restock": moment(),
   "game_start": moment()
