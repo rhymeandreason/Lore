@@ -6,6 +6,10 @@
     font-family: 'Barlow', sans-serif;
     color: #303336;
   }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   #debug-button{
     z-index: 10;
     position: absolute;
