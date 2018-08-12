@@ -342,6 +342,7 @@
     width: 100%;
     text-align: center;
   }
+
   .popup h3{
     font-family: Signpainter, 'Sacramento', cursive;
     font-size: 28px;
@@ -372,6 +373,12 @@
   }
   .daily-items img:active {
     transform: scale(1.2);
+  }
+
+  .daily-items .free-item img{
+    height: 70px;
+    width:20%%;
+    object-fit: contain;
   }
 
   #npc-item{
