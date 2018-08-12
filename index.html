@@ -232,7 +232,7 @@ addMarkerInfo("buddhist-temple",  "Buddhist Church of Oakland", [-122.267660, 37
             "buddhist-temple.png", 55, 'landmark level-4', [],[]);
 
 addMarkerInfo("chinese-junk",  "Junk Boat in Lincoln Park", [-122.268312, 37.800003],
-"This popular local play structure was originally built by the Wa Sung Community Service Club in 1961. It was inspired by an oceangoing junk called the Free China which sailed from Formosa to San Francisco in 1955. The play area and current junk boat was designed and built in 2003 to meet modern safety standards. It is currently closed for repairs.",
+"This popular local play structure was originally built by the Wa Sung Community Service Club in 1961. It was inspired by an oceangoing junk called the Free China which sailed from Formosa to San Francisco in 1955. It is currently closed for repairs.",
             "chinese-junk.png", 80, 'landmark', ["Will be great to see this when they finish the repairs!"],[]);
 
 addMarkerInfo("scottish-rite",  "Oakland Scottish Rite Center", [-122.261906, 37.802874],
@@ -316,7 +316,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
               "ampitheater.png", 100, 'landmark level-4',[],[]);
 
   addMarkerInfo("torii-gate",  "Torii Gate Garden", [-122.25826, 37.806107],
-  "The Fukuoka Junior Chamber of Commerce gave the Torii Gate to the City of Oakland in 1969. In 2002, on the 40th anniversary of their connection, the gate was rebuilt.",
+  "The Fukuoka Junior Chamber of Commerce gave the Torii Gate to the City of Oakland in 1969. It was rebuilt in 2002 on the 40th anniversary.",
               "torii-gate.png", 60, 'landmark',[],[]);
 
   addMarkerInfo("bellevue-staten",  "Bellevue-Staten Building", [-122.25377, 37.807864],"",
@@ -329,7 +329,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
               "527-red-apple.svg", 50, "grocery level-3",[],[]);
 
   addMarkerInfo("pergola",  "Pergola and Collonade", [-122.2496 ,37.8086],
-                "Designed by architect Walter Reed in 1913, it was first constructed with a fountain at its center, and benches overlooking the lake. It was formerly nicknamed 'El Embarcadero’, which is now the name of the cross-street.<br><br>It was renovated in 2007 as part of Measure DD.",
+                "Designed by architect Walter Reed in 1913, it was originally built with benches overlooking the lake. It was formerly nicknamed 'El Embarcadero’, which is now the name of the cross-street.",
                 "pergola.png", 100, "landmark",[],[]);
 
   addMarkerInfo("boating-center",  "Lake Merritt Boating Center", [-122.2577 ,37.8051],"",
@@ -723,6 +723,7 @@ $("#distance_input").change(function(){
   console.log(active_radius);
 });
 
+attach_NPC('JohnLaw', 'tribune-tower');
 attach_NPC('Librarian', 'library-main');
 LoadGame();
 setInterval(SaveGame, 9000);

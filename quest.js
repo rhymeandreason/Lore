@@ -41,30 +41,56 @@ var LM_Librarian = [];
 LM_Librarian[0] = { "text": "Hello, do you need help with anything?",
              options: [   { condition: ['quest', 'Oak-ness Monster'], response: "Do you have any info on the Oak-ness Monster?", next: 2 },
                           {  response: "Got any recommended reading?", next: 1 }
-                      ]
-           };
+                      ]};
 LM_Librarian[1] = { "text": "Check out our section of featured local authors. ",
            options: [    {  response: "Thanks!", next: 'exit reset' }
-                    ]
-         };
+                    ]};
 LM_Librarian[2] = { "text": "Not sure about a monster...Perhaps you can try some books about Oakland history. We have a whole section.",
             options: [  {  response: "Okay, is there a book in particular that you recommend?", next: 3 },
                         {  response: "Do you have any info about Lake Merritt specifically?", next: 4 }
-                     ]
-          };
+                     ]};
 LM_Librarian[3] = { "text": "'Oakland, A Story of a City' by Beth Bagwell is your best bet.",
             options: [    {  response: "Thanks!", next: 'exit' },
                           {  response: "Do you have any info about Lake Merritt specifically?", next: 4 }
-                     ]
-          };
+                     ]};
 LM_Librarian[4] = { "text": "You should look up the man it's named after, Dr. Samuel B. Merritt. He's quite an interesting character.",
             options: [    {  response: "How so?", next: '5' }
-                     ]
-          };
+                     ]};
 LM_Librarian[5] = { "text": "He did so many things...Doctor, entreprenuer, mayor, real estate developer. He built the <b>Camron-Stanford House</b>, which is nearby.",
             options: [    {  response: "That's interesting. Thanks!", next: 'exit' }
-                     ]
-          };
+                     ]};
+
+var John_Law = [];
+John_Law[0] = { "text": null,
+            options: [  {  response: "Hi! Do you work here at the Tribune?", next: 1 }
+                      ]};
+John_Law[1] = { "text": "Yes, I have an office here. But you know the Tribune paper isn't around anymore?",
+            options: [  {  response: "This is a cool place to have an office!", next: 2 }
+                      ]};
+John_Law[2] = { "text": "Sure is! I've been here since 1996. Top floor.",
+            options: [  {  response: "So what do you do?", next: 3 }
+                      ]};
+John_Law[3] = { "text": "I have a neon sign maintenance company. I'm also an artist. ",
+            options: [  {  response: "That's interesting. <br>Do you do the Tribune sign?", next: 4 }
+                      ]};
+John_Law[4] = { "text": "Yup! I also do the Ferry Building sign in SF. ",
+            options: [  {condition: ['quest', 'Oak-ness Monster'],  response: "Have you ever heard of the Oak-ness Monster?", next: 7 },
+                        {response: "What kind of art do you do?", next: 5 }
+                      ]};
+John_Law[5] = { "text": "Well, a bunch of things. Helped start the Cacophony Society. Also the Billboard Liberation Front.  ",
+            options: [  {response: "That sounds kinda familiar...", next: 6 }
+                      ]};
+John_Law[6] = { "text": "I was also involved with founding Burning Man back in the 90's. You might have heard about that. ",
+            options: [  {condition: ['quest', 'Oak-ness Monster'],  response: "Have you ever heard of the Oak-ness Monster?", next: 5 },
+                        {response: "Yeah I've heard of that. Nice to meet you!", next: 'exit reset' }
+                      ]};
+John_Law[7] = { "text": "Haha. Funny thing to ask. One of my friends was passing around a video of it some years back. ",
+            options: [  {response: "Have you seen it?", next: 8 }
+                      ]};
+John_Law[8] = { "text": "No. There's supposed to be some good spots for sightings. Ask the people at the <b>Boating Center</b>, they're on the lake all the time.",
+            options: [  {response: "That's a good idea, thanks!", next: 'exit' }
+                      ]};
+
 
 var NPC = {
   "Spelunker": {
@@ -77,6 +103,12 @@ var NPC = {
     "name": "Mandy",
     "location": null,
     "dialog": LM_Librarian,
+    "progress": 0
+  },
+  "JohnLaw": {
+    "name": "John Law",
+    "location": null,
+    "dialog": John_Law,
     "progress": 0
   },
   "Bailey": {
@@ -100,11 +132,10 @@ function Quest_Conditions(property, value) {
   }
 }
 
-
-
 function NPC_chat(name){
   $("#npc-popup-card").css('background-image', "url('npc/"+name+"-main.png')");
   $("#npc-popup-card").fadeIn();
+  $("#npc-text").hide();
   var character = NPC[name];
   current_npc = name;
   character.location = current_place; //save where you interacted with the character
@@ -114,7 +145,9 @@ function NPC_chat(name){
   var item = character.dialog[character.progress].item;
   var quest = character.dialog[character.progress].quest;
   $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
-  $("#npc-text").show();
+  if (display_text){
+    $("#npc-text").show();
+  }
 
   if (quest){
     var num = 0;
