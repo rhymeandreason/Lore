@@ -453,7 +453,7 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
       var shop_items = Object.keys(marker.properties.shop);
       for (var i=0; i<shop_items.length; i++){
         var price = marker.properties.shop[shop_items[i]];
-        var item1 = "<span class='shop_item animated fadeInUp delay-2s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\","+price+" )' /><span class='price'>"+price+"</span></span>";
+        var item1 = "<span class='shop_item animated fadeIn delay-1s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\","+price+" )' /><span class='price'>"+price+"</span></span>";
         $(shop).append(item1);
       }
       $(popup).append(shop);
@@ -519,6 +519,7 @@ function showLocation(el, id){
   check_quest_progress(id);
   $("#place-popup-card").fadeIn();
   $(".popup").hide();
+  document.getElementById('place-popup-card').scrollTop = 0;
   $("#"+id).show();
 }
 
