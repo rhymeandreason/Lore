@@ -168,5 +168,41 @@ var korean_shop = {
   "korean10": 12,
   "korean11": 12,
   "korean12": 4
+}
 
+var dessert_shop = {
+  "dessert1" : 3,
+  "dessert2" : 5,
+  "dessert3" : 2,
+  "dessert4" : 5,
+  "dessert5" : 3,
+  "dessert6" : 5,
+  "dessert7" : 2,
+  "dessert8" : 2,
+  "dessert9" : 3,
+  "dessert10" : 5,
+  "dessert11" : 3,
+  "dessert12" : 5,
+  "dessert13" : 4,
+  "dessert14" : 4,
+  "dessert15" : 5,
+  "dessert16" : 5,
+  "dessert17" : 3,
+  "dessert18" : 3,
+  "dessert19" : 4
+}
+
+var icecream_shop = {
+  "icecream1": 8,
+  "icecream2": 7,
+  "icecream3": 6,
+  "icecream4": 8,
+  "icecream5": 6,
+  "icecream6": 6,
+  "icecream7": 6,
+  "icecream8": 7,
+  "icecream9": 6,
+  "icecream10": 10,
+  "icecream11": 6,
+  "icecream12": 6
 }
