@@ -154,3 +154,19 @@ var japanese_shop = {
   "japanese7": 3
 
 }
+
+var korean_shop = {
+  "korean1": 12,
+  "korean2": 12,
+  "korean3": 12,
+  "korean4": 9,
+  "korean5": 12,
+  "korean6": 12,
+  "korean7": 12,
+  "korean8": 12,
+  "korean9": 10,
+  "korean10": 12,
+  "korean11": 12,
+  "korean12": 4
+
+}

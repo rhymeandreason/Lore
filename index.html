@@ -356,6 +356,9 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
   addMarkerInfo("samurai-sushi",  "Samurai Sushi Boat", [-122.246618 ,37.813347],
   "","549-sushi.svg", 50, "food level-3",[],[], sushi_shop);
 
+  addMarkerInfo("gogi-time",  "Gogi Time", [-122.267644 ,37.815429],
+  "All you can eat Korean BBQ","547-cooked-rice.svg", 50, "food",[],[], korean_shop);
+
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
   var drop_items;
   if (category.includes("landmark")){
@@ -444,7 +447,7 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
       div.className = 'daily-items';
       $(div).html("<h3 class='animated fadeIn delay-1s'>Daily Special</h3>");
       var shop_items = Object.keys(marker.properties.shop);
-      var num = getRandomInt(0, shop_items.length);
+      var num = getRandomInt(0, shop_items.length-1);
       var random_item = "<span class='free-item animated bounceIn delay-1s'><img class='' src='shops/"+shop_items[num]+".png' onclick='buyItem(this.parentNode, \""+shop_items[num]+"\", 0 )' /></span>";
       $(div).append(random_item);
       $(popup).append(div);
