@@ -376,9 +376,9 @@
   }
 
   .daily-items .free-item img{
-    height: 70px;
-    width:20%%;
-    object-fit: contain;
+    //height: 70px;
+    //width:20%%;
+    //object-fit: contain;
   }
 
   #npc-item{
