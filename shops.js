@@ -87,3 +87,70 @@ var cupcake_shop = {
   "cupcake8": 3,
   "cupcake9": 3,
 }
+
+var donut_shop = {
+  "donut1": 3,
+  "donut2": 3,
+  "donut3": 3,
+  "donut4": 3,
+  "donut5": 3,
+  "donut6": 3,
+  "donut7": 3,
+  "donut8": 3,
+  "donut9": 3,
+  "donut10": 3,
+  "donut11": 3,
+  "donut12": 3
+}
+
+var asian_bakery = {
+  "pastry1": 2,
+  "pastry2": 2,
+  "pastry3": 2,
+  "pastry4": 2,
+  "pastry5": 2,
+  "pastry6": 2,
+  "pastry7": 2,
+  "pastry8": 2,
+  "pastry9": 2,
+  "pastry10": 2,
+  "pastry11": 2,
+  "pastry12": 2,
+  "pastry13": 2,
+  "pastry14": 2,
+  "pastry15": 2,
+  "pastry16": 2
+}
+
+var diner = {
+  "diner1": 5,
+  "diner2": 9,
+  "diner3": 5,
+  "diner4": 6,
+  "diner5": 12,
+  "diner6": 9,
+  "diner7": 9,
+  "diner8": 5,
+  "diner9": 5,
+  "diner10": 5,
+  "diner11": 9,
+  "diner12": 3,
+  "diner13": 14,
+  "diner14": 9,
+  "diner15": 5,
+  "diner16": 9,
+  "diner17": 3,
+  "diner18": 6,
+  "diner19": 6
+}
+
+var japanese_shop = {
+  "japanese1": 9,
+  "japanese2": 7,
+  "japanese3": 9,
+  "japanese4": 6,
+  "japanese5": 14,
+  "japanese6": 3,
+  "japanese7": 3
+
+}

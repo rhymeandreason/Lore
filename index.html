@@ -182,7 +182,7 @@ var geoJson = {
           },
           "dialog": ["The karage (fried chicken) here is super good!",
           "At lunch they have combo sets. I like the salmon set the best."],
-          "shop": sushi_shop
+          "shop": japanese_shop
       }
     },{
         "type": "Feature",
@@ -278,16 +278,16 @@ addMarkerInfo("shandong",  "Shandong Restaurant", [  -122.270016, 37.800587],"",
             "dumpling.png", 40, 'food', ["This place is too popular now, there's always a line out the door.", "Make sure to order the 'special' hand cut noodles."],["rice-bowl"], dimsum_shop);
 
 addMarkerInfo("alice-cafe",  "Alice Bakery Cafe", [ -122.268380, 37.799706],"",
-            "556-cookie.svg", 50, 'food level-2', ["I love the red bean buns here, they're cute and delicious!"],["cookie"]);
+            "556-cookie.svg", 50, 'food level-2', ["I love the red bean buns here, they're cute and delicious!"],["cookie"], asian_bakery);
 
 addMarkerInfo("luckyduck-cafe",  "Luckyduck Bicycle Cafe", [ -122.268660, 37.801724],"",
             "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"], ["coffee"], taco_shop);
 
 addMarkerInfo("little-giant",  "Little Giant", [-122.269855, 37.809155],"",
-            "551-soft-ice-cream-1.svg", 50, 'food level-3', ["If you come on a Sunday, sundae toppings are free!"],["soft-serve"]);
+            "551-soft-ice-cream-1.svg", 50, 'food level-3', ["If you come on a Sunday, sundae toppings are free!"],["soft_serve"]);
 
 addMarkerInfo("donut-savant",  "Donut Savant", [-122.268533, 37.808374],"",
-            "554-doughnut-1.svg", 50, 'food level-3', [],["donut"]);
+            "554-doughnut-1.svg", 50, 'food level-3', [],["donut"], donut_shop);
 
 addMarkerInfo("aburya",  "Aburya", [-122.267637, 37.805969],"",
             "538-poultry-leg.svg", 50, 'food level-3', ["My favorite fried chicken place!", "Wonder if I should get the fried avocado...hmmm..."],["drumstick", "rice-bowl"]);
@@ -349,6 +349,12 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 
   addMarkerInfo("James-cupcake",  "James and the Giant Cupcake", [-122.267142 ,	37.805555],
   "","561-shortcake.svg", 50, "food level-3",[],[], cupcake_shop);
+
+  addMarkerInfo("Rudy-diner",  "Rudy's Can't Fail Cafe", [-122.270185 ,37.807728],
+  "Classic style diner named for a Clash song","541-hamburger-3.svg", 50, "food level-2",[],[], diner);
+
+  addMarkerInfo("samurai-sushi",  "Samurai Sushi Boat", [-122.246618 ,37.813347],
+  "","549-sushi.svg", 50, "food level-3",[],[], sushi_shop);
 
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
   var drop_items;
