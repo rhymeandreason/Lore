@@ -50,15 +50,18 @@ LM_Librarian[2] = { "text": "Not sure about a monster...Perhaps you can try some
                         {  response: "Do you have any info about Lake Merritt specifically?", next: 4 }
                      ]};
 LM_Librarian[3] = { "text": "'Oakland, A Story of a City' by Beth Bagwell is your best bet.",
-            options: [    {  response: "Thanks!", next: 'exit' },
+            options: [    {  response: "Thanks!", next: 'exit reset' },
                           {  response: "Do you have any info about Lake Merritt specifically?", next: 4 }
                      ]};
 LM_Librarian[4] = { "text": "You should look up the man it's named after, Dr. Samuel B. Merritt. He's quite an interesting character.",
             options: [    {  response: "How so?", next: '5' }
                      ]};
-LM_Librarian[5] = { "text": "He did so many things...Doctor, entreprenuer, mayor, real estate developer. He built the <b>Camron-Stanford House</b>, which is nearby.",
-            options: [    {  response: "That's interesting. Thanks!", next: 'exit' }
+LM_Librarian[5] = { "text": "He did so many things...Doctor, entreprenuer, mayor, real estate developer. Lake Merritt used to be an estuary, and he built a dam that controlled the water level that made it into a lake.",
+            options: [    {  response: "That's interesting.", next: '6' }
                      ]};
+LM_Librarian[6] = { "text": "The area used to be private property surrounded by Victorian mansions. The only one left is the <b>Camron-Stanford House</b>. You can go see it, it's nearby.",
+           options: [    {  response: "Thanks, I think I'll go do that!", next: 'exit' }
+                    ]};
 
 var John_Law = [];
 John_Law[0] = { "text": null,
@@ -91,6 +94,40 @@ John_Law[8] = { "text": "No. There's supposed to be some good spots for sighting
             options: [  {response: "That's a good idea, thanks!", next: 'exit' }
                       ]};
 
+var Lisa = [];
+Lisa[0] = { "text": "Hello, would you like to hear about the history of the house?",
+             options: [   { response: "Sure!", next: 1 },
+                          {  response: "No thanks, I'll explore on my own", next: 'exit' }
+                      ]};
+Lisa[1] = { "text": "The mansion dates back to when this area was known as 'Contra Costa'. It was home to 4 leading Oakland families before becoming the first Oakland museum in 1907.",
+             options: [   {  response: "Is that how it stayed so well preserved?", next: 2 }
+                      ]};
+Lisa[2] = { "text": "Actually, a small group in 1971 raised money to restore the house and founded the non-profit. Descendants of the original residents even donated items for the interior.",
+             options: [   {  response: "Well, it's such a beautiful spot here on the lake.", next: 3 }
+                      ]};
+Lisa[3] = { "text": "It certainly is! Some people book the place for a Victorian wedding. And we host tea party events too.",
+             options: [ {condition: ['quest', 'Oak-ness Monster'],  response: "Did Samuel Merritt live here at any point?", next: 5 },
+                        {  response: "Can I see the inside of the house?", next: 4 }
+                      ]};
+Lisa[4] = { "text": "There are tours on Sunday afternoons for $5.",
+             options: [   {  response: "Thank you for the info!", next: 'exit reset' },
+             {condition: ['quest', 'Oak-ness Monster'],  response: "Did Samuel Merritt live here at any point?", next: 5 }
+                      ]};
+Lisa[5] = { "text": "Dr. Merritt built this house, but he lived in another property in the area. He's well known for establishing the area as a nature reserve, and cleaning up the lake from being used for sewage.",
+             options: [   {  response: "Have you ever heard about a monster in the lake?", next: 6 }
+                      ]};
+Lisa[6] = { "text": "Haha. Haven't heard anyone ask about that in a while. ",
+             options: [   {  response: "So you've heard of it?", next: 7 }
+                      ]};
+Lisa[7] = { "text": "There's always been stories through the years. People see odd things in the water.",
+             options: [   {  response: "Have you seen anything odd yourself?", next: 8 }
+                      ]};
+Lisa[8] = { "text": "Me? No. My friend Richard at the Lake Merritt Institute will tell you all about it though.",
+             options: [   {  response: "Where is the Lake Merritt Institute?", next: 9 }
+                      ]};
+Lisa[9] = { "text": "It's near the <b>Boating Center</b> on the north side of the lake. He would know, he runs volunteer cleanup sessions on the lake.",
+             options: [   {  response: "Okay, thanks!", next: 'exit' }
+                      ]};
 
 var NPC = {
   "Spelunker": {
@@ -109,6 +146,12 @@ var NPC = {
     "name": "John Law",
     "location": null,
     "dialog": John_Law,
+    "progress": 0
+  },
+  "Lisa": {
+    "name": "Lisa",
+    "location": null,
+    "dialog": Lisa,
     "progress": 0
   },
   "Bailey": {

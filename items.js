@@ -34,7 +34,11 @@ var recipes_2 = {
 var recipes_3 = {
   "lemon sugar ice": "lemonade",
   "bacon lettuce tomato": "blt_sandwich",
-  "cherries soft_serve chocolate": "classic_sundae"
+  "cherries soft_serve chocolate": "classic_sundae",
+  "waffle berries whipped_cream": "waffles_with_berries",
+  "mozzerella tomato basil": "caprese_salad",
+  "pancakes blueberries lemon": "blueberry lemon pancakes",
+  "meat tomato spaghetti": "spaghetti with meatballs"
 }
 
 function getRecipe(item1, item2, item3){
