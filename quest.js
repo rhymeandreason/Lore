@@ -1,3 +1,8 @@
+var Quests ={
+  "Oak-ness Monster": { length: 6, longitude: "", latitude: "" },
+  "100 Dragons": { length: 5, longitude: "", latitude: "" }
+}
+
 var LM_Spelunker = []; // Lake Merritt Quest
 LM_Spelunker[0] = { "text": "Nice day to be walking around in Oakland.",
              options: [    { "response": "Yes it's such a nice day!", "next": 1 }
