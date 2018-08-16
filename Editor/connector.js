@@ -1,7 +1,8 @@
 class Connector {
-  constructor(start, end) {
+  constructor(start, end, id) {
     this.start = start;
     this.end = end;
+    this.id = id;
 
     this.drawCurve();
 /*
@@ -9,7 +10,14 @@ class Connector {
     end.get(0).parentNode.addEventListener("click", function( event ) {
       console.log("this endpoint was dragged");
       }, false);
+
+    end.parent().draggable({
+      drag: function(){
+        console.log("stopped dragging card");
+      }
+    });
 */
+
   }
 
   drawCurve(){
@@ -29,9 +37,12 @@ class Connector {
       this.curve.M({x: x1-dx, y: y1-dy}).C({x: x1+50-dx, y: y1-dy}, {x: x2-50-dx, y: y2-dy}, {x: x2-dx, y: y2-dy});
 
     } else {
+
       this.curve = draw.path().M({x: x1-dx, y: y1-dy}).C({x: x1+50-dx, y: y1-dy}, {x: x2-50-dx, y: y2-dy}, {x: x2-dx, y: y2-dy});
+      this.curve.id(this.id);
       this.curve.click(function() {
         this.stroke({ color: '#f06' })
+        console.log(this.id());
       });
 
     }
@@ -43,6 +54,10 @@ class Connector {
 
   removeCurve(){
     this.curve.clear();
+  }
+
+  setID(id){
+    this.curve.id(id);
   }
 
 }

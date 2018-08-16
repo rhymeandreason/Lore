@@ -259,7 +259,7 @@
           if (next_id){
             var arrow = $(this).parent().find(".arrow");
             var next_card = $("#card-"+next_id).find(".connector");
-            connectors[card_id+"_to_"+next_id] = new Connector(arrow, next_card);
+            connectors[card_id+"_to_"+next_id] = new Connector(arrow, next_card, card_id+"_to_"+next_id);
           }
         });
 
@@ -322,6 +322,7 @@
           } else{
             connector_line = draw.line(active_arrow.offset().left+d1, active_arrow.offset().top+d1, event.pageX-dx, event.pageY-dy);
           }
+          connector_line.show();
           connector_line.stroke({ color: '#f06', width: 3, linecap: 'round' });
         }
       });
@@ -333,7 +334,7 @@
 
         if ($(el).hasClass('arrow')){
           active_arrow = $(el);
-          connector_line.show();
+
         } else {
           if (active_arrow){
             var from_id = active_arrow.parent().parent().parent().data('card');
@@ -351,7 +352,7 @@
                 connectors[from_id+"_to_"+existing_next].removeCurve();
                 delete connectors[from_id+"_to_"+existing_next];
               }
-              connectors[from_id+"_to_"+next_id] = new Connector(active_arrow, connector);
+              connectors[from_id+"_to_"+next_id] = new Connector(active_arrow, connector,from_id+"_to_"+next_id);
 
               active_arrow.parent().find(".response").data('next', next_id);
               connector.data('from', from_id);
