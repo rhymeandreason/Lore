@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://sebastien.drouyer.com/jquery.flowchart-demo/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <script src="jquery-1.10.2.js"></script>
+    <script src="jquery-ui.js"></script>
+
+    <script src="jquery.panzoom.min.js"></script>
+    <script src="jquery.mousewheel.min.js"></script>
+
+    <script src="svg.js"></script>
+    <script src="svg.path.js"></script>
+    <script src="connector.js"></script>
+    <title>Quest Editor</title>
+    <link href="../main-style.css" rel="stylesheet">
+
+<style>
+  *{
+    font-family: sans-serif;
+  }
+  .editor-card{
+    width: 375px;
+    //height: 667px;
+    height: 430px;
+    background-color: white;
+    z-index: 5;
+    top:20px;
+    transform-origin: 0px 0px;
+    transform: scale(.6,.6);
+    float: left;
+    margin-left:50px;
+    border-radius: 10px;
+  }
+  .npc-responses div{
+    position: relative;
+  }
+  .editor-card:hover{
+    box-shadow: 0px 2px 12px rgba(0,0,0,.37);
+  }
+
+  #editor .npc-text{
+    margin-top:40px;
+  }
+  input, textarea {
+    width:100%;
+    font-size: 20px;
+    //border: 1px solid white;
+    border: none;
+  }
+  input:hover {
+    //border: 1px solid silver;
+  }
+  #container{
+    background-color:rgb(240,240,240);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  #editor{
+    //width:100%;
+    //height:100%;
+    width: 2000px;
+    height: 2000px;
+  }
+  #editor svg{
+    position: absolute;
+    top:0;
+    left:0;
+  }
+  .draggable{
+
+  }
+  .draggable:hover{
+    cursor: move;
+  }
+  .connector{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    background-color: silver;
+  }
+  div.arrow{
+    width:0;
+    height:0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 14px solid silver;
+    position: absolute;
+    top: 12px;
+    //right: -20px;
+    right: -1px;
+  }
+  .arrow:hover{
+    border-left: 14px solid black;
+  }
+  .right{
+    right:-10px;
+  }
+  .left{
+    left:-10px;
+  }
+  .npc-text::before{
+    content: url("../icons/chat-bubble.svg");
+    position: absolute;
+    top: -24px;
+    left: 36px;
+  }
+  [contenteditable="true"]:hover{
+    background-color: #FFFDE9;
+  }
+
+  [contenteditable="true"]:active,
+  [contenteditable="true"]:focus{
+    outline:none;
+    //border-color: orange;
+    background-color: yellow;
+  }
+
+  .editor-card:hover .add-reply{
+    display:inline-block;
+  }
+
+  .add-reply{
+    width: 18px;
+    height:18px;
+    padding: 6px;
+    position: absolute;
+    //bottom: -15px;
+    bottom: -40px;
+    left:0;
+    right:0;
+    margin:auto;
+    border-radius: 50%;
+    background-color: #D8D8D8;
+    background-image: url("plus-dark.svg");
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: 18px;
+    display:none;
+  }
+  .add-reply:hover{
+    background-color: yellow;
+    //border: 1px solid black;
+  }
+
+  #templates{
+    display: none;
+  }
+
+</style>
+
+  </head>
+
+  <body style="">
+    <div id="templates">
+      <div  id="#response-template" ><p class="response" contenteditable="true"> Response</p> <div class="arrow"></div> </div>
+    </div>
+
+    <div id="container">
+    <div id="editor">
+      <div id="card-0" class="editor-card" data-card='0'>
+        <div class="npc-text no-drag" contenteditable="true">
+          some text here
+        </div>
+        <div class="npc-responses no-drag">
+          <div> <p class="response" contenteditable="true" data-next='1'>Hi! Do you work here at the Tribune?</p> <div class="arrow"></div> </div>
+
+          <a class="no-drag add-reply"></a>
+        </div>
+
+      </div>
+
+      <div id="card-1" class="editor-card" data-card='1'>
+        <div class="npc-text no-drag" contenteditable="true">
+          some text here
+        </div>
+        <div class="npc-responses no-drag">
+          <div> <p class="response" contenteditable="true" >Response</p> <div class="arrow"></div> </div>
+
+          <a class="no-drag add-reply"></a>
+        </div>
+        <span class="connector left" data-from='0'></span>
+      </div>
+
+      <div id="card-2" class="editor-card " data-card='2'>
+        <div class="npc-text no-drag" contenteditable="true">
+          some text here
+        </div>
+        <div class="npc-responses no-drag">
+          <div> <p class="response" contenteditable="true">Response</p> <div class="arrow"></div> </div>
+
+          <a class="no-drag add-reply"></a>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+    <script>
+    var editor = $("#editor");
+    var dx=0,dy=0;
+    var scale = .6;
+    var curve;
+    var connector_line;
+    //var connecting = false;
+    var active_arrow = null;
+    var active_element = null;
+    var card_num = 0;
+    var connectors = {};
+
+    document.execCommand("defaultParagraphSeparator", false, "br");
+
+    editor.panzoom({disablePan: true, disableZoom:true});
+    // Panzoom zoom handling...
+    var possibleZooms = [0.5, 0.75, 1, 1.25, 1.5,];
+    var currentZoom = 2;
+    editor.on('mousewheel.focal', function( e ) {
+        e.preventDefault();
+        var delta = (e.delta || e.originalEvent.wheelDelta) || e.originalEvent.detail;
+        var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+        currentZoom = Math.max(0, Math.min(possibleZooms.length - 1, (currentZoom + (zoomOut * 2 - 1))));
+        //editor.flowchart('setPositionRatio', possibleZooms[currentZoom]);
+        editor.panzoom('zoom', possibleZooms[currentZoom], {
+            animate: true,
+            focal: e
+        });
+    });
+    var draw = SVG('editor').size(editor.width(), editor.height());
+
+    //var line = draw.line(0, 100, 100, 0);
+    //line.stroke({ color: '#f06', width: 3, linecap: 'round' });
+
+
+    function redraw(x1,y1,x2,y2){
+      //line.plot(x1, y1, x2, y2);
+      if (curve){
+        curve.clear();
+      }
+      curve = draw.path().M({x: x1-dx, y: y1-dy}).C({x: x1+50-dx, y: y1-dy}, {x: x2-50-dx, y: y2-dy}, {x: x2-dx, y: y2-dy});
+      curve.stroke({ color: 'silver', width: 3, linecap: 'round' });
+      curve.attr('fill', 'none');
+    }
+
+
+
+    $( function() {
+
+      $(".editor-card").each(function(){
+        var card_id = $(this).data('card');
+        $(this).find(".response").each(function(el){
+          var next_id = $(this).data('next');
+          if (next_id){
+            var arrow = $(this).parent().find(".arrow");
+            var next_card = $("#card-"+next_id).find(".connector");
+            connectors[card_id+"_to_"+next_id] = new Connector(arrow, next_card);
+          }
+        });
+
+      });
+
+      $( ".editor-card" ).draggable({
+        cancel: ".no-drag",
+        start: function() {},
+        drag: function() {
+          var card_id = $(this).data('card');
+
+          $(this).find(".response").each(function(){
+            var next_id = $(this).data('next');
+            if (next_id){
+              //console.log("card id: "+card_id+" next id: "+ next_id);
+              //console.log(connectors[card_id+"_to_"+next_id]);
+              connectors[card_id+"_to_"+next_id].drawCurve();
+            }
+          });
+
+          $(this).find(".connector").each(function(){
+            var from_id = $(this).data('from');
+            //console.log(from_id);
+            //console.log(connectors[from_id+"_to_"+card_id]);
+            if (connectors[from_id+"_to_"+card_id]){
+              //console.log("redraw from");
+              connectors[from_id+"_to_"+card_id].drawCurve();
+            }
+          });
+
+        },
+        stop: function() {},
+      });
+/*
+      $(".editor-card").css("transform", "scale("+scale+","+scale+")");
+      $(".editor-card").each(function(i){
+        $(this).css("left", 50*i);
+      });
+*/
+      $("#editor").draggable({
+        cancel: ".editor-card",
+        stop: function(){
+          dx = $(this).offset().left;
+          dy = $(this).offset().top;
+        }
+      });
+/*
+      $(".arrow").click(function(){
+        active_arrow = $(this);
+      });
+*/
+      $("#editor").mousemove(function(event){
+        if (active_arrow){
+          var d1 = 12*scale;
+          if (connector_line){
+            connector_line.plot(active_arrow.offset().left+d1, active_arrow.offset().top+d1, event.pageX, event.pageY);
+          } else{
+            connector_line = draw.line(active_arrow.offset().left+d1, active_arrow.offset().top+d1, event.pageX, event.pageY);
+          }
+          connector_line.stroke({ color: '#f06', width: 3, linecap: 'round' });
+        }
+      });
+
+      document.getElementById("editor").addEventListener("click", function( event ) {
+        // display the current click count inside the clicked div
+        var el = event.target;
+        active_element = $(el);
+
+        if ($(el).hasClass('arrow')){
+          active_arrow = $(el);
+          connector_line.show();
+        } else {
+          if (active_arrow){
+            var from_id = active_arrow.parent().parent().parent().data('card');
+            var isCard = $(el).hasClass('editor-card');
+            //console.log( "is a card?: " + isCard);
+            if (isCard){
+              var next_id = $(el).data('card');
+              //var connector = $(el).find(".connector");
+              var connector = $("<span class='connector left'></span>");
+              $(el).append(connector);
+
+              var existing_next = active_arrow.parent().find(".response").data('next');
+              if (existing_next){
+                console.log("already has a connector, removing");
+                connectors[from_id+"_to_"+existing_next].removeCurve();
+                delete connectors[from_id+"_to_"+existing_next];
+              }
+              connectors[from_id+"_to_"+next_id] = new Connector(active_arrow, connector);
+
+              active_arrow.parent().find(".response").data('next', next_id);
+              connector.data('from', from_id);
+              //var connect = new Connector(active_arrow, $(el).find(".connector"));
+              connector_line.hide();
+            } else {
+              var existing_next = active_arrow.parent().find(".response").data('next');
+              if (existing_next){
+                console.log("removing current connector");
+                connectors[from_id+"_to_"+existing_next].removeCurve();
+                delete connectors[from_id+"_to_"+existing_next];
+                active_arrow.parent().find(".response").data('next', null);
+              }
+              connector_line.hide();
+            }
+          }
+        }
+
+      }, false);
+
+      $(".add-reply").click(function(){
+        var reply = $("#response-template").clone();
+        console.log(reply);
+        console.log($(this).parent());
+        $(this).parent().append('<div> <p class="response" contenteditable="true">Response</p> <div class="arrow"></div> </div>');
+      });
+/*
+      $(".npc-text").click(function(){
+        var text = $(this).find("textarea");
+        text.focus().val(text.val());
+      })
+*/
+    });
+
+
+    </script>
+  </body>
+
+</html>
