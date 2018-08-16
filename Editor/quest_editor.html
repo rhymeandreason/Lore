@@ -269,30 +269,33 @@
         cancel: ".no-drag",
         start: function() {},
         drag: function() {
-          var card_id = $(this).data('card');
-
-          $(this).find(".response").each(function(){
-            var next_id = $(this).data('next');
-            if (next_id){
-              //console.log("card id: "+card_id+" next id: "+ next_id);
-              //console.log(connectors[card_id+"_to_"+next_id]);
-              connectors[card_id+"_to_"+next_id].drawCurve();
-            }
-          });
-
-          $(this).find(".connector").each(function(){
-            var from_id = $(this).data('from');
-            //console.log(from_id);
-            //console.log(connectors[from_id+"_to_"+card_id]);
-            if (connectors[from_id+"_to_"+card_id]){
-              //console.log("redraw from");
-              connectors[from_id+"_to_"+card_id].drawCurve();
-            }
-          });
-
+          checkCardConnectors($(this));
         },
         stop: function() {},
       });
+
+      function checkCardConnectors(el){
+        var card_id = el.data('card');
+
+        el.find(".response").each(function(){
+          var next_id = $(this).data('next');
+          if (next_id){
+            //console.log("card id: "+card_id+" next id: "+ next_id);
+            //console.log(connectors[card_id+"_to_"+next_id]);
+            connectors[card_id+"_to_"+next_id].drawCurve();
+          }
+        });
+
+        el.find(".connector").each(function(){
+          var from_id = $(this).data('from');
+          //console.log(from_id);
+          //console.log(connectors[from_id+"_to_"+card_id]);
+          if (connectors[from_id+"_to_"+card_id]){
+            //console.log("redraw from");
+            connectors[from_id+"_to_"+card_id].drawCurve();
+          }
+        });
+      }
 /*
       $(".editor-card").css("transform", "scale("+scale+","+scale+")");
       $(".editor-card").each(function(i){
@@ -379,7 +382,7 @@
         var reply = $("#response-template").clone();
         console.log(reply);
         console.log($(this).parent());
-        $(this).parent().append('<div> <p class="response" contenteditable="true">Response</p> <div class="arrow"></div> </div>');
+        $(this).parent().prepend('<div> <p class="response" contenteditable="true">Response</p> <div class="arrow"></div> </div>');
       });
 /*
       $(".npc-text").click(function(){
