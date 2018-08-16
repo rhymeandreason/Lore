@@ -4,7 +4,12 @@ class Connector {
     this.end = end;
 
     this.drawCurve();
-
+/*
+    console.log(end.get(0).parentNode);
+    end.get(0).parentNode.addEventListener("click", function( event ) {
+      console.log("this endpoint was dragged");
+      }, false);
+*/
   }
 
   drawCurve(){
@@ -20,10 +25,20 @@ class Connector {
 
     if (this.curve){
       this.curve.clear();
+    //  console.log("curve already exists");
+      this.curve.M({x: x1-dx, y: y1-dy}).C({x: x1+50-dx, y: y1-dy}, {x: x2-50-dx, y: y2-dy}, {x: x2-dx, y: y2-dy});
+
+    } else {
+      this.curve = draw.path().M({x: x1-dx, y: y1-dy}).C({x: x1+50-dx, y: y1-dy}, {x: x2-50-dx, y: y2-dy}, {x: x2-dx, y: y2-dy});
+      this.curve.click(function() {
+        this.stroke({ color: '#f06' })
+      });
+
     }
-    this.curve = draw.path().M({x: x1-dx, y: y1-dy}).C({x: x1+50-dx, y: y1-dy}, {x: x2-50-dx, y: y2-dy}, {x: x2-dx, y: y2-dy});
     this.curve.stroke({ color: 'silver', width: 3, linecap: 'round' });
     this.curve.attr('fill', 'none');
+
+
   }
 
   removeCurve(){
