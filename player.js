@@ -23,6 +23,9 @@ var Player = {
 function addCoins(num){
   Player.coins+= num;
 }
+function addAcorns(num){
+  Player.inventory.acorn+= num;
+}
 
 function addBadge(name){
   var level = 1;

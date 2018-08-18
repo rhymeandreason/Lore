@@ -97,6 +97,7 @@
 
 <div id="debug" class="card">
   <img src="icons/close-x.svg" class="close"/>
+  <span><button onclick="addAcorns(50)">Add 50 Acorns</button></span>
   <span><input type="checkbox" id="track_location"/> Track Location</span>
   <span><input id="distance_input" type="number" value=".02" step=".02"> Active Distance km</span>
   <span><button onclick="ClearData()">Clear Player Data</button></span>
@@ -362,6 +363,15 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
   addMarkerInfo("uc-dessert",  "UC Dessert", [-122.271816 ,37.800394],"",
   "561-shortcake.svg", 50, "food level-3",[],[], dessert_shop);
 
+  addMarkerInfo("peets-coffee",  "Peet's Coffee", [-122.244572 ,37.810441],"",
+  "567-hot-beverage-2.svg", 50, "food level-2",["Great place to sit with a laptop and work.", "Try the Matcha Fog, it's bright green but really good."],[], coffee_shop);
+
+  addMarkerInfo("grocery-store",  "Trader Joe's", [-122.244436 ,37.809983],"",
+  "527-red-apple.svg", 50, "grocery level-3",["Hard to park here, but nice to bicycle!", "Hm, Truffle Potato chips, haven't had these before."],[], grocery);
+
+  addMarkerInfo("arizmendi",  "Arizmendi Bakery", [-122.244843 ,37.810649],"",
+  "536-bread.svg", 50, "food level-3",["I come here for lunch all the time.", "Best croissants, gotta get here in the morning to get them!", "I really like how this place is worker-owned."],[], bakery);
+
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
   var drop_items;
   if (category.includes("landmark")){
@@ -450,9 +460,18 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
       div.className = 'daily-items';
       $(div).html("<h3 class='animated fadeIn delay-1s'>Daily Special</h3>");
       var shop_items = Object.keys(marker.properties.shop);
-      var num = getRandomInt(0, shop_items.length-1);
-      var random_item = "<span class='free-item animated bounceIn delay-1s'><img class='' src='shops/"+shop_items[num]+".png' onclick='buyItem(this.parentNode, \""+shop_items[num]+"\", 0 )' /></span>";
-      $(div).append(random_item);
+      if (marker.properties.className.includes("grocery")){
+        for (var i=0; i<3; i++){
+          var num = getRandomInt(0, shop_items.length-1);
+          var random_item = "<span class='free-item animated bounceIn delay-1s'><img class='' src='shops/"+shop_items[num]+".png' onclick='buyItem(this.parentNode, \""+shop_items[num]+"\", 0 )' /></span>";
+          $(div).append(random_item);
+        }
+      } else {
+        var num = getRandomInt(0, shop_items.length-1);
+        var random_item = "<span class='free-item animated bounceIn delay-1s'><img class='' src='shops/"+shop_items[num]+".png' onclick='buyItem(this.parentNode, \""+shop_items[num]+"\", 0 )' /></span>";
+        $(div).append(random_item);
+      }
+
       $(popup).append(div);
 
     } else {

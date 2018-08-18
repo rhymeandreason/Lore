@@ -206,3 +206,58 @@ var icecream_shop = {
   "icecream11": 6,
   "icecream12": 6
 }
+
+var coffee_shop = {
+  "coffee1": 2,
+  "coffee2": 3,
+  "coffee3": 3,
+  "coffee4": 4,
+  "coffee5": 4,
+  "coffee6": 4,
+  "coffee7": 4
+}
+
+var bakery = {
+  "bread1": 3,
+  "bread2": 3,
+  "bread3": 3,
+  "bread4": 3,
+  "bread5": 3,
+  "bread6": 3,
+  "bread7": 3,
+  "bread8": 3,
+  "bread9": 3,
+  "bread10": 3,
+  "bread11": 3,
+  "bread12": 3,
+}
+
+var grocery = {
+  "grocery0": 1,
+  "grocery1": 1,
+  "grocery2": 1,
+  "grocery3": 1,
+  "grocery4": 1,
+  "grocery5": 1,
+  "grocery6": 1,
+  "grocery7": 1,
+  "grocery8": 1,
+  "grocery9": 1,
+  "grocery10": 1,
+  "grocery11": 1,
+  "grocery12": 1,
+  "grocery13": 1,
+  "grocery14": 1,
+  "grocery15": 1,
+  "grocery16": 1,
+  "grocery17": 1,
+  "grocery18": 1,
+  "grocery19": 1,
+  "grocery20": 1,
+  "grocery21": 1,
+  "grocery22": 1,
+  "grocery23": 1,
+  "grocery24": 1,
+  "grocery25": 1,
+  "grocery26": 1,
+}
