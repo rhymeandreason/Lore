@@ -95,6 +95,27 @@
   .close:active {
     transform: scale(1.2);
   }
+  .background--light img, .background--dark img{
+    display:none;
+  }
+  .background--light{
+    background-image: url("icons/close-x dark.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26pt;
+    width:36pt;
+    height: 36pt;
+    display: inline-block;
+  }
+  .background--dark{
+    background-image: url("icons/close-x light.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26pt;
+    width:36pt;
+    height: 36pt;
+    display: inline-block;
+  }
 
   #error-dialog{
     width: 65%;

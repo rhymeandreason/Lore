@@ -48,7 +48,9 @@
 <div id='map'></div>
 
 <div id="place-popup-card" class="card">
-  <img src="icons/close-x.svg" class="close"/>
+  <span id="close_location" class="close">
+    <img src="icons/close-x.svg"  />
+  </span>
   <div id="place-content"></div>
 </div>
 
@@ -541,7 +543,10 @@ $(".active").click();
 //Show Place
 $(".marker").click(function(){
   //console.log(this);
+
   var id = $( this ).data( "name");
+  getImageLightness($("#"+id+" .place-image").attr("src"),setIcon);
+
   if (isTracking ){
     if ($( this ).hasClass( "active-marker")){
       showLocation(this, id);
