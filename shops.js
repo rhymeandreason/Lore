@@ -298,3 +298,39 @@ var kon_tiki = {
   "kon-tiki17": 30,
   "kon-tiki18": 40
 }
+
+var chinese_food = {
+  "chinese1" : 9,
+  "chinese2" : 9,
+  "chinese3" : 9,
+  "chinese4" : 9,
+  "chinese5" : 9,
+  "chinese6" : 9,
+  "chinese7" : 9,
+  "chinese8" : 9,
+  "chinese9" : 9
+}
+
+var bento_shop = {
+  "bento1": 9,
+  "bento2": 9,
+  "bento3": 9,
+  "bento4": 9,
+  "bento5": 9,
+  "bento6": 9,
+  "bento7": 9,
+  "bento8": 9,
+  "bento9": 9,
+}
+
+var thai_food = {
+  "thai1": 10,
+  "thai2": 10,
+  "thai3": 10,
+  "thai4": 10,
+  "thai5": 10,
+  "thai6": 10,
+  "thai7": 10,
+  "thai8": 10,
+  "thai9": 10
+}
