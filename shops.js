@@ -277,3 +277,24 @@ var grocery = {
   "grocery-frozen-veggies": 1,
   "grocery-mayo": 1
 }
+
+var kon_tiki = {
+  "kon-tiki1": 15,
+  "kon-tiki2": 10,
+  "kon-tiki3": 10,
+  "kon-tiki4": 10,
+  "kon-tiki5": 10,
+  "kon-tiki6": 10,
+  "kon-tiki7": 10,
+  "kon-tiki8": 10,
+  "kon-tiki9": 10,
+  "kon-tiki10": 10,
+  "kon-tiki11": 10,
+  "kon-tiki12": 10,
+  "kon-tiki13": 10,
+  "kon-tiki14": 10,
+  "kon-tiki15": 10,
+  "kon-tiki16": 30,
+  "kon-tiki17": 30,
+  "kon-tiki18": 40
+}

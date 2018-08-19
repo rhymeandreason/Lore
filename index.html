@@ -55,14 +55,14 @@
 </div>
 
 <div id="npc-popup-card" class="card">
-  <img src="icons/close-x.svg" class="close"/>
+  <img src="icons/close-x dark.svg" class="close"/>
   <div id="npc-text" class="animated pulse"></div>
   <div id="npc-item"></div>
   <div id="npc-responses"></div>
 </div>
 
 <div id="inventory-card" class="card">
-  <img src="icons/close-x.svg" class="close"/>
+  <img src="icons/close-x dark.svg" class="close"/>
   <h2>My Stuff</h2>
   <div id="currency"></div>
   <div id="inventory"></div>
@@ -70,7 +70,7 @@
 </div>
 
 <div id="journal-card" class="card">
-  <img src="icons/close-x.svg" class="close"/>
+  <img src="icons/close-x dark.svg" class="close"/>
   <div class="card-tabs">
   <span class="tab active" onclick="showTab(this,'landmarks')">Places</span>
   <span class="tab" onclick="showTab(this,'quests')">Quests</span>
@@ -275,7 +275,7 @@ addMarkerInfo("flax-art",  "FLAX Art & Design", [-122.275509, 37.807162],"",
             "600-artist-palette.svg", 50, 'art-supply level-3', [],["acorn"]);
 
 addMarkerInfo("kon-tiki",  "The Kon-Tiki", [-122.268653, 37.803238],"",
-            "572-tropical-drink.svg", 50, 'food level-3', ["This place used to be called Longitude, and it was empty. Guess the new name helps!"],["mai-tai"]);
+            "572-tropical-drink.svg", 50, 'food level-3', ["This place used to be called Longitude, and it was empty. Guess the new name helps!"],["mai-tai"], kon_tiki);
 
 addMarkerInfo("shandong",  "Shandong Restaurant", [  -122.270016, 37.800587],"",
             "dumpling.png", 40, 'food', ["This place is too popular now, there's always a line out the door.", "Make sure to order the 'special' hand cut noodles."],["rice-bowl"], dimsum_shop);
@@ -284,7 +284,7 @@ addMarkerInfo("alice-cafe",  "Alice Bakery Cafe", [ -122.268380, 37.799706],"",
             "556-cookie.svg", 50, 'food level-2', ["I love the red bean buns here, they're cute and delicious!"],["cookie"], asian_bakery);
 
 addMarkerInfo("luckyduck-cafe",  "Luckyduck Bicycle Cafe", [ -122.268660, 37.801724],"",
-            "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"], ["coffee"], taco_shop);
+            "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"], ["coffee"], coffee_shop);
 
 addMarkerInfo("little-giant",  "Little Giant", [-122.269855, 37.809155],"",
             "551-soft-ice-cream-1.svg", 50, 'food level-3', ["If you come on a Sunday, sundae toppings are free!"],["soft_serve"], icecream_shop);
@@ -373,6 +373,13 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 
   addMarkerInfo("arizmendi",  "Arizmendi Bakery", [-122.244843 ,37.810649],"",
   "536-bread.svg", 50, "food level-3",["I come here for lunch all the time.", "Best croissants, gotta get here in the morning to get them!", "I really like how this place is worker-owned."],[], bakery);
+
+  addMarkerInfo("tacos-mi-rancho",  "Tacos Mi Ranco", [ -122.256599, 37.798937],"",
+              "taco.svg", 50, 'food level-3', ["These are the best carnitas burritos in the east bay.", "The burritos are giant!"],[], taco_shop);
+
+  addMarkerInfo("xolo",  "Xolo", [ -122.269727, 37.808410],"",
+              "taco.svg", 50, 'food level-2', ["I like the burritos here, nice blend of ingredients and not too giant."],[], taco_shop);
+
 
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
   var drop_items;

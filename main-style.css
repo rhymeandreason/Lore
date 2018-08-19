@@ -278,6 +278,9 @@
     filter: drop-shadow(1px 1px 0 white)
           drop-shadow(-1px -1px 0 white);
   }
+  .visited{
+    filter: grayscale(0%); !important
+  }
   .active-marker{
     filter: grayscale(0%); !important
   }
