@@ -437,24 +437,24 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
     //make the food landmarks show up on zoom 15
     if (map.getZoom() > 14.5){
       //console.log(" level 3");
-      $(".level-4").show();
+      $(".level-4").removeClass("hidden-marker");
     } else {
-      $(".level-4").hide();
+      $(".level-4").addClass("hidden-marker");
     }
 
 
     if (map.getZoom() > 15){
       //console.log(" level 3");
-      $(".level-3").show();
+      $(".level-3").removeClass("hidden-marker");
     } else {
-      $(".level-3").hide();
+      $(".level-3").addClass("hidden-marker");
     }
 
     if (map.getZoom() > 16.7){
       //console.log(" level 5");
-      $(".level-2").show();
+      $(".level-2").removeClass("hidden-marker");
     } else {
-      $(".level-2").hide();
+      $(".level-2").addClass("hidden-marker");
     }
 
   });

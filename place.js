@@ -1,7 +1,12 @@
 function MakeLocation(marker) {
   // create a DOM element for the marker
   var el = document.createElement('div');
-  el.className = 'marker '+ marker.properties.className + " "+ marker.properties.id;
+  if (marker.properties.className.includes('level')){
+    el.className = 'marker '+ marker.properties.className + " hidden-marker "+ marker.properties.id;
+  } else {
+    el.className = 'marker '+ marker.properties.className + " "+ marker.properties.id;
+  }
+
   $( el ).data( "name", marker.properties.id);
   //$(el).attr('data-name', marker.properties.id);
   var img = document.createElement("IMG");

@@ -263,7 +263,9 @@
   }
 
   #map { position:absolute; top:0; bottom:0; width:100%; }
-
+  .landmark {
+    z-index:2;
+  }
   .marker {
     border-radius: 50%;
     background-size: contain;
@@ -277,6 +279,22 @@
     width: 100%;
     filter: drop-shadow(1px 1px 0 white)
           drop-shadow(-1px -1px 0 white);
+  }
+  .hidden-marker {
+    filter: grayscale(0%); !important
+  }
+  .hidden-marker img{
+    display: none
+  }
+  .hidden-marker::before{
+    content: "";
+    width: 7px;
+    height: 7px;
+    background-color: #6EC2C5;
+    border: 1px solid #CCE4E0;
+    display:inline-block;
+    border-radius: 50%;
+
   }
   .visited{
     filter: grayscale(0%); !important
@@ -361,10 +379,10 @@
   .level-1 {
   }
   .level-2 {
-    display:none;
+
   }
   .level-3, .level-4, .level-2{
-    display:none;
+    //display:none;
   }
 
   .daily-items {
