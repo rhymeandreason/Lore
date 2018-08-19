@@ -302,10 +302,14 @@
 
   }
   .visited img{
-    filter: grayscale(0%); !important
+    filter: drop-shadow(1px 1px 0 white)
+          drop-shadow(-1px -1px 0 white)
+          grayscale(0%); !important
   }
   .active-marker img{
-    filter: grayscale(0%); !important
+    filter: drop-shadow(1px 1px 0 white)
+          drop-shadow(-1px -1px 0 white)
+          grayscale(0%); !important
   }
   .active-marker::after{
     content: '';
