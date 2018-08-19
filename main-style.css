@@ -16,6 +16,7 @@
     display: inline-block;
     top: 5px;
     left: 5px;
+    padding: 5px;
   }
   #debug {
     padding: 64px;
@@ -464,32 +465,55 @@
     width:100%;
   }
 
-  #inventory, #purchases {
+  #inventory{
+    border-bottom: 1px solid silver;
+    height: 80px;
+    padding: 5%;
+    width:75%;
+    margin: auto;
+    clear: both;
+    margin-bottom: 20px;
+  }
+
+   #purchases {
     width: 90%;
     margin: auto;
     margin-top: 8px;
-    //overflow-y: scroll;
+    clear: both;
   }
   #inventory .item{
     display:inline-block;
     float: left;
     text-align: center;
     //width: 44px;
-    width: 33.3%;
+    width: 50%;
     height: 62px;
     //padding: 10px;
     margin-top: 16px;
+
   }
   #inventory .item img{
     height: 44px;
     display: inline-block;
   }
-  #inventory .quantity, #purchases .quantity{
-    font-size: 14px;
+  #inventory .quantity{
+    font-size: 16px;
     text-align: center;
     display:inline-block;
     float: left;
     width:100%;
+  }
+   #purchases .quantity{
+    font-size: 12px;
+    text-align: center;
+    display:inline-block;
+    //float: left;
+    //width:100%;
+    background: #cdf6f6;
+    padding: 3px;
+    min-width:14px;
+    border-radius: 12px;
+    margin-left: -10px;
   }
 
   #landmarks .place{

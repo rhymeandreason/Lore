@@ -226,7 +226,7 @@ addMarkerInfo("paramount",  "Paramount Theater", [ -122.268012, 37.809610],"",
             "paramount.png", 40, 'landmark', [],[]);
 
 addMarkerInfo("caffe-817",  "Caffe 817", [  -122.274850, 37.801119],"",
-            "567-hot-beverage-2.svg", 50, 'food', ["The lattes here are fantastic.", "Get a chocolate chip cookie, you won't regret it!"],["coffee", "cookie"]);
+            "567-hot-beverage-2.svg", 50, 'food', ["The lattes here are fantastic.", "Get a chocolate chip cookie, you won't regret it!"],["coffee", "cookie"], coffee_shop);
 
 addMarkerInfo("malonga",  "Malonga Casquelourd Center", [-122.265980, 37.802945],"",
             "malonga.png", 50, 'dance', [],[]);
@@ -329,7 +329,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
               "christ-cathedral.png", 80, 'landmark',[],[]);
 
   addMarkerInfo("lucky-grocery",  "Lucky", [-122.2533394 ,37.7996664],"",
-              "527-red-apple.svg", 50, "grocery level-3",[],[]);
+              "527-red-apple.svg", 50, "grocery level-3",[],[], grocery);
 
   addMarkerInfo("pergola",  "Pergola and Collonade", [-122.2496 ,37.8086],
                 "Designed by architect Walter Reed in 1913, it was originally built with benches overlooking the lake. It was formerly nicknamed 'El Embarcadero’, which is now the name of the cross-street.",
@@ -620,20 +620,38 @@ $("#debug-button").click(function(){
 function updateInventory(){
   var inventory = Object.keys(Player.inventory);
   $("#inventory").html("");
+
+  var coins = "<span class='item'><img src='icons/coin.svg' /><span class='quantity'>"+Player.coins+"</span></span>";
+  $("#inventory").append(coins);
+
+  var acorns = "<span class='item'><img src='icons/acorn.svg' /><span class='quantity'>"+Player.inventory.acorn+"</span></span>";
+  $("#inventory").append(acorns);
+  /*
   for (var i=0; i<inventory.length; i++) {
     var count = Player.inventory[inventory[i]];
+
     if (count >0){
-      var item = "<span class='item'><img src='icons/"+items[inventory[i]]+"' /><span class='quantity'>"+count+"</span></span>";
+      if (count > 1){
+        var item = "<span class='item'><img src='icons/"+items[inventory[i]]+"' /><span class='quantity'>"+count+"</span></span>";
+
+      } else {
+        var item = "<span class='item'><img src='icons/"+items[inventory[i]]+"' /></span>";
+      }
+
       $("#inventory").append(item);
     }
   }
-
+  */
   var purchases = Object.keys(Player.purchases);
   $("#purchases").html("");
   for (var i=0; i<purchases.length; i++) {
     var count = Player.purchases[purchases[i]];
     if (count >0){
-      var item = "<span class='item'><img src='shops/"+purchases[i]+".png' /><span class='quantity'>"+count+"</span></span>";
+      if (count > 1){
+        var item = "<span class='item'><img src='shops/"+purchases[i]+".png' /><span class='quantity'>"+count+"</span></span>";
+      } else {
+        var item = "<span class='item'><img src='shops/"+purchases[i]+".png' /></span>";
+      }
       $("#purchases").append(item);
     }
   }

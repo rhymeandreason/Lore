@@ -2,9 +2,7 @@ var Player = {
   "name" : "Mary",
   "level": 1,
   "inventory": {
-    "acorn": 1,
-    "red_apple": 1,
-    "coffee": 1
+    "acorn": 1
   },
   "purchases": {},
   "badges": {
