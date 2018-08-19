@@ -427,11 +427,11 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
   geoJson.features.push(marker);
 }
 
-
 // add markers to map
   geoJson.features.forEach(function(element) {
     MakeLocation(element);
   });
+
 
   map.on('zoom',function(){
     //make the food landmarks show up on zoom 15
@@ -503,7 +503,7 @@ function showTab(el,id){
 $(".close").click(function(e){
   //console.log(e.target.parentNode.id);
   if (e.target.parentNode.id == "place-popup-card"){
-
+    $("."+current_place).addClass("visited");
     //if you close a place card
     current_place = null;
   }
@@ -692,6 +692,13 @@ attach_NPC('Librarian', 'library-main');
 attach_NPC('Lisa', 'stanford-house');
 LoadGame();
 setInterval(SaveGame, 9000);
+
+var landmarks = Object.keys(Player.landmarks);
+for (var i=0; i<landmarks.length; i++) {
+  $("."+landmarks[i]).addClass("visited");
+
+}
+
 
 //Turn on location tracking by default if you are on mobile
 if (typeof window.orientation !== 'undefined') {
