@@ -56,6 +56,7 @@
     bottom:22px;
     left:0px;
     width: 100%;
+    z-index:3;
   }
   #main-nav img{
     height:36px;
@@ -269,19 +270,23 @@
   .marker {
     border-radius: 50%;
     background-size: contain;
-    filter: grayscale(90%);
+    //filter: grayscale(90%);
+
+  }
+  .marker img{
+    //filter: grayscale(90%);
+    width: 100%;
+    filter: drop-shadow(1px 1px 0 white)
+          drop-shadow(-1px -1px 0 white)
+          grayscale(90%);
     -webkit-transition: filter 2s linear;
     -moz-transition: filter 2s linear;
     -o-transition: filter 2s linear;
     transition: filter 2s linear;
   }
-  .marker img{
-    width: 100%;
-    filter: drop-shadow(1px 1px 0 white)
-          drop-shadow(-1px -1px 0 white);
-  }
   .hidden-marker {
-    filter: grayscale(0%); !important
+    //filter: grayscale(0%); !important
+    z-index:1; !important
   }
   .hidden-marker img{
     display: none
@@ -296,10 +301,10 @@
     border-radius: 50%;
 
   }
-  .visited{
+  .visited img{
     filter: grayscale(0%); !important
   }
-  .active-marker{
+  .active-marker img{
     filter: grayscale(0%); !important
   }
   .active-marker::after{
