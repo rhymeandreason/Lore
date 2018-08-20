@@ -58,6 +58,7 @@
   <img src="icons/close-x dark.svg" class="close"/>
   <div id="npc-text" class="animated pulse"></div>
   <div id="npc-item"></div>
+  <div id="new-quest-notif" class="animated bounceIn delay-1s"><p>New Quest!</p><span class='quest'></span></div>
   <div id="npc-responses"></div>
 </div>
 
@@ -91,8 +92,14 @@
 </div>
 
 <span id='player'></span>
-
-<div id="error-dialog" class="animated fadeInUp">
+<!--
+<div id="new-quest-dialog" class="animated fadeInDown delay-2s dialog-box">
+  <img src="icons/clue.svg" />
+  <h3>New Quest!</h3>
+  <span class="ok-button">Okay</span>
+</div>
+-->
+<div id="error-dialog" class="animated fadeInUp dialog-box">
   <p>You don't have enough acorns to purchase this item.</p>
   <span class="ok-button">Okay</span>
 </div>
@@ -402,7 +409,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
   "","taco.svg", 50, "food level-2",[],[], taco_shop);
 
   addMarkerInfo("grand-lake-theater",  "Grand Lake Theater", [-122.247762 , 37.811521],
-  "","movie.svg", 50, "theater",[],[]);
+  "","grand-lake-theater.png", 60, "landmark theater",[],[]);
 
   addMarkerInfo("lanesplitter",  "Lanesplitter Pizza", [ -122.246490, 37.810276],
   "","pizza.svg", 50, "food level-3",[],[], pizza_shop);
@@ -429,10 +436,10 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
   "","hamburger.svg", 50, "food level-3",[],[]);
 
   addMarkerInfo("neecha-thai",  "Neecha Thai Cuisine", [ -122.247385, 37.812070],
-  "","rice-bowl.svg", 50, "food level-3",[],[]);
+  "","rice-bowl.svg", 40, "food level-3",[],[]);
 
   addMarkerInfo("chao-thai",  "Chao Thai Cuisine", [ -122.247119, 37.811044],
-  "","rice-bowl.svg", 50, "food level-3",[],[]);
+  "","rice-bowl.svg", 40, "food level-3",[],[]);
 
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
   var drop_items;

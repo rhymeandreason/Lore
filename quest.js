@@ -202,9 +202,14 @@ function NPC_chat(name){
     if (Player.quests_progress.hasOwnProperty(quest)){
       num = Player.quests_progress[quest];
       Player.quests_progress[quest] = num+1;
+      $("#new-quest-notif").hide();
     } else {
       Player.quests_progress[quest] = 1;
+      $("#new-quest-notif .quest").html(quest);
+      $("#new-quest-notif").show();
     }
+  } else {
+    $("#new-quest-notif").hide();
   }
 
   if (item){
