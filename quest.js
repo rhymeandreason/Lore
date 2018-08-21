@@ -204,7 +204,9 @@ var Quests = {
       {name: "Librarian", clue: "You should look up the man it's named after, Dr. Samuel B. Merritt.<br> Among many things, he built the <b>Camron-Stanford</b> house. It's nearby."},
       {name: "Lisa", clue: "My friend Richard at the Lake Merritt Institute will tell you all about it. It's near the <b>Boating Center</b>."},
       {name: "Bailey", clue: "Look towards the waterfowl sanctuary from the southeast side of the lake. That's the best spot."}
-    ]
+    ],
+    location: [],
+    badge: "Oakness-bw.png"
   }
 }
 

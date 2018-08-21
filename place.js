@@ -93,6 +93,7 @@ function MakeLocation(marker) {
 }
 
 function check_quest_progress(place){
+  /*
   var section = $("#"+place + " .npc-section");
 
   if (!Player.quests_progress.hasOwnProperty("Oak-ness Monster") && $("#"+place).hasClass('landmark')){
@@ -107,6 +108,7 @@ function check_quest_progress(place){
       section.append(npc);
     }
   }
+  */
 
 }
 
@@ -173,7 +175,7 @@ function getImageLightness(imageSrc,callback) {
 }
 
 function setIcon(val){
-  console.log("brightness: "+ val);
+  //console.log("brightness: "+ val);
   if (val>180){
     $("#close_location").removeClass("background--dark");
     $("#close_location").addClass("background--light");
