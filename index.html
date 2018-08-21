@@ -26,6 +26,7 @@
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
 <link href='animate.min.css' rel='stylesheet' />
 <link href='main-style.css' rel='stylesheet' />
 
@@ -73,8 +74,8 @@
 <div id="journal-card" class="card">
   <img src="icons/close-x dark.svg" class="close"/>
   <div class="card-tabs">
-  <span class="tab active" onclick="showTab(this,'landmarks')">Places</span>
-  <span class="tab" onclick="showTab(this,'quests')">Quests</span>
+  <span class="tab" onclick="showTab(this,'landmarks')">Places</span>
+  <span class="tab active" onclick="showTab(this,'quests')">Quests</span>
   </div>
   <div class="tab-content" id="landmarks">Here are landmarks</div>
   <div class="tab-content" id="quests">Here are quests</div>
@@ -85,6 +86,11 @@
   <div id="journal"><img src="icons/journal.svg" /></div>
 </div>
 <span id="debug-button">Debug</span>
+
+<div id="add-journal-item-anim" class="add-item-anim">
+  <span><img id="new-journal-item" src="icons/acorn.svg"/></span>
+  <span style="z-index:25;"><img src="icons/journal.svg" /></span>
+</div>
 
 <div id="add-item-anim">
   <span><img id="new-item" src="icons/acorn.svg"/></span>
@@ -655,8 +661,14 @@ function updateJournal(){
   var quests = Object.keys(Player.quests_progress);
   $("#quests").html("");
   for (var i=0; i<quests.length; i++) {
-    var quest = "<span class='quest'>"+quests[i]+"</span>";
+    var quest_name = quests[i];
+    var quest = "<span class='quest'>"+quest_name+"</span>";
     $("#quests").append(quest);
+    var quest_progress = "<div class='quest_progress'><img src='quests/"+quest_name+Player.quests_progress[quest_name]+".png' /></div>";
+    $("#quests").append(quest_progress);
+    var quest_entry = Quests[quest_name].progress[Player.quests_progress[quest_name]];
+    var quest_clue = "<div class='quest_clue'><img src='npc/"+quest_entry.name+".svg' /><span>"+quest_entry.clue+"</span>"
+    $("#quests").append(quest_clue);
   }
   if (quests.length == 0){
     $("#quests").append("<p class='placeholder'>Visit local landmarks to discover quests!</p>");
@@ -750,6 +762,7 @@ $("#distance_input").change(function(){
 attach_NPC('JohnLaw', 'tribune-tower');
 attach_NPC('Librarian', 'library-main');
 attach_NPC('Lisa', 'stanford-house');
+attach_NPC('Bailey', 'boating-center');
 LoadGame();
 setInterval(SaveGame, 9000);
 

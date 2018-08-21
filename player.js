@@ -50,6 +50,17 @@ function addItem(el, name){
   $("#add-item-anim #new-item").animate({bottom: '-32px'}, "slow", function(){$("#add-item-anim").fadeOut('fast');});
 }
 
+function addJournalItem(el, name){
+  playAudio("sound-pop");
+
+  $(el).fadeOut();
+  $("#new-journal-item").attr('src', "icons/"+items[name]);
+  $("#add-journal-item-anim").fadeIn();
+  $("#add-journal-item-anim #new-journal-item").css("bottom","20px");
+  $("new-journal-item").attr('src', )
+  $("#add-journal-item-anim #new-journal-item").animate({bottom: '-32px'}, "slow", function(){$("#add-journal-item-anim").fadeOut('fast');});
+}
+
 function buyItem(el, name, price){
   //we're going to do prices in acorns for now
   if (Player.inventory.acorn >= price){

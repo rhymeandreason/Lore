@@ -33,7 +33,7 @@ LM_Spelunker[6] = { text: "It's a monster that lives in Lake Merritt. And if con
               options: [    { response: "I'm game to go monster spotting!", next: 7 }
                        ]
           };
-LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by a <b>library</b> or the <b>Oakland Museum</b>.",
+LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by the <b>library</b>.",
               options: [    { response: "Okay, thanks!", next: 'exit' },
                             {condition: ['coins', 15],
                             response:"I have enough coins", next: 'exit'}
@@ -44,7 +44,7 @@ LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must under
 
 var LM_Librarian = [];
 LM_Librarian[0] = { "text": "Hello, do you need help with anything?",
-             options: [   { condition: ['quest', 'Oak-ness Monster'], response: "Do you have any info on the Oak-ness Monster?", next: 2 },
+             options: [   { condition: ['quest_progress', {quest: 'Oak-ness Monster', progress: 0}], response: "Do you have any info on the Oak-ness Monster?", next: 2 },
                           {  response: "Got any recommended reading?", next: 1 }
                       ]};
 LM_Librarian[1] = { "text": "Check out our section of featured local authors. ",
@@ -66,7 +66,9 @@ LM_Librarian[5] = { "text": "He did so many things...Doctor, entreprenuer, mayor
                      ]};
 LM_Librarian[6] = { "text": "The area used to be private property surrounded by Victorian mansions. The only one left is the <b>Camron-Stanford House</b>. You can go see it, it's nearby.",
            options: [    {  response: "Thanks, I think I'll go do that!", next: 'exit' }
-                    ]};
+          ],
+          quest_clue:  {quest: "Oak-ness Monster", progress:1 }
+                  };
 
 var John_Law = [];
 John_Law[0] = { "text": null,
@@ -89,15 +91,15 @@ John_Law[5] = { "text": "Well, a bunch of things. Helped start the Cacophony Soc
             options: [  {response: "That sounds kinda familiar...", next: 6 }
                       ]};
 John_Law[6] = { "text": "I was also involved with founding Burning Man back in the 90's. You might have heard about that. ",
-            options: [  {condition: ['quest', 'Oak-ness Monster'],  response: "Have you ever heard of the Oak-ness Monster?", next: 5 },
+            options: [  {condition: ['quest', 'Oak-ness Monster'],  response: "Have you ever heard of the Oak-ness Monster?", next: 7 },
                         {response: "Yeah I've heard of that. Nice to meet you!", next: 'exit reset' }
                       ]};
 John_Law[7] = { "text": "Haha. Funny thing to ask. One of my friends was passing around a video of it some years back. ",
             options: [  {response: "Have you seen it?", next: 8 }
                       ]};
-John_Law[8] = { "text": "No. There's supposed to be some good spots for sightings. Ask the people at the <b>Boating Center</b>, they're on the lake all the time.",
+John_Law[8] = { text: "No. There's supposed to be some good spots for sightings. Lake Merritt has an interesting history. Worth reading up on.",
             options: [  {response: "That's a good idea, thanks!", next: 'exit' }
-                      ]};
+                      ] };
 
 var Lisa = [];
 Lisa[0] = { "text": "Hello, would you like to hear about the history of the house?",
@@ -111,12 +113,12 @@ Lisa[2] = { "text": "Actually, a small group in 1971 raised money to restore the
              options: [   {  response: "Well, it's such a beautiful spot here on the lake.", next: 3 }
                       ]};
 Lisa[3] = { "text": "It certainly is! Some people book the place for a Victorian wedding. And we host tea party events too.",
-             options: [ {condition: ['quest', 'Oak-ness Monster'],  response: "Did Samuel Merritt live here at any point?", next: 5 },
+             options: [ {condition: ['quest_progress', {quest: 'Oak-ness Monster', progress: 1}],  response: "Did Samuel Merritt live here at any point?", next: 5 },
                         {  response: "Can I see the inside of the house?", next: 4 }
                       ]};
 Lisa[4] = { "text": "There are tours on Sunday afternoons for $5.",
              options: [   {  response: "Thank you for the info!", next: 'exit reset' },
-             {condition: ['quest', 'Oak-ness Monster'],  response: "Did Samuel Merritt live here at any point?", next: 5 }
+             {condition: ['quest_progress', {quest: 'Oak-ness Monster', progress: 2}],  response: "Did Samuel Merritt live here at any point?", next: 5 }
                       ]};
 Lisa[5] = { "text": "Dr. Merritt built this house, but he lived in another property in the area. He's well known for establishing the area as a nature reserve, and cleaning up the lake from being used for sewage.",
              options: [   {  response: "Have you ever heard about a monster in the lake?", next: 6 }
@@ -128,11 +130,39 @@ Lisa[7] = { "text": "There's always been stories through the years. People see o
              options: [   {  response: "Have you seen anything odd yourself?", next: 8 }
                       ]};
 Lisa[8] = { "text": "Me? No. My friend Richard at the Lake Merritt Institute will tell you all about it though.",
-             options: [   {  response: "Where is the Lake Merritt Institute?", next: 9 }
-                      ]};
+             options: [   {  response: "Where is the Lake Merritt Institute?", next: 9 }],
+           quest_clue: {quest: 'Oak-ness Monster', progress: 2}
+                    };
 Lisa[9] = { "text": "It's near the <b>Boating Center</b> on the north side of the lake. He would know, he runs volunteer cleanup sessions on the lake.",
              options: [   {  response: "Okay, thanks!", next: 'exit' }
                       ]};
+
+var Bailey = [];
+Bailey[0] = { text: null,
+             options: [ {condition: ['quest_progress', {quest: 'Oak-ness Monster', progress: 2}],  response: "Hi, I'm looking for Richard of the Lake Merritt Institute.", next: 3 },
+                        {  response: "What is the Lake Merritt Institute?", next: 1 }
+                      ]};
+
+  Bailey[1] = { text: "We're a non-profit that takes care of Lake Merritt. We host volunteer sessions to clean up trash from the lake.",
+             options: [ {  response: "That's cool! How can I help?", next: 2 }
+                      ]};
+  Bailey[2] = { text: "Always can take more volunteers. We have group sessions Tuesday and Saturday mornings. You can read more info on our website. We also take donations.",
+             options: [ {  response: "Thanks, I'll take a look!", next: 'exit reset' }
+                      ]};
+
+  Bailey[3] = { text: "That would be me. Dr. Richard Bailey. What can I do for you?",
+             options: [ {  response: "I hear that you might know something about the Oak-ness Monster?", next: 4 }
+                      ]};
+  Bailey[4] = { text: "Ah yes, Oaky. We're lucky to have such a magnificent creature as a resident. Don't know how she survived those decades suffering the pollution. ",
+             options: [ {  response: "So have you seen this thing?", next: 5 }
+                      ]};
+  Bailey[5] = { text: "Of course! Now why all the questions, why so curious?",
+             options: [ {  response: "It's just such an interesting story. Think there's any chance I might see her?", next: 6 }
+                      ]};
+  Bailey[6] = { text: "It can take years of patience and luck. But I'll let you in on a tip...the best place for a sighting is on the southeast side, looking toward the islands of the waterfowl sanctuary.",
+             options: [ {  response: "Thanks for the info!", next: 'exit' }],
+             quest_clue: {quest: 'Oak-ness Monster', progress: 3}
+           };
 
 var NPC = {
   "Spelunker": {
@@ -162,14 +192,33 @@ var NPC = {
   "Bailey": {
     "name": "Dr. Richard Bailey",
     "location": null,
-    "dialog": "",
+    "dialog": Bailey,
     "progress": 0
+  }
+}
+
+var Quests = {
+  "Oak-ness Monster": {
+    progress: [
+      {name: "Spelunker", clue: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by the <b>library</b>."},
+      {name: "Librarian", clue: "You should look up the man it's named after, Dr. Samuel B. Merritt.<br> Among many things, he built the <b>Camron-Stanford</b> house. It's nearby."},
+      {name: "Lisa", clue: "My friend Richard at the Lake Merritt Institute will tell you all about it. It's near the <b>Boating Center</b>."},
+      {name: "Bailey", clue: "Look towards the waterfowl sanctuary from the southeast side of the lake. That's the best spot."}
+    ]
   }
 }
 
 function Quest_Conditions(property, value) {
   if (property == 'quest'){
     return Player.quests_progress.hasOwnProperty(value);
+  }
+  if (property == 'quest_progress'){
+    console.log(value.progress);
+    if (Player.quests_progress.hasOwnProperty(value.quest)){
+      return Player.quests_progress[value.quest] == value.progress;
+    } else {
+      return false;
+    }
   }
   if (property == 'coins'){
     if (Player.coins >= value){
@@ -184,27 +233,24 @@ function NPC_chat(name){
   $("#npc-popup-card").css('background-image', "url('npc/"+name+"-main.png')");
   $("#npc-popup-card").fadeIn();
   $("#npc-text").hide();
+  $("#npc-item").html("");
   var character = NPC[name];
   current_npc = name;
   character.location = current_place; //save where you interacted with the character
 
   var display_text = character.dialog[character.progress].text;
   var options = character.dialog[character.progress].options;
-  var item = character.dialog[character.progress].item;
-  var quest = character.dialog[character.progress].quest;
+
   $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
   if (display_text){
     $("#npc-text").show();
   }
 
+  var quest = character.dialog[character.progress].quest;
   if (quest){
-    var num = 0;
     if (Player.quests_progress.hasOwnProperty(quest)){
-      num = Player.quests_progress[quest];
-      Player.quests_progress[quest] = num+1;
-      $("#new-quest-notif").hide();
     } else {
-      Player.quests_progress[quest] = 1;
+      Player.quests_progress[quest] = 0;
       $("#new-quest-notif .quest").html(quest);
       $("#new-quest-notif").show();
     }
@@ -212,13 +258,22 @@ function NPC_chat(name){
     $("#new-quest-notif").hide();
   }
 
+  var item = character.dialog[character.progress].item;
   if (item){
-    console.log(item);
-    var quest_item = "<span class='animated bounceIn'><img class='animated jackInTheBox' src='icons/"+items[item]+"' onclick='addItem(this.parentNode, \""+item+"\")' /></span>";
+    //console.log(item);
+    var quest_item = "<span class='animated bounceIn delay-1s'><img class='animated jackInTheBox' src='icons/"+items[item]+"' onclick='addItem(this.parentNode, \""+item+"\")' /></span>";
     $("#npc-item").append(quest_item);
   } else {
     //console.log("no item");
   }
+
+  var quest_clue = character.dialog[character.progress].quest_clue;
+  if (quest_clue){
+    var quest_item = "<span class='animated bounceIn delay-1s'><img class='animated pulse infinite' src='icons/clue.svg' onclick='addJournalItem(this.parentNode, \"clue\")' /></span>";
+    $("#npc-item").append(quest_item);
+    Player.quests_progress[quest_clue.quest] = quest_clue.progress;
+  }
+
   $("#npc-responses").html("");
   for (var i=0; i < options.length; i++){
     var entry = options[i];
