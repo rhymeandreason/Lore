@@ -764,6 +764,12 @@ attach_NPC('JohnLaw', 'tribune-tower');
 attach_NPC('Librarian', 'library-main');
 attach_NPC('Lisa', 'stanford-house');
 attach_NPC('Bailey', 'boating-center');
+
+var GameData= {
+  "store_restock": moment(),
+  "game_start": moment()
+}
+
 LoadGame();
 setInterval(SaveGame, 9000);
 
@@ -780,20 +786,20 @@ if (typeof window.orientation !== 'undefined') {
 }
 
 
-var GameData= {
-  "store_restock": moment(),
-  "game_start": moment()
-}
-
 function SaveGame(){
   console.log("saving game");
   localStorage.setItem("LORE_Player", JSON.stringify(Player) );
+  localStorage.setItem("LORE_GameData", JSON.stringify(GameData) );
 }
 
 function LoadGame(){
   if (localStorage.getItem("LORE_Player")){
     console.log("loading game");
     Player =JSON.parse(localStorage.getItem("LORE_Player"));
+  }
+  if (localStorage.getItem("LORE_GameData")){
+    console.log("loading game data");
+    GameData =JSON.parse(localStorage.getItem("LORE_GameData"));
   }
 }
 
