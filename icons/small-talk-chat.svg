@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="20px" viewBox="0 0 26 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Path 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Chatbox-R" transform="translate(-231.000000, -73.000000)" fill="#FFFFFF" stroke="#303336" stroke-width="2">
+            <g id="NPC-chat-box">
+                <g id="dialog-box">
+                    <path d="M232,92 C235.519816,87.0444299 238.164542,83.6660905 239.934177,81.8649817 C247.261167,74.4076812 256.947008,72.8379512 255.925413,74.7349256 C252.524335,81.0503013 250.948424,86.8053261 251.197678,92" id="Path-3" transform="translate(244.000000, 83.000000) scale(-1, 1) rotate(180.000000) translate(-244.000000, -83.000000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

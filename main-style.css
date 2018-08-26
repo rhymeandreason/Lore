@@ -204,19 +204,26 @@
 
 
   .small-talk{
-    width: 177px;
+    width: 240px;
     display: inline-block;
     position: absolute;
-    right: 0px;
-    font-size: 13px;
-    height: 44px;
+    right: 70px;
+    bottom:34px;
+    font-size: 16px;
     vertical-align: center;
-    padding: 10px 84px 10px 40px;
     text-align: left;
-    line-height: 18px;
-    background-color: rgba(255,255,255,.85);
-    border-radius: 32px;
+    line-height: 20px;
+    background-color: white;
+    border-radius: 15px;
     display: none;
+    border: 2px solid black;
+    padding: 12px;
+  }
+  .small-talk::after{
+    content: url("icons/small-talk-chat.svg");
+    position:absolute;
+    right: 5px;
+    bottom:-22px;
   }
 
   #npc-popup-card {
