@@ -152,6 +152,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqc
 var geoJson = {
   "type": "FeatureCollection",
   "features": [{
+      "id": "basil-pizzeria",
       "type": "Feature",
       "geometry": {
           "type": "Point",
@@ -176,6 +177,7 @@ var geoJson = {
           "shop": pizza_shop
       }
   }, {
+      "id": "b-dama",
       "type": "Feature",
       "geometry": {
           "type": "Point",
@@ -201,6 +203,7 @@ var geoJson = {
           "shop": japanese_shop
       }
     },{
+        "id": "pietisserie",
         "type": "Feature",
         "geometry": {
             "type": "Point",
@@ -402,7 +405,7 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
   addMarkerInfo("howden-market",  "Howden Market", [ -122.267334 , 37.805560],
   "","apple.svg", 50, "grocery level-3",[],[], grocery);
 
-  addMarkerInfo("good-news",  "Good News Cafe", [  -122.262785 , 37.804301],
+  addMarkerInfo("good-news-cafe",  "Good News Cafe", [  -122.262785 , 37.804301],
   "","coffee.svg", 50, "food level-3",[],[], coffee_shop);
 
   addMarkerInfo("haddon-hill",  "Haddon Hill", [ -122.248888 , 37.804954],
@@ -466,6 +469,7 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
   }
 */
   var marker = {
+    "id": id,
     "type": "Feature",
     "geometry": {
         "type": "Point",
@@ -532,6 +536,7 @@ $(".marker").click(function(){
   //console.log(this);
 
   var id = $( this ).data( "name");
+  //console.log(place);
   getImageLightness($("#"+id+" .place-image").attr("src"),setIcon);
 
   if (isTracking ){
@@ -545,16 +550,34 @@ $(".marker").click(function(){
 
 function showLocation(el, id){
   current_place = id;
+  var place = geoJson.features.find(place => place.id === id);
+
   if ($( el ).hasClass('landmark')){
     if (!Player.landmarks.hasOwnProperty(id)){
       Player.landmarks[id] = moment().format('MMM Do YYYY<br> h:mm a');
-      console.log(Player.landmarks[id]);
+      //console.log(Player.landmarks[id]);
     }
   }
 
   check_quest_progress(id);
   $("#place-popup-card").fadeIn();
   $(".popup").hide();
+
+  //add image
+  $("#"+id+" .place-image").attr('src', "places/"+id+".jpg");
+  //add shop
+  if (place.properties.shop && $("#"+id+" .shop").length == 0){
+    var shop = document.createElement("div");
+    shop.className = 'shop';
+    var shop_items = Object.keys(place.properties.shop);
+    for (var i=0; i<shop_items.length; i++){
+      var price = place.properties.shop[shop_items[i]];
+      var item1 = "<span class='shop_item animated fadeIn delay-1s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\","+price+" )' /><span class='price'>"+price+"</span></span>";
+      $(shop).append(item1);
+    }
+    $("#"+id).append(shop);
+  }
+
   document.getElementById('place-popup-card').scrollTop = 0;
   $("#"+id).show();
 }

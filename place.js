@@ -22,7 +22,7 @@ function MakeLocation(marker) {
   var place_header = document.createElement("div");
   place_header.className = 'place-header';
   var place_img = document.createElement("IMG");
-  place_img.src = "places/"+marker.properties.id+".jpg";
+  //place_img.src = "places/"+marker.properties.id+".jpg";
   place_img.className = "place-image";
   place_header.append(place_img);
 
@@ -74,17 +74,7 @@ function MakeLocation(marker) {
     }
   }
 
-  if (marker.properties.shop){
-    var shop = document.createElement("div");
-    shop.className = 'shop';
-    var shop_items = Object.keys(marker.properties.shop);
-    for (var i=0; i<shop_items.length; i++){
-      var price = marker.properties.shop[shop_items[i]];
-      var item1 = "<span class='shop_item animated fadeIn delay-1s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\","+price+" )' /><span class='price'>"+price+"</span></span>";
-      $(shop).append(item1);
-    }
-    $(popup).append(shop);
-  }
+
   $("#place-content").append(popup);
   // add marker to map
   new mapboxgl.Marker(el)
