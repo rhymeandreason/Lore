@@ -37,6 +37,7 @@ function MakeLocation(marker) {
   $(popup).append("<h2 class='animated fadeInUp'>"+marker.properties.title+"</h2>");
   $(popup).append("<p class='place-description animated fadeIn delay-1s'>"+marker.properties.description+"</p>");
 
+  //make item drops
   //If it's a shop, drop one random shop item
   if (marker.properties.shop){
     var div = document.createElement("div");
