@@ -123,7 +123,8 @@ function spawn_random_NPC(text, parent){
 
 function generic_chat(el){
   //console.log(el);
-  $(el).find('.small-talk').toggle();
+  $(el).parent().find('.small-talk').hide();
+  $(el).find('.small-talk').show();
 }
 
 function getImageLightness(imageSrc,callback) {

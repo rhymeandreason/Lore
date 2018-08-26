@@ -537,7 +537,7 @@ $(".marker").click(function(){
 
   var id = $( this ).data( "name");
   //console.log(place);
-  getImageLightness($("#"+id+" .place-image").attr("src"),setIcon);
+
 
   if (isTracking ){
     if ($( this ).hasClass( "active-marker")){
@@ -565,6 +565,7 @@ function showLocation(el, id){
 
   //add image
   $("#"+id+" .place-image").attr('src', "places/"+id+".jpg");
+  getImageLightness($("#"+id+" .place-image").attr("src"),setIcon);
   //add shop
   if (place.properties.shop && $("#"+id+" .shop").length == 0){
     var shop = document.createElement("div");
