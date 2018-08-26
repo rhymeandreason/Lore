@@ -284,6 +284,7 @@
     border-radius: 50%;
     background-size: contain;
     //filter: grayscale(90%);
+    text-align: center;
 
   }
   .marker img{

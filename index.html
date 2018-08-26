@@ -302,8 +302,20 @@ addMarkerInfo("alice-cafe",  "Alice Bakery Cafe", [ -122.268380, 37.799706],"",
 addMarkerInfo("luckyduck-cafe",  "Luckyduck Bicycle Cafe", [ -122.268660, 37.801724],"",
             "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"], ["coffee"], coffee_shop);
 
+addMarkerInfo("cat-town",  "Cat Town", [ -122.263224,37.817363],"",
+      "447-cat-face.svg", 50, 'food level-3', ["You can adopt a cat here!"], ["coffee"], coffee_shop);
+
 addMarkerInfo("little-giant",  "Little Giant", [-122.269855, 37.809155],"",
-            "551-soft-ice-cream-1.svg", 50, 'food level-3', ["If you come on a Sunday, sundae toppings are free!"],["soft_serve"], icecream_shop);
+            "551-soft-ice-cream-1.svg", 50, 'food icecream level-3', ["If you come on a Sunday, sundae toppings are free!"],["soft_serve"], icecream_shop);
+
+addMarkerInfo("humphrey-slocombe-oakland",  "Humphrey Slowcombe", [-122.266562, 37.812627],"",
+        "551-soft-ice-cream-1.svg", 50, 'food icecream level-2', ["Used to trek to SF for this, now it's so close!"],["soft_serve"], icecream_shop);
+
+addMarkerInfo("firebrand-bakery",  "Firebrand Bakery", [-122.265989, 37.812948],"",
+        "536-bread.svg", 50, 'food bakery level-2', [],[], bakery);
+
+addMarkerInfo("drakes-dealership",  "Drake's Dealership", [-122.266433, 37.812682],"",
+      "577-beer-mug.svg", 50, 'food level-3', ["The house tap is San Leandro Brewery.", "This spot used to have an auto shop."],[], pizza_shop);
 
 addMarkerInfo("donut-savant",  "Donut Savant", [-122.268533, 37.808374],"",
             "554-doughnut-1.svg", 50, 'food level-3', [],["donut"], donut_shop);
@@ -450,6 +462,15 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
   addMarkerInfo("chao-thai",  "Chao Thai Cuisine", [ -122.247119, 37.811044],
   "","rice-bowl.svg", 40, "food level-3",[],[], thai_food);
 
+  addMarkerInfo("Fentons",  "Fenton's Creamery", [-122.250160, 37.828008],"",
+          "551-soft-ice-cream-1.svg", 50, 'food icecream ', ["They invented Rocky Road ice cream here back in the day.","This place inspired the ice cream shop in the Pixar movie UP."],[""], icecream_shop);
+
+  addMarkerInfo("Smitten-Rockridge",  "Smitten Ice Cream", [-122.251821, 37.846084],"",
+      "551-soft-ice-cream-1.svg", 50, 'food icecream level-3', ["It's really fun watching their machines make the liquid nitrogen ice cream."],[""], icecream_shop);
+
+ addMarkerInfo("Dreyers",  "Dreyer's Grand Ice Cream", [ -122.252210, 37.847592],"",
+      "551-soft-ice-cream-1.svg", 50, 'food icecream', ["They say that they invented rocky road ice cream at the original Dreyer's here."],[""], icecream_shop);
+
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
   var drop_items;
   if (category.includes("landmark")){
@@ -559,7 +580,7 @@ function showLocation(el, id){
     }
   }
 
-  check_quest_progress(id);
+  check_quest_progress(place);
   $("#place-popup-card").fadeIn();
   $(".popup").hide();
 
