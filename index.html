@@ -97,6 +97,13 @@
   <span style="z-index:25;"><img src="icons/backpack.svg" /></span>
 </div>
 
+<div id="places-quest-progress" class="card">
+  <div class="progress_bar"></div>
+  <div class="quest-banner animated fadeInUp"><span class="quest-title">Quest Title Here</span></div>
+  <img src="icons/close-x.svg" class="close animated pulse infinite"/>
+  <div class="secondary-text">You've made progress on your quest!</div>
+</div>
+
 <span id='player'></span>
 <!--
 <div id="new-quest-dialog" class="animated fadeInDown delay-2s dialog-box">
@@ -702,6 +709,7 @@ function updateJournal(){
   if (landmarks.length == 0){
     $("#landmarks").append("<p class='placeholder'>Visit some local landmarks. <br>Your journeys will be recorded here.</p>");
   }
+  $("#landmarks").append("<div class='empty-space'></div>");
 
   var quests = Object.keys(Player.quests_progress);
   $("#quests").html("");
@@ -709,15 +717,37 @@ function updateJournal(){
     var quest_name = quests[i];
     var quest = "<span class='quest'>"+quest_name+"</span>";
     $("#quests").append(quest);
-    var quest_progress = "<div class='quest_progress'><img src='quests/"+quest_name+Player.quests_progress[quest_name]+".png' /></div>";
-    $("#quests").append(quest_progress);
-    var quest_entry = Quests[quest_name].progress[Player.quests_progress[quest_name]];
-    var quest_clue = "<div class='quest_clue'><img src='npc/"+quest_entry.name+".svg' /><span>"+quest_entry.clue+"</span>"
-    $("#quests").append(quest_clue);
+
+    if (Quests[quest_name].type == 'places'){
+      var count = Player.quests_progress[quest_name];
+      var total_count = Quests[quest_name].count;
+      var progress_bar = document.createElement('div');
+      progress_bar.className=("progress_bar");
+      for (var i=1; i<=count; i++){
+        $(progress_bar).append("<img class='' src='icons/"+Quests[quest_name].tag+".svg' />");
+      }
+      for (var i=count+1; i<=total_count; i++){
+        $(progress_bar).append("<img class='empty' src='icons/"+Quests[quest_name].tag+"-empty.svg' />");
+      }
+      $("#quests").append(progress_bar);
+    }
+
+    if (Quests[quest_name].type == 'story'){
+      var quest_progress = "<div class='quest_progress'><img src='quests/"+quest_name+Player.quests_progress[quest_name]+".png' /></div>";
+      $("#quests").append(quest_progress);
+      var quest_entry = Quests[quest_name].progress[Player.quests_progress[quest_name]];
+      var quest_clue = "<div class='quest_clue'><img src='npc/"+quest_entry.name+".svg' /><span>"+quest_entry.clue+"</span>"
+      $("#quests").append(quest_clue);
+    } else {
+      var quest_entry = Quests[quest_name].progress[0];
+      var quest_clue = "<div class='quest_clue'><img src='npc/"+quest_entry.name+".svg' /><span>"+quest_entry.clue+"</span>"
+      $("#quests").append(quest_clue);
+    }
   }
   if (quests.length == 0){
     $("#quests").append("<p class='placeholder'>Visit local landmarks to discover quests!</p>");
   }
+  $("#quests").append("<div class='empty-space'></div>");
 }
 
 function playAudio(id){
@@ -809,6 +839,7 @@ attach_NPC('JohnLaw', 'tribune-tower');
 attach_NPC('Librarian', 'library-main');
 attach_NPC('Lisa', 'stanford-house');
 attach_NPC('Bailey', 'boating-center');
+attach_NPC('Mary', 'little-giant');
 
 var GameData= {
   "store_restock": moment(),

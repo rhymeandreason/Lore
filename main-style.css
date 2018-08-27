@@ -69,6 +69,9 @@
     float: right;
     margin: 10px;
   }
+  .empty-space{
+    height: 150px;
+  }
   .card {
     width: 100%;
     min-width: 250px;
@@ -741,4 +744,58 @@
     text-align: center;
     margin: auto;
     margin-top: 48px;
+  }
+  .secondary-text{
+    color: rgba(0,0,0,.6);
+  }
+
+  #places-quest-progress{
+    background-color: #70DBF7;
+    text-align: center;
+  }
+  #places-quest-progress .close{
+    position: absolute;
+    top: 75%;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  #places-quest-progress .secondary-text{
+    position:absolute;
+    top: 60%;
+    left:0;
+    right: 0;
+    margin: auto;
+    line-height: 26px;
+    width:60%;
+    font-size: 20px;
+  }
+  .progress_bar{
+    text-align: center;
+  }
+  .progress_bar img{
+    padding: 0px 7px;
+  }
+  .progress_bar .empty{
+    opacity: .5 !important;
+  }
+  #places-quest-progress .progress_bar{
+    margin-top: 50%;
+  }
+  .quest-banner{
+    border-image: url('icons/quest-banner2.png') 29 110 75 115 stretch;
+    border-image-width:30px 55px 48px 56px;
+    border-image-outset: 6px;
+    padding: 4px 42px 32px 42px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 20px;
+    font-family: signpainter;
+    font-size: 28px;
+    max-width: 60%;
+  }
+  .quest-banner span{
+    background-color: white;
+    display:inline-block;
+    padding:2px 2px 5px 2px;
   }
