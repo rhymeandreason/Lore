@@ -566,26 +566,27 @@
     margin-left: -10px;
   }
 
-  #landmarks .place{
+  #landmarks .place, .badge{
     display:inline-block;
     float: left;
     width: 50%;
     margin-top: 16px;
     text-align: center;
   }
-  #landmarks .place img{
+  #landmarks .place img, .badge img{
     object-fit: contain;
     width: 60%;
     height: 100px;
     display: inline-block;
   }
-  #landmarks .journal-date{
+  #landmarks .journal-date, #badges .journal-date{
     float: left;
     text-align: center;
     width: 100%;
     font-family: Bad Script;
-    line-height: 20px;
+    line-height: 28px;
   }
+
 
 
    #quests .quest, #new-quest-notif{
@@ -753,6 +754,7 @@
     background-color: #70DBF7;
     text-align: center;
   }
+  /*
   #places-quest-progress .close{
     position: absolute;
     top: 75%;
@@ -760,6 +762,7 @@
     right: 0;
     margin: auto;
   }
+  */
   #places-quest-progress .secondary-text{
     position:absolute;
     top: 60%;

@@ -1,3 +1,39 @@
+//visit a location
+function showLocation(el, id){
+  current_place = id;
+  var place = geoJson.features.find(place => place.id === id);
+
+  if ($( el ).hasClass('landmark')){
+    if (!Player.landmarks.hasOwnProperty(id)){
+      Player.landmarks[id] = moment().format('MMM Do YYYY<br> h:mm a');
+      //console.log(Player.landmarks[id]);
+    }
+  }
+
+  check_quest_progress(place);
+  $("#place-popup-card").fadeIn();
+  $(".popup").hide();
+
+  //add image
+  $("#"+id+" .place-image").attr('src', "places/"+id+".jpg");
+  getImageLightness($("#"+id+" .place-image").attr("src"),setIcon);
+  //add shop
+  if (place.properties.shop && $("#"+id+" .shop").length == 0){
+    var shop = document.createElement("div");
+    shop.className = 'shop';
+    var shop_items = Object.keys(place.properties.shop);
+    for (var i=0; i<shop_items.length; i++){
+      var price = place.properties.shop[shop_items[i]];
+      var item1 = "<span class='shop_item animated fadeIn delay-1s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\","+price+" )' /><span class='price'>"+price+"</span></span>";
+      $(shop).append(item1);
+    }
+    $("#"+id).append(shop);
+  }
+
+  document.getElementById('place-popup-card').scrollTop = 0;
+  $("#"+id).show();
+}
+
 function MakeLocation(marker) {
   // create a DOM element for the marker
   var el = document.createElement('div');

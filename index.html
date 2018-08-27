@@ -76,9 +76,11 @@
   <div class="card-tabs">
   <span class="tab" onclick="showTab(this,'landmarks')">Places</span>
   <span class="tab active" onclick="showTab(this,'quests')">Quests</span>
+  <span class="tab " onclick="showTab(this,'badges')">Badges</span>
   </div>
   <div class="tab-content" id="landmarks">Here are landmarks</div>
   <div class="tab-content" id="quests">Here are quests</div>
+  <div class="tab-content" id="badges">Here are badges</div>
 </div>
 
 <div id="main-nav">
@@ -566,7 +568,6 @@ $(".marker").click(function(){
   var id = $( this ).data( "name");
   //console.log(place);
 
-
   if (isTracking ){
     if ($( this ).hasClass( "active-marker")){
       showLocation(this, id);
@@ -576,40 +577,6 @@ $(".marker").click(function(){
   }
 });
 
-function showLocation(el, id){
-  current_place = id;
-  var place = geoJson.features.find(place => place.id === id);
-
-  if ($( el ).hasClass('landmark')){
-    if (!Player.landmarks.hasOwnProperty(id)){
-      Player.landmarks[id] = moment().format('MMM Do YYYY<br> h:mm a');
-      //console.log(Player.landmarks[id]);
-    }
-  }
-
-  check_quest_progress(place);
-  $("#place-popup-card").fadeIn();
-  $(".popup").hide();
-
-  //add image
-  $("#"+id+" .place-image").attr('src', "places/"+id+".jpg");
-  getImageLightness($("#"+id+" .place-image").attr("src"),setIcon);
-  //add shop
-  if (place.properties.shop && $("#"+id+" .shop").length == 0){
-    var shop = document.createElement("div");
-    shop.className = 'shop';
-    var shop_items = Object.keys(place.properties.shop);
-    for (var i=0; i<shop_items.length; i++){
-      var price = place.properties.shop[shop_items[i]];
-      var item1 = "<span class='shop_item animated fadeIn delay-1s'><img class='' src='shops/"+shop_items[i]+".png' onclick='buyItem(this.parentNode, \""+shop_items[i]+"\","+price+" )' /><span class='price'>"+price+"</span></span>";
-      $(shop).append(item1);
-    }
-    $("#"+id).append(shop);
-  }
-
-  document.getElementById('place-popup-card').scrollTop = 0;
-  $("#"+id).show();
-}
 
 function showTab(el,id){
   $(".active").removeClass('active');
@@ -748,6 +715,17 @@ function updateJournal(){
     $("#quests").append("<p class='placeholder'>Visit local landmarks to discover quests!</p>");
   }
   $("#quests").append("<div class='empty-space'></div>");
+
+  //update badges
+  $("#badges").html("");
+  for (var entry in Player.quests_complete){
+    var date = Player.quests_complete[entry];
+    var badge = "<span class='badge'><img src='badges/"+Quests[entry].badge+"' /><span class='journal-date'>"+entry+"<br/>"+date+"</span></span>";
+    $("#badges").append(badge);
+  }
+  if (Player.quests_complete.length == 0){
+    $("#badges").append("<p class='placeholder'>Complete quests to earn badges!</p>");
+  }
 }
 
 function playAudio(id){

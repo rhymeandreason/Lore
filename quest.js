@@ -241,7 +241,7 @@ var Quests = {
     places: [],
     locations: [],
     tag: "icecream",
-    badge: ""
+    badge: "ice-cream.png"
   }
 }
 
@@ -273,6 +273,8 @@ function check_quest_progress(place){
           }
           if (count == total_count){
             $("#places-quest-progress .secondary-text").html("Quest Complete!");
+            Player.quests_complete[questname] = moment().format('dddd MMM Do, YYYY');
+            delete Player.quests_progress[questname];
           }
 
           $("#places-quest-progress .quest-title").html(questname);
@@ -324,7 +326,7 @@ function NPC_chat(name){
 
   var quest = character.dialog[character.progress].quest;
   if (quest){
-    if (Player.quests_progress.hasOwnProperty(quest)){
+    if (Player.quests_progress.hasOwnProperty(quest) || Player.quests_complete.hasOwnProperty(quest)){
     } else {
       Player.quests_progress[quest] = 0;
       $("#new-quest-notif .quest").html(quest);
