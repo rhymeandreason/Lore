@@ -1,8 +1,3 @@
-var Quests ={
-  "Oak-ness Monster": { length: 6, longitude: "", latitude: "" },
-  "100 Dragons": { length: 5, longitude: "", latitude: "" }
-}
-
 var LM_Spelunker = []; // Lake Merritt Quest
 LM_Spelunker[0] = { "text": "Nice day to be walking around in Oakland.",
              options: [    { "response": "Yes it's such a nice day!", "next": 1 }
@@ -164,6 +159,16 @@ Bailey[0] = { text: null,
              quest_clue: {quest: 'Oak-ness Monster', progress: 3}
            };
 
+var Mary = [];
+Mary[0] = { text: "This is my favorite local ice cream place. The robots are so cute!",
+             options: [ {  response: "I love ice cream! What other places have you tried?", next: 1 },
+                        {  response: "I don't really eat ice cream.", next: 'exit reset' }
+                      ]};
+  Mary[1] = { quest: "Scream for Ice Cream",
+    text: "There's the old school classics Fenton's and Dreyers over in Rockridge. Humphrey Slocombe and Smitten for interesting flavors. I'm sure there's plenty of other places too!",
+               options: [ {  response: "Yeah, would be fun to try some new places.", next: 'exit' }
+                        ]};
+
 var NPC = {
   "Spelunker": {
     "name": "Dr. Otis Spelunker",
@@ -194,20 +199,89 @@ var NPC = {
     "location": null,
     "dialog": Bailey,
     "progress": 0
+  },
+  "Mary": {
+    "name": "Mary",
+    "location": null,
+    "dialog": Mary,
+    "progress": 0
   }
 }
 
 var Quests = {
   "Oak-ness Monster": {
+    type: 'story',
     progress: [
       {name: "Spelunker", clue: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by the <b>library</b>."},
       {name: "Librarian", clue: "You should look up the man it's named after, Dr. Samuel B. Merritt.<br/> Among many things, he built the <b>Camron-Stanford</b> house. It's nearby."},
       {name: "Lisa", clue: "My friend Richard at the Lake Merritt Institute will tell you all about it. It's near the <b>Boating Center</b>."},
       {name: "Bailey", clue: "Look towards the waterfowl sanctuary from the southeast side of the lake. That's the best spot."}
     ],
-    location: [],
+    locations: [],
+    tag: "lake-merritt",
     badge: "Oakness-bw.png"
+  },
+  "100 Dragons": {
+    type: 'places',
+    count: 10,
+    progress: [
+      {name: "LukeDragon", clue: "There are 99 dragons painted in Oakland's Chinatown. Find 10."}
+    ],
+    places: [],
+    locations: [],
+    tag: "dragonschool99",
+    badge: ""
+  },
+  "Scream for Ice Cream": {
+    type: 'places',
+    count: 5,
+    progress: [
+      {name: "Mary", clue: "Visit 5 ice cream shops to prove you're a connoisseur."}
+    ],
+    places: [],
+    locations: [],
+    tag: "icecream",
+    badge: ""
   }
+}
+
+function check_quest_progress(place){
+  for (var questname in Player.quests_progress){
+    if (Quests[questname].type == 'places'){
+      //this place matches a quest
+      if (place.properties.category.includes(Quests[questname].tag)){
+        //if you haven't already been to this place for this quest
+        //this part isn't working right now
+        var count = Player.quests_progress[questname];
+        var total_count = Quests[questname].count;
+
+        if (Quests[questname].places.includes(place.id)==false &&  count<total_count){
+          Player.quests_progress[questname]++;
+          Quests[questname].places.push(place.id);
+
+          count = Player.quests_progress[questname]
+          $("#places-quest-progress .progress_bar").html("");
+          for (var i=1; i<=count; i++){
+            $("#places-quest-progress .progress_bar").append("<img class='animated bounceIn delay-1s' src='icons/"+Quests[questname].tag+".svg' />");
+          }
+          for (var i=count+1; i<=total_count; i++){
+            $("#places-quest-progress .progress_bar").append("<img class='empty animated fadeIn ' src='icons/"+Quests[questname].tag+"-empty.svg' />");
+          }
+
+          if (count < total_count){
+            $("#places-quest-progress .secondary-text").html("You've made progress on your quest!");
+          }
+          if (count == total_count){
+            $("#places-quest-progress .secondary-text").html("Quest Complete!");
+          }
+
+          $("#places-quest-progress .quest-title").html(questname);
+          $("#places-quest-progress").fadeIn('slow');
+        }
+      }
+    }
+  }
+
 }
 
 function Quest_Conditions(property, value) {
