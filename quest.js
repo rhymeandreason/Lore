@@ -165,7 +165,7 @@ Mary[0] = { text: "This is my favorite local ice cream place. The robots are so 
                         {  response: "I don't really eat ice cream.", next: 'exit reset' }
                       ]};
   Mary[1] = { quest: "Scream for Ice Cream",
-    text: "There's the old school classics Fenton's and Dreyers over in Rockridge. Humphrey Slocombe and Smitten for interesting flavors. I'm sure there's plenty of other places too!",
+    text: "There's the old school classic Fenton's Piedmont. Humphrey Slocombe and Smitten for interesting flavors. And there's plenty of other places too!",
                options: [ {  response: "Yeah, would be fun to try some new places.", next: 'exit' }
                         ]};
 
@@ -213,7 +213,7 @@ var Quests = {
     type: 'story',
     progress: [
       {name: "Spelunker", clue: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by the <b>library</b>."},
-      {name: "Librarian", clue: "You should look up the man it's named after, Dr. Samuel B. Merritt.<br/> Among many things, he built the <b>Camron-Stanford</b> house. It's nearby."},
+      {name: "Librarian", clue: "You should look up the man it's named after, Dr. Samuel B. Merritt.<br/> He built the <b>Camron-Stanford</b> house. It's nearby."},
       {name: "Lisa", clue: "My friend Richard at the Lake Merritt Institute will tell you all about it. It's near the <b>Boating Center</b>."},
       {name: "Bailey", clue: "Look towards the waterfowl sanctuary from the southeast side of the lake. That's the best spot."}
     ],
