@@ -172,8 +172,26 @@ Mary[0] = { text: "This is my favorite local ice cream place. The robots are so 
 var Luke = [];
 Luke[0] = { quest: "Downtown Oakland",
   text: "Try this quest!",
-             options: [ {  response: "Okay!.", next: 'exit' }
+             options: [ {  response: "Okay!", next: 'exit' }
                       ]};
+
+var Norton = [];
+Norton[0] = { text: "Good day, my fellow! I am burdened by many tasks today, will you lend your Emperor some assistance?",
+  options: [ {  response: "Emperor?", next: 1 },
+              {  response: "Sure thing!", next: 2 }
+           ]};
+Norton[1] = {
+ text: "Do you not recognize it is I, Emperor Norton I? Perhaps you are a tourist and I will forgive you.",
+ options: [{  response: "Okay...", next: 2 }
+          ]};
+Norton[2] = {
+ text: "I must issue a proclaimation in the papers, and retrieve a telegram. But I must attend the legislature session. Can you achieve these errands for me?",
+ options: [{  response: "Okay...", next: 3 }
+          ]};
+Norton[3] = {quest: "Errand for the Emperor",
+  text: "Very good! Meet here postforth the tasks and you will be rewarded.",
+  options: [{  response: "Good day to you as well!", next: 'exit' }
+          ]};
 
 var NPC = {
   "Spelunker": {
@@ -216,6 +234,12 @@ var NPC = {
     "name": "Luke",
     "location": null,
     "dialog": Luke,
+    "progress": 0
+  },
+  "Norton": {
+    "name": "Emperor Norton",
+    "location": null,
+    "dialog": Norton,
     "progress": 0
   }
 }
@@ -265,6 +289,17 @@ var Quests = {
     tag: "",
     icon: "blue-circle",
     reward: "rubber_ducky.png"
+  },
+  "Errand for the Emperor": {
+    type: 'places',
+    count: 2,
+    progress: [
+      {name: "Norton", clue: "Deliver my proclaimation to the Chronicle and retrieve a telegram from Wells Fargo."}
+    ],
+    places: ["sf-chronicle", "Wells-Fargo-museum"],
+    tag: "",
+    icon: "blue-circle",
+    reward: "norton_note.jpg"
   }
 }
 
