@@ -93,13 +93,30 @@
   }
   .close{
     position: fixed;
-    top: 12px;
-    right: 12px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    margin: auto auto;
     z-index: 10;
+  }
+  .close::before{
+    content: url("icons/skrim-white.svg");
+    position:absolute;
+    left: 0px;
+    bottom: -4px;
+    z-index: -1;
   }
   .close:active {
     transform: scale(1.2);
   }
+  #npc-popup-card .close{
+    top: 12px;
+    right: 12px;
+    bottom: unset;
+    left: unset;
+  }
+
   .background--light img, .background--dark img{
     display:none;
   }
@@ -479,6 +496,7 @@
     margin: auto;
     margin-top: 16px;
     padding-top: 16px;
+    overflow: auto;
   }
   .shop_item, #purchases .item{
     display:inline-block;
@@ -652,12 +670,13 @@
     text-align: center;
     width:100%;
     position: fixed;
-    bottom: 0px;
-    background-color: rgba(255,255,255,.7);
+    top: 0px;
+    //background-color: rgba(255,255,255,.7);
     z-index: 15;
+    background-color: inherit;
   }
   .card .tab{
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     margin-right:30px;
     margin-top: 16px;
@@ -666,13 +685,16 @@
     color: #bababa;
     padding-bottom: 8px;
   }
+  .car .tab:last-child{
+    margin-right: 0px;
+  }
   .card .active {
     color: black; !important
     border-bottom: 3px solid black; !important
   }
   .card .tab-content{
-    margin-top: 8px;
-    //overflow-y: scroll;
+    margin-top: 72px;
+    overflow-y: scroll;
   }
 
   #add-item-anim {

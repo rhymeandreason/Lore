@@ -16,7 +16,8 @@ function showLocation(el, id){
 
   //add image
   $("#"+id+" .place-image").attr('src', "places/"+id+".jpg");
-  getImageLightness($("#"+id+" .place-image").attr("src"),setIcon);
+  //getImageLightness($("#"+id+" .place-image").attr("src"),setIcon);
+
   //add shop
   if (place.properties.shop && $("#"+id+" .shop").length == 0){
     var shop = document.createElement("div");
@@ -29,6 +30,7 @@ function showLocation(el, id){
     }
     $("#"+id).append(shop);
   }
+  $("#"+id).append("<div class='empty-space'></div>");
 
   document.getElementById('place-popup-card').scrollTop = 0;
   $("#"+id).show();

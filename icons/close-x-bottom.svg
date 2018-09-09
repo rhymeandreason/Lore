@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="58px" viewBox="0 0 58 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>close button</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="21" cy="21" r="21"></circle>
+        <filter x="-31.0%" y="-26.2%" width="161.9%" height="161.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.33 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Nav" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Quests" transform="translate(-159.000000, -606.000000)">
+            <g id="close-button" transform="translate(167.000000, 612.000000)">
+                <g id="Oval">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="close-x" opacity="0.750223214" transform="translate(3.000000, 3.000000)" fill="#000000">
+                    <path d="M17.9875325,15.6010471 L23.9818222,9.60675731 C24.640832,8.94774756 25.7092979,8.94774756 26.3683076,9.60675731 C27.0273174,10.265767 27.0273174,11.334233 26.3683076,11.9932427 L20.3740178,17.9875325 L26.3683076,23.9818222 C27.0273174,24.640832 27.0273174,25.7092979 26.3683076,26.3683076 C25.7092979,27.0273174 24.640832,27.0273174 23.9818222,26.3683076 L17.9875325,20.3740178 L11.9932427,26.3683076 C11.334233,27.0273174 10.265767,27.0273174 9.60675731,26.3683076 C8.94774756,25.7092979 8.94774756,24.640832 9.60675731,23.9818222 L15.6010471,17.9875325 L9.60675731,11.9932427 C8.94774756,11.334233 8.94774756,10.265767 9.60675731,9.60675731 C10.265767,8.94774756 11.334233,8.94774756 11.9932427,9.60675731 L17.9875325,15.6010471 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

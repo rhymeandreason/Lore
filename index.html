@@ -50,13 +50,14 @@
 
 <div id="place-popup-card" class="card">
   <span id="close_location" class="close">
-    <img src="icons/close-x.svg"  />
+    <img src="icons/close-x-bottom.svg"  />
   </span>
   <div id="place-content"></div>
+  <div class='empty-space'></div>
 </div>
 
 <div id="npc-popup-card" class="card">
-  <img src="icons/close-x dark.svg" class="close"/>
+  <img src="icons/close-x-bottom.svg" class="close"/>
   <div id="npc-text" class="animated pulse"></div>
   <div id="npc-item"></div>
   <div id="new-quest-notif" class="animated bounceIn delay-1s"><p>New Quest!</p><span class='quest'></span></div>
@@ -64,15 +65,33 @@
 </div>
 
 <div id="inventory-card" class="card">
-  <img src="icons/close-x dark.svg" class="close"/>
-  <h2>My Stuff</h2>
-  <div id="currency"></div>
-  <div id="inventory"></div>
-  <div id="purchases"></div>
+
+  <span class="close">
+    <img src="icons/close-x-bottom.svg"  />
+  </span>
+
+  <div class="card-tabs">
+    <span class="tab active" onclick="showTab(this,'mystuff')">My Stuff </span>
+    <span class="tab" onclick="showTab(this,'debug')">Debug </span>
+  </div>
+  <div id="mystuff" class="tab-content">
+    <div id="currency"></div>
+    <div id="inventory"></div>
+    <div id="purchases"></div>
+  </div>
+  <div id="debug" class="tab-content">
+    <span><button onclick="addAcorns(50)">Add 50 Acorns</button></span>
+    <span><input type="checkbox" id="track_location"/> Track Location</span>
+    <span><input id="distance_input" type="number" value=".02" step=".02"> Active Distance km</span>
+    <span><button onclick="ClearData()">Clear Player Data</button></span>
+  </div>
 </div>
 
 <div id="journal-card" class="card">
-  <img src="icons/close-x dark.svg" class="close"/>
+  <span class="close">
+    <img src="icons/close-x-bottom.svg"  />
+  </span>
+
   <div class="card-tabs">
   <span class="tab" onclick="showTab(this,'landmarks')">Places</span>
   <span class="tab active" onclick="showTab(this,'quests')">Quests</span>
@@ -87,7 +106,7 @@
   <div id="backpack"><img src="icons/backpack.svg" /></div>
   <div id="journal"><img src="icons/journal.svg" /></div>
 </div>
-<span id="debug-button">Debug</span>
+
 
 <div id="add-journal-item-anim" class="add-item-anim">
   <span><img id="new-journal-item" src="icons/acorn.svg"/></span>
@@ -102,7 +121,7 @@
 <div id="places-quest-progress" class="card">
   <div class="progress_bar"></div>
   <div class="quest-banner animated fadeInUp"><span class="quest-title">Quest Title Here</span></div>
-  <img src="icons/close-x.svg" class="close animated pulse infinite"/>
+  <img src="icons/close-x-bottom.svg" class="close animated pulse infinite"/>
   <div class="secondary-text">You've made progress on your quest!</div>
 </div>
 
@@ -119,6 +138,7 @@
   <span class="ok-button">Okay</span>
 </div>
 
+<!--
 <div id="debug" class="card">
   <img src="icons/close-x.svg" class="close"/>
   <span><button onclick="addAcorns(50)">Add 50 Acorns</button></span>
@@ -126,7 +146,7 @@
   <span><input id="distance_input" type="number" value=".02" step=".02"> Active Distance km</span>
   <span><button onclick="ClearData()">Clear Player Data</button></span>
 </div>
-
+-->
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqcnRsbTFiNTJ4aWwzNCJ9.Dbd2av6hgoRurCjn5i0UPw';
 
@@ -579,8 +599,9 @@ $(".marker").click(function(){
 
 
 function showTab(el,id){
-  $(".active").removeClass('active');
-  $(".tab-content").hide();
+  console.log(el);
+  $(el).parent().find(".active").removeClass('active');
+  $(el).parent().parent().find(".tab-content").hide();
   $("#"+id).fadeIn();
   $(el).addClass('active');
 }
