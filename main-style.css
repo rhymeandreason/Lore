@@ -566,20 +566,20 @@
     margin-left: -10px;
   }
 
-  #landmarks .place, .badge{
+  #landmarks .place, .reward{
     display:inline-block;
     float: left;
     width: 50%;
     margin-top: 16px;
     text-align: center;
   }
-  #landmarks .place img, .badge img{
+  #landmarks .place img, .reward img{
     object-fit: contain;
     width: 60%;
     height: 100px;
     display: inline-block;
   }
-  #landmarks .journal-date, #badges .journal-date{
+  #landmarks .journal-date, #collection .journal-date{
     float: left;
     text-align: center;
     width: 100%;
@@ -753,6 +753,7 @@
   #places-quest-progress{
     background-color: #70DBF7;
     text-align: center;
+    z-index: 15;
   }
   /*
   #places-quest-progress .close{

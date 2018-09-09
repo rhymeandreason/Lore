@@ -169,6 +169,12 @@ Mary[0] = { text: "This is my favorite local ice cream place. The robots are so 
                options: [ {  response: "Yeah, would be fun to try some new places.", next: 'exit' }
                         ]};
 
+var Luke = [];
+Luke[0] = { quest: "Downtown Oakland",
+  text: "Try this quest!",
+             options: [ {  response: "Okay!.", next: 'exit' }
+                      ]};
+
 var NPC = {
   "Spelunker": {
     "name": "Dr. Otis Spelunker",
@@ -205,85 +211,124 @@ var NPC = {
     "location": null,
     "dialog": Mary,
     "progress": 0
+  },
+  "Luke": {
+    "name": "Luke",
+    "location": null,
+    "dialog": Luke,
+    "progress": 0
   }
 }
 
 var Quests = {
   "Oak-ness Monster": {
     type: 'story',
+    count: 4,
     progress: [
       {name: "Spelunker", clue: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by the <b>library</b>."},
       {name: "Librarian", clue: "You should look up the man it's named after, Dr. Samuel B. Merritt.<br/> He built the <b>Camron-Stanford</b> house. It's nearby."},
       {name: "Lisa", clue: "My friend Richard at the Lake Merritt Institute will tell you all about it. It's near the <b>Boating Center</b>."},
       {name: "Bailey", clue: "Look towards the waterfowl sanctuary from the southeast side of the lake. That's the best spot."}
     ],
-    locations: [],
-    tag: "lake-merritt",
-    badge: "Oakness-bw.png"
+    tag: "",
+    icon: "blue-circle",
+    reward: "Oakness-bw.png"
   },
   "100 Dragons": {
-    type: 'places',
+    type: 'places-category-list',
     count: 10,
     progress: [
       {name: "LukeDragon", clue: "There are 99 dragons painted in Oakland's Chinatown. Find 10."}
     ],
-    places: [],
-    locations: [],
+    geojson: "Dragon_School_Art.geojson",
     tag: "dragonschool99",
-    badge: ""
+    icon: "blue-circle",
+    reward: "rubber_ducky.png"
   },
   "Scream for Ice Cream": {
-    type: 'places',
+    type: 'places-category',
     count: 5,
     progress: [
       {name: "Mary", clue: "Visit 5 ice cream shops to prove you're a connoisseur."}
     ],
-    places: [],
-    locations: [],
     tag: "icecream",
-    badge: "ice-cream.png"
+    icon: "icecream",
+    reward: "ice-cream.png"
+  },
+  "Downtown Oakland": {
+    type: 'places',
+    count: 2,
+    progress: [
+      {name: "Mary", clue: "Visit the Tribune tower and Oak Tree"}
+    ],
+    places: ["tribune-tower", "oak-tree"],
+    tag: "",
+    icon: "blue-circle",
+    reward: "rubber_ducky.png"
   }
 }
 
 function check_quest_progress(place){
   for (var questname in Player.quests_progress){
-    if (Quests[questname].type == 'places'){
-      //this place matches a quest
+
+    var isQuestLocation = false;
+    //places category quest
+    if (Quests[questname].type == 'places-category' || Quests[questname].type == 'places-category-list'){
       if (place.properties.category.includes(Quests[questname].tag)){
-        //if you haven't already been to this place for this quest
-        //this part isn't working right now
-        var count = Player.quests_progress[questname];
-        var total_count = Quests[questname].count;
-
-        if (Quests[questname].places.includes(place.id)==false &&  count<total_count){
-          Player.quests_progress[questname]++;
-          Quests[questname].places.push(place.id);
-
-          count = Player.quests_progress[questname]
-          $("#places-quest-progress .progress_bar").html("");
-          for (var i=1; i<=count; i++){
-            $("#places-quest-progress .progress_bar").append("<img class='animated bounceIn delay-1s' src='icons/"+Quests[questname].tag+".svg' />");
-          }
-          for (var i=count+1; i<=total_count; i++){
-            $("#places-quest-progress .progress_bar").append("<img class='empty animated fadeIn ' src='icons/"+Quests[questname].tag+"-empty.svg' />");
-          }
-
-          if (count < total_count){
-            $("#places-quest-progress .secondary-text").html("You've made progress on your quest!");
-          }
-          if (count == total_count){
-            $("#places-quest-progress .secondary-text").html("Quest Complete!");
-            Player.quests_complete[questname] = moment().format('dddd MMM Do, YYYY');
-            delete Player.quests_progress[questname];
-          }
-
-          $("#places-quest-progress .quest-title").html(questname);
-          $("#places-quest-progress").fadeIn('slow');
-        }
+        isQuestLocation = true;
       }
     }
+    if (Quests[questname].type == 'places'){
+      if (Quests[questname].places.includes(place.properties.id)){
+        isQuestLocation = true;
+      }
+    }
+
+    if (isQuestLocation){
+      var count = Player.quests_progress[questname].progress;
+      var total_count = Quests[questname].count;
+        //if you haven't already been to this place for this quest
+        if (Player.quests_progress[questname].places.includes(place.id)==false &&  count<total_count){
+          Achieve_Quest_Progress(questname, place.id);
+        }
+    }
+
+  }
+}
+
+function Achieve_Quest_Progress(questname, placename){
+  var total_count = Quests[questname].count;
+
+  Player.quests_progress[questname].progress++;
+  Player.quests_progress[questname].places.push(placename);
+
+  var count = Player.quests_progress[questname].progress;
+  Quest_Progress_Bar(count, total_count, Quests[questname].icon);
+
+  //show quest progress screen
+  if (count < total_count){
+    $("#places-quest-progress .secondary-text").html("You've made progress on your quest!");
+  }
+  //Quest Completed
+  if (count == total_count){
+    $("#places-quest-progress .secondary-text").html("Quest Complete!");
+    Player.quests_complete[questname] = moment().format('dddd MMM Do, YYYY');
+    delete Player.quests_progress[questname];
   }
 
+  $("#places-quest-progress .quest-title").html(questname);
+  $("#places-quest-progress").fadeIn('slow');
+
+}
+
+function Quest_Progress_Bar(count, total_count, img){
+  $("#places-quest-progress .progress_bar").html("");
+  for (var i=1; i<=count; i++){
+    $("#places-quest-progress .progress_bar").append("<img class='animated bounceIn delay-1s' src='icons/"+img+".svg' />");
+  }
+  for (var i=count+1; i<=total_count; i++){
+    $("#places-quest-progress .progress_bar").append("<img class='empty animated fadeIn ' src='icons/"+img+"-empty.svg' />");
+  }
 }
 
 function Quest_Conditions(property, value) {
@@ -293,7 +338,7 @@ function Quest_Conditions(property, value) {
   if (property == 'quest_progress'){
     console.log(value.progress);
     if (Player.quests_progress.hasOwnProperty(value.quest)){
-      return Player.quests_progress[value.quest] == value.progress;
+      return Player.quests_progress[value.quest].progress == value.progress;
     } else {
       return false;
     }
@@ -328,17 +373,21 @@ function NPC_chat(name){
   if (quest){
     if (Player.quests_progress.hasOwnProperty(quest) || Player.quests_complete.hasOwnProperty(quest)){
     } else {
-      Player.quests_progress[quest] = 0;
-      $("#new-quest-notif .quest").html(quest);
-      $("#new-quest-notif").show();
+      //New Quest
+      Player.quests_progress[quest] = {progress: 0, places:[]};
+      //$("#new-quest-notif .quest").html(quest);
+      //$("#new-quest-notif").show();
+      Quest_Progress_Bar(0, Quests[quest].count, Quests[quest].icon);
+      $("#places-quest-progress .secondary-text").html("New Quest!");
+      $("#places-quest-progress .quest-title").html(quest);
+      $("#places-quest-progress").fadeIn('slow');
     }
   } else {
-    $("#new-quest-notif").hide();
+    //$("#new-quest-notif").hide();
   }
 
   var item = character.dialog[character.progress].item;
   if (item){
-    //console.log(item);
     var quest_item = "<span class='animated bounceIn delay-1s'><img class='animated jackInTheBox' src='icons/"+items[item]+"' onclick='addItem(this.parentNode, \""+item+"\")' /></span>";
     $("#npc-item").append(quest_item);
   } else {
@@ -347,9 +396,10 @@ function NPC_chat(name){
 
   var quest_clue = character.dialog[character.progress].quest_clue;
   if (quest_clue){
-    var quest_item = "<span class='animated bounceIn delay-1s'><img class='animated pulse infinite' src='icons/clue.svg' onclick='addJournalItem(this.parentNode, \"clue\")' /></span>";
-    $("#npc-item").append(quest_item);
-    Player.quests_progress[quest_clue.quest] = quest_clue.progress;
+    //var quest_item = "<span class='animated bounceIn delay-1s'><img class='animated pulse infinite' src='icons/clue.svg' onclick='addJournalItem(this.parentNode, \"clue\")' /></span>";
+    //$("#npc-item").append(quest_item);
+    Achieve_Quest_Progress(quest_clue.quest, current_place);
+    //Player.quests_progress[quest_clue.quest].progress = quest_clue.progress;
   }
 
   $("#npc-responses").html("");
