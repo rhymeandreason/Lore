@@ -84,6 +84,7 @@
     <span><input type="checkbox" id="track_location"/> Track Location</span>
     <span><input id="distance_input" type="number" value=".02" step=".02"> Active Distance km</span>
     <span><button onclick="ClearData()">Clear Player Data</button></span>
+    <span><button onclick="SF_Map()">San Francisco</button></span>
   </div>
 </div>
 
@@ -500,6 +501,39 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
  addMarkerInfo("Dreyers",  "Dreyer's Grand Ice Cream", [ -122.252210, 37.847592],"",
       "551-soft-ice-cream-1.svg", 50, 'food icecream', ["They say that they invented rocky road ice cream at the original Dreyer's here."],[""], icecream_shop);
 
+//Hayes Valley Locations
+
+      addMarkerInfo("20th-century",  "20th Century Cafe", [ -122.42244, 37.77492],
+      "","561-shortcake.svg", 40, "food level-3",[],[], dessert_shop);
+
+      addMarkerInfo("Baiano",  "Baiano Pizzeria", [ -122.4223, 37.77425],
+      "","543-pizza-1.svg", 40, "food level-3",[],[], pizza_shop);
+
+      addMarkerInfo("Bai-Thong",  "Bai Thong Thai", [ -122.42262, 37.7758],
+      "","rice-bowl.svg", 40, "food level-3",[],[], thai_food);
+
+      addMarkerInfo("KitTea",  "KitTea Cat Cafe", [ -122.42221, 37.7739],
+      "","447-cat-face.svg", 40, "food level-3",[],[], coffee_shop);
+
+      addMarkerInfo("Smitten-Hayes",  "Smitten Ice Cream", [ -122.42419, 37.77636],
+      "","551-soft-ice-cream-1.svg", 40, "food level-3",[],[], icecream_shop);
+
+      addMarkerInfo("sf-city-hall",  "San Francisco City Hall", [ -122.41926, 37.77925],
+      "","sf-city-hall.png", 70, "landmark",[],[]);
+
+      addMarkerInfo("sf-symphony",  "Davies Symphony Hall", [  -122.4205, 37.77767],
+      "","violin.png", 40, "landmark",[],[]);
+
+      addMarkerInfo("sf-main-library",  "San Francisco Public Library", [ -122.41579, 37.77908],
+      "","book.svg", 40, "landmark level-4",[],[]);
+
+      addMarkerInfo("pioneer-monument",  "Pioneer Monument", [ -122.41594, 37.7797],
+      "","orange-marker.svg", 20, "landmark level-3",[],[]);
+
+      addMarkerInfo("asian-art-museum",  "Asian Art Museum", [ -122.41619, 37.78016],
+      "","asian-art-museum.png", 40, "landmark",[],[]);
+
+
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
   var drop_items;
   if (category.includes("landmark")){
@@ -580,6 +614,10 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
   });
 
 $(".active").click();
+
+function SF_Map(){
+  map.flyTo({center: [-122.41783, 37.77946]});
+}
 
 //Show Place
 $(".marker").click(function(){
@@ -691,7 +729,8 @@ function updateJournal(){
   $("#landmarks").html("");
   for (var i=0; i<landmarks.length; i++) {
     var date = Player.landmarks[landmarks[i]];
-      var place = "<span class='place'><img src='icons/"+landmarks[i]+".png' /><span class='journal-date'>"+date+"</span></span>";
+      var placename = geoJson.features.find(place => place.id === landmarks[i]).properties.title;
+      var place = "<span class='place'><img src='icons/"+landmarks[i]+".png' /><span class='journal-date'>"+placename+"<br/>"+date+"</span></span>";
       $("#landmarks").append(place);
   }
   if (landmarks.length == 0){
@@ -777,6 +816,15 @@ function checkDistance(){
   }
 
 }
+/*
+// Add geolocate control to the map.
+map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}));
+*/
 
 function getLocation() {
     if (navigator.geolocation) {
