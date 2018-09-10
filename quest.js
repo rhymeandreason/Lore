@@ -292,9 +292,9 @@ var Quests = {
   },
   "Errand for the Emperor": {
     type: 'places',
-    count: 2,
+    count: 3,
     progress: [
-      {name: "Norton", clue: "Deliver my proclaimation to the Chronicle and retrieve a telegram from Wells Fargo."}
+      {name: "Norton", clue: "Deliver a proclaimation to the Chronicle and retrieve a telegram from Wells Fargo."}
     ],
     places: ["sf-chronicle", "Wells-Fargo-museum"],
     tag: "",
@@ -388,7 +388,7 @@ function Quest_Conditions(property, value) {
 }
 
 function NPC_chat(name){
-  $("#npc-popup-card").css('background-image', "url('npc/"+name+"-main.png')");
+  $("#npc-portrait").css('background-image', "url('npc/"+name+"-main.png')");
   $("#npc-popup-card").fadeIn();
   $("#npc-text").hide();
   $("#npc-item").html("");
@@ -415,7 +415,7 @@ function NPC_chat(name){
       Quest_Progress_Bar(0, Quests[quest].count, Quests[quest].icon);
       $("#places-quest-progress .secondary-text").html("New Quest!");
       $("#places-quest-progress .quest-title").html(quest);
-      $("#places-quest-progress").fadeIn('slow');
+      $("#places-quest-progress").fadeIn();
     }
   } else {
     //$("#new-quest-notif").hide();
