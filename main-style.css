@@ -6,6 +6,12 @@
     font-family: 'Barlow', sans-serif;
     color: #303336;
   }
+
+@font-face {
+  font-family: Sailor;
+  src: url("fonts/Sailors_Diary_Sans.otf") format("opentype");
+}
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -597,7 +603,7 @@
   }
 
   #landmarks .place, .reward{
-    display:inline-block;
+    display:block;
     float: left;
     width: 50%;
     margin-top: 16px;
@@ -607,34 +613,52 @@
     object-fit: contain;
     width: 60%;
     height: 100px;
-    display: inline-block;
+    display: block;
+    margin: auto;
   }
   #landmarks .journal-date, #collection .journal-date{
-    float: left;
     text-align: center;
     width: 100%;
-    font-family: Bad Script;
-    line-height: 28px;
+    line-height: 24px;
+    font-size: 14px;
+    width: 80%;
+    margin: auto auto;
+    display: block;
   }
 
-
+  #quests, #landmarks, #collection, #quest-detail-card{
+    font-family: Sailor;
+    line-height: 26px;
+  }
 
    #quests .quest, #new-quest-notif{
-    display:inline-block;
-    float: left;
-    width: 100%;
+    display:block;
+    //float: left;
+    width: 340px;
+    margin: auto auto;
     text-align: center;
     margin-top: 16px;
-    background-image: url("icons/brushstroke.png");
-    background-repeat: no-repeat;
-    height: 50px;
-    background-size: contain;
-    background-position: center;
+    border-radius: 16px;
     padding: 16px 0px 12px 0px;
+    background-color: #33B9F6;
+    box-shadow: 0px 6px 0px #0F5372;
+    color: white;
   }
   .quest{
-    font-family: Signpainter, 'Sacramento', cursive;
-    font-size: 36px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .quest h3{
+    font-size: 18px;
+    line-height: 26px;
+    width: 80%;
+    margin: auto;
+  }
+  #quests .progress_bar{
+    margin-top: 12px;
+  }
+  #quests .quest_clue{
+    padding: 16px;
   }
   .quest_progress{
     width: 100%;
@@ -643,19 +667,42 @@
   .quest_progress img{
     width: 80%;
   }
+
+  #quest-detail-card{
+    top:0px;
+    z-index: 15;
+  }
+  #quest-detail-card h3{
+    font-size: 20px;
+    line-height: 28px;
+    width:90%;
+    margin: auto auto;
+    margin-top: 32px;
+    text-align: center;
+  }
+  #quest-detail-card .close{
+    bottom: 20px;
+    z-index: 15;
+  }
+  .quest_clue{
+    padding: 20px;
+    margin-top: 30px;
+    background-color: rgba(255,255,255,.3);
+  }
   .quest_clue img{
     width: 32px;
-    margin: 15px;
-    margin-left: 30px;
+    margin: 0px 16px 0px 30px;
     float: left;
+    font-family: Sailor;
   }
   .quest_clue span{
     display:inline-block;
     width: 70%;
     margin-left: 10px;
-    font-family: 'Bad Script';
+    font-size: 14px;
+    line-height: 24px;
   }
-  .quest_clue b{
+  .quest_clue b, .quest-description b{
     border-bottom: 6px solid black;
     border-image: url("icons/underline.png") 16;
   }
@@ -663,13 +710,15 @@
   #new-quest-notif{
     text-align: center;
     display:none;
+    font-family: Sailor;
   }
   #new-quest-notif p{
     margin-top: -10px;
   }
   #new-quest-notif h3{
     font-size:16px;
-    font-family: 'Barlow', sans-serif;
+    //font-family: 'Barlow', sans-serif;
+    font-family: Sailor;
     margin-top: -10px;
   }
 
@@ -800,13 +849,21 @@
   */
   #places-quest-progress .secondary-text{
     position:absolute;
-    top: 60%;
+    top: 80%;
     left:0;
     right: 0;
     margin: auto;
     line-height: 26px;
     width:60%;
     font-size: 20px;
+  }
+  #places-quest-progress .quest-description{
+    width: 60%;
+    margin: auto auto;
+    margin-top: 50px;
+    font-family: Sailor;
+    line-height: 24px;
+    font-size: 14px;
   }
   .progress_bar{
     text-align: center;
@@ -818,7 +875,7 @@
     opacity: .5 !important;
   }
   #places-quest-progress .progress_bar{
-    margin-top: 50%;
+    margin-top: 40%;
   }
   .quest-banner{
     border-image: url('icons/quest-banner2.png') 29 110 75 115 stretch;
@@ -828,8 +885,9 @@
     text-align: center;
     display: inline-block;
     margin-top: 20px;
-    font-family: signpainter;
-    font-size: 28px;
+    //font-family: signpainter;
+    font-family: Sailor;
+    font-size: 16px;
     max-width: 60%;
   }
   .quest-banner span{

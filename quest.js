@@ -28,7 +28,7 @@ LM_Spelunker[6] = { text: "It's a monster that lives in Lake Merritt. And if con
               options: [    { response: "I'm game to go monster spotting!", next: 7 }
                        ]
           };
-LM_Spelunker[7] = { text: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by the <b>library</b>.",
+LM_Spelunker[7] = { text: "Happy hunting!",
               options: [    { response: "Okay, thanks!", next: 'exit' },
                             {condition: ['coins', 15],
                             response:"I have enough coins", next: 'exit'}
@@ -46,8 +46,8 @@ LM_Librarian[1] = { "text": "Check out our section of featured local authors. ",
            options: [    {  response: "Thanks!", next: 'exit reset' }
                     ]};
 LM_Librarian[2] = { "text": "Not sure about a monster...Perhaps you can try some books about Oakland history. We have a whole section.",
-            options: [  {  response: "Okay, is there a book in particular that you recommend?", next: 3 },
-                        {  response: "Do you have any info about Lake Merritt specifically?", next: 4 }
+            options: [  {  response: "Is there a book that you recommend?", next: 3 },
+                        {  response: "Do you have any info about Lake Merritt?", next: 4 }
                      ]};
 LM_Librarian[3] = { "text": "'Oakland, A Story of a City' by Beth Bagwell is your best bet.",
             options: [    {  response: "Thanks!", next: 'exit reset' },
@@ -165,7 +165,7 @@ Mary[0] = { text: "This is my favorite local ice cream place. The robots are so 
                         {  response: "I don't really eat ice cream.", next: 'exit reset' }
                       ]};
   Mary[1] = { quest: "Scream for Ice Cream",
-    text: "There's the old school classic Fenton's Piedmont. Humphrey Slocombe and Smitten for interesting flavors. And there's plenty of other places too!",
+    text: "There's the old school classic Fenton's Piedmont. Humphrey Slocombe and Smitten for interesting flavors.",
                options: [ {  response: "Yeah, would be fun to try some new places.", next: 'exit' }
                         ]};
 
@@ -352,16 +352,17 @@ function Achieve_Quest_Progress(questname, placename){
   }
 
   $("#places-quest-progress .quest-title").html(questname);
+  $("#places-quest-progress .quest-description").html(Quests[questname].progress[0].clue);
   $("#places-quest-progress").fadeIn('slow');
 
 }
 
 function Quest_Progress_Bar(count, total_count, img){
   $("#places-quest-progress .progress_bar").html("");
-  for (var i=1; i<=count; i++){
+  for (var i=0; i<=count; i++){
     $("#places-quest-progress .progress_bar").append("<img class='animated bounceIn delay-1s' src='icons/"+img+".svg' />");
   }
-  for (var i=count+1; i<=total_count; i++){
+  for (var i=count+1; i<total_count; i++){
     $("#places-quest-progress .progress_bar").append("<img class='empty animated fadeIn ' src='icons/"+img+"-empty.svg' />");
   }
 }
@@ -390,8 +391,8 @@ function Quest_Conditions(property, value) {
 function NPC_chat(name){
   $("#npc-portrait").css('background-image', "url('npc/"+name+"-main.png')");
   $("#npc-popup-card").fadeIn();
-  $("#npc-text").hide();
-  $("#npc-item").html("");
+
+
   var character = NPC[name];
   current_npc = name;
   character.location = current_place; //save where you interacted with the character
@@ -399,26 +400,40 @@ function NPC_chat(name){
   var display_text = character.dialog[character.progress].text;
   var options = character.dialog[character.progress].options;
 
-  $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
-  if (display_text){
-    $("#npc-text").show();
-  }
-
   var quest = character.dialog[character.progress].quest;
   if (quest){
     if (Player.quests_progress.hasOwnProperty(quest) || Player.quests_complete.hasOwnProperty(quest)){
     } else {
       //New Quest
+      console.log("New Quest: "+ quest);
       Player.quests_progress[quest] = {progress: 0, places:[]};
       //$("#new-quest-notif .quest").html(quest);
       //$("#new-quest-notif").show();
       Quest_Progress_Bar(0, Quests[quest].count, Quests[quest].icon);
-      $("#places-quest-progress .secondary-text").html("New Quest!");
+      $("#places-quest-progress .secondary-text").html("You found a new quest!");
       $("#places-quest-progress .quest-title").html(quest);
+      $("#places-quest-progress .quest-description").html(Quests[quest].progress[0].clue);
       $("#places-quest-progress").fadeIn();
+
+      setTimeout(function(){
+        $("#npc-text").hide();
+        $("#npc-item").html("");
+
+        $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
+        if (display_text){
+          $("#npc-text").show();
+        }
+      }, 500);
     }
   } else {
     //$("#new-quest-notif").hide();
+    $("#npc-text").hide();
+    $("#npc-item").html("");
+
+    $("#npc-text").html("<img src='icons/chat-bubble.svg' />"+display_text);
+    if (display_text){
+      $("#npc-text").show();
+    }
   }
 
   var item = character.dialog[character.progress].item;

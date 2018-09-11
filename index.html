@@ -101,6 +101,10 @@
   <div class="tab-content" id="landmarks">Here are landmarks</div>
   <div class="tab-content" id="quests">Here are quests</div>
   <div class="tab-content" id="collection">Here is your collection</div>
+  <div id="quest-detail-card" class="card">
+    <div id="quest-detail-content" class="card"></div>
+    <img src="icons/back.svg" class="close back"/>
+    </div>
 </div>
 
 <div id="main-nav">
@@ -123,7 +127,7 @@
   <div class="progress_bar"></div>
   <div class="quest-banner animated fadeInUp"><span class="quest-title">Quest Title Here</span></div>
   <p class="quest-description">Text About Quest</p>
-  
+
   <img src="icons/close-x-bottom.svg" class="close animated pulse infinite"/>
   <div class="secondary-text">You've made progress on your quest!</div>
 </div>
@@ -736,44 +740,60 @@ function updateJournal(){
       $("#landmarks").append(place);
   }
   if (landmarks.length == 0){
-    $("#landmarks").append("<p class='placeholder'>Visit some local landmarks. <br>Your journeys will be recorded here.</p>");
+    $("#landmarks").append("<p class='placeholder'>Your journeys will be recorded here.</p>");
   }
   $("#landmarks").append("<div class='empty-space'></div>");
 
   var quests = Object.keys(Player.quests_progress);
   $("#quests").html("");
+  $("#quest-detail-content").html("");
   for (var i=0; i<quests.length; i++) {
     var quest_name = quests[i];
-    var quest = "<span class='quest'>"+quest_name+"</span>";
-    $("#quests").append(quest);
+    var quest = document.createElement('div');
+    quest.className = "quest";
+    $(quest).append("<h3>"+quest_name+"</h3>");
+
+    var quest_detail = document.createElement("div");
+    quest_detail.className = "quest_detail card";
+    quest_detail.id = quest_name.split(' ').join('_');
+    $(quest_detail).append("<h3>"+quest_name+"</h3>");
 
     var count = Player.quests_progress[quest_name].progress;
     var total_count = Quests[quest_name].count;
 
-    if (Quests[quest_name].type.includes('places')){
-      var progress_bar = document.createElement('div');
-      progress_bar.className=("progress_bar");
-      for (var i=1; i<=count; i++){
-        $(progress_bar).append("<img class='' src='icons/"+Quests[quest_name].icon+".svg' />");
-      }
-      for (var i=count+1; i<=total_count; i++){
-        $(progress_bar).append("<img class='empty' src='icons/"+Quests[quest_name].icon+"-empty.svg' />");
-      }
-      $("#quests").append(progress_bar);
+    var progress_bar = document.createElement('div');
+    progress_bar.className=("progress_bar");
+    for (var i=0; i<=count; i++){
+      $(progress_bar).append("<img class='' src='icons/"+Quests[quest_name].icon+".svg' />");
     }
+    for (var i=count+1; i<total_count; i++){
+      $(progress_bar).append("<img class='empty' src='icons/"+Quests[quest_name].icon+"-empty.svg' />");
+    }
+    $(quest).append(progress_bar);
+    $("#quests").append(quest);
 
     if (Quests[quest_name].type == 'story'){
       var quest_progress = "<div class='quest_progress'><img src='quests/"+quest_name+count+".png' /></div>";
-      $("#quests").append(quest_progress);
+      $(quest_detail).append(quest_progress);
+
       var quest_entry = Quests[quest_name].progress[Player.quests_progress[quest_name].progress];
       var quest_clue = "<div class='quest_clue'><img src='npc/"+quest_entry.name+".svg' /><span>"+quest_entry.clue+"</span>"
-      $("#quests").append(quest_clue);
+      $(quest_detail).append(quest_clue);
+
     } else {
       var quest_entry = Quests[quest_name].progress[0];
       var quest_clue = "<div class='quest_clue'><img src='npc/"+quest_entry.name+".svg' /><span>"+quest_entry.clue+"</span>"
-      $("#quests").append(quest_clue);
+      $(quest_detail).append(quest_clue);
     }
+
+    $("#quest-detail-content").append(quest_detail);
+    $(quest).click(function(){
+      $("#"+quest_name.split(' ').join('_')).show();
+      $("#quest-detail-content").show();
+      $("#quest-detail-card").fadeIn();
+    });
   }
+
   if (quests.length == 0){
     $("#quests").append("<p class='placeholder'>Visit local landmarks to discover quests!</p>");
   }
@@ -786,9 +806,10 @@ function updateJournal(){
     var reward = "<span class='reward'><img src='badges/"+Quests[entry].reward+"' /><span class='journal-date'>"+entry+"<br/>"+date+"</span></span>";
     $("#collection").append(reward);
   }
-  if (Player.quests_complete.length == 0){
+  if (Object.keys(Player.quests_complete).length == 0){
     $("#collection").append("<p class='placeholder'>Complete quests to add to your collection!</p>");
   }
+
 }
 
 function playAudio(id){
