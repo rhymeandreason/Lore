@@ -247,6 +247,7 @@ var NPC = {
 var Quests = {
   "Oak-ness Monster": {
     type: 'story',
+    description: "Learn about the history of Lake Merritt to uncover the secret of the Oak-ness.",
     count: 4,
     progress: [
       {name: "Spelunker", clue: "Local legend says to see the Oak-ness, you must understand the history of the Lake. So stop by the <b>library</b>."},
@@ -260,6 +261,7 @@ var Quests = {
   },
   "100 Dragons": {
     type: 'places-category-list',
+    description: "There are 99 dragons painted in Oakland's Chinatown. Find 10.",
     count: 10,
     progress: [
       {name: "LukeDragon", clue: "There are 99 dragons painted in Oakland's Chinatown. Find 10."}
@@ -271,6 +273,7 @@ var Quests = {
   },
   "Scream for Ice Cream": {
     type: 'places-category',
+    description: "Visit 5 ice cream shops to prove you're a connoisseur.",
     count: 5,
     progress: [
       {name: "Mary", clue: "Visit 5 ice cream shops to prove you're a connoisseur."}
@@ -281,6 +284,7 @@ var Quests = {
   },
   "Downtown Oakland": {
     type: 'places',
+    description: "Visit the Tribune tower and Oak Tree",
     count: 2,
     progress: [
       {name: "Mary", clue: "Visit the Tribune tower and Oak Tree"}
@@ -292,6 +296,7 @@ var Quests = {
   },
   "Errand for the Emperor": {
     type: 'places',
+    description: "Deliver a proclaimation to the Chronicle and retrieve a telegram from Wells Fargo.",
     count: 3,
     progress: [
       {name: "Norton", clue: "Deliver a proclaimation to the Chronicle and retrieve a telegram from Wells Fargo."}
@@ -352,7 +357,7 @@ function Achieve_Quest_Progress(questname, placename){
   }
 
   $("#places-quest-progress .quest-title").html(questname);
-  $("#places-quest-progress .quest-description").html(Quests[questname].progress[0].clue);
+  $("#places-quest-progress .quest-description").html(Quests[questname].description);
   $("#places-quest-progress").fadeIn('slow');
 
 }
@@ -412,7 +417,7 @@ function NPC_chat(name){
       Quest_Progress_Bar(0, Quests[quest].count, Quests[quest].icon);
       $("#places-quest-progress .secondary-text").html("You found a new quest!");
       $("#places-quest-progress .quest-title").html(quest);
-      $("#places-quest-progress .quest-description").html(Quests[quest].progress[0].clue);
+      $("#places-quest-progress .quest-description").html(Quests[quest].description);
       $("#places-quest-progress").fadeIn();
 
       setTimeout(function(){
@@ -448,7 +453,10 @@ function NPC_chat(name){
   if (quest_clue){
     //var quest_item = "<span class='animated bounceIn delay-1s'><img class='animated pulse infinite' src='icons/clue.svg' onclick='addJournalItem(this.parentNode, \"clue\")' /></span>";
     //$("#npc-item").append(quest_item);
-    Achieve_Quest_Progress(quest_clue.quest, current_place);
+    if (Player.quests_progress[quest_clue.quest].progress < quest_clue.progress){
+      Achieve_Quest_Progress(quest_clue.quest, current_place);
+    }
+
     //Player.quests_progress[quest_clue.quest].progress = quest_clue.progress;
   }
 
@@ -474,7 +482,7 @@ function NPC_chat(name){
         }
       } else {
         //console.log(i+" doesn't have a condition");
-        var response = "<span class='animated fadeInUp' onclick = '"+click+"'> " + entry.response + "</span>";
+        var response = "<span class='animated fadeInUp' onclick = '"+click+"'> " + entry.response + "</span><br/>";
         $("#npc-responses").append(response);
       }
 
