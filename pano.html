@@ -16,9 +16,11 @@
 }
 
 .pano{
-  overflow-x: scroll;
-  overflow-y: hidden;
+  //overflow-x: scroll;
+  //overflow-y: hidden;
+  overflow: auto;
   white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar {
     display: none;
