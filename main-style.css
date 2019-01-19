@@ -341,7 +341,7 @@
     z-index:1; !important
   }
   .hidden-marker img{
-    display: none
+    display: none;
   }
   .hidden-marker::before{
     content: "";
@@ -417,8 +417,8 @@
   .place-description{
     width: 75%;
     margin: 16px auto;
-    font-size: 13px;
-    line-height: 18px;
+    font-size: 18px;
+    line-height: 24px;
     text-align: center;
     color: #4A4A4A;
   }
