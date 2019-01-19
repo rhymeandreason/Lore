@@ -69,47 +69,50 @@ function MakeLocation(marker) {
   for (var i=0; i<marker.properties.dialog.length; i++){
     spawn_random_NPC(marker.properties.dialog[i], npc_section);
   }
+  if (marker.properties.description.includes('.html')){
+    $(popup).load(marker.properties.description);
+  } else {
+    place_header.append(npc_section);
+    $(popup).append(place_header);
+    $(popup).append("<h2 class='animated fadeInUp'>"+marker.properties.title+"</h2>");
+    $(popup).append("<p class='place-description animated fadeIn delay-1s'>"+marker.properties.description+"</p>");
 
-  place_header.append(npc_section);
-  $(popup).append(place_header);
-  $(popup).append("<h2 class='animated fadeInUp'>"+marker.properties.title+"</h2>");
-  $(popup).append("<p class='place-description animated fadeIn delay-1s'>"+marker.properties.description+"</p>");
-
-  //make item drops
-  //If it's a shop, drop one random shop item
-  if (marker.properties.shop){
-    var div = document.createElement("div");
-    div.className = 'daily-items';
-    $(div).html("<h3 class='animated fadeIn delay-1s'>Daily Special</h3>");
-    var shop_items = Object.keys(marker.properties.shop);
-    if (marker.properties.className.includes("grocery")){
-      for (var i=0; i<3; i++){
+    //make item drops
+    //If it's a shop, drop one random shop item
+    if (marker.properties.shop){
+      var div = document.createElement("div");
+      div.className = 'daily-items';
+      $(div).html("<h3 class='animated fadeIn delay-1s'>Daily Special</h3>");
+      var shop_items = Object.keys(marker.properties.shop);
+      if (marker.properties.className.includes("grocery")){
+        for (var i=0; i<3; i++){
+          var num = getRandomInt(0, shop_items.length-1);
+          var random_item = "<span class='free-item animated bounceIn delay-1s'><img class='' src='shops/"+shop_items[num]+".png' onclick='buyItem(this.parentNode, \""+shop_items[num]+"\", 0 )' /></span>";
+          $(div).append(random_item);
+        }
+      } else {
         var num = getRandomInt(0, shop_items.length-1);
         var random_item = "<span class='free-item animated bounceIn delay-1s'><img class='' src='shops/"+shop_items[num]+".png' onclick='buyItem(this.parentNode, \""+shop_items[num]+"\", 0 )' /></span>";
         $(div).append(random_item);
       }
-    } else {
-      var num = getRandomInt(0, shop_items.length-1);
-      var random_item = "<span class='free-item animated bounceIn delay-1s'><img class='' src='shops/"+shop_items[num]+".png' onclick='buyItem(this.parentNode, \""+shop_items[num]+"\", 0 )' /></span>";
-      $(div).append(random_item);
-    }
 
-    $(popup).append(div);
-
-  } else {
-    if (marker.properties.itemDrops){
-      var div = document.createElement("div");
-      div.className = 'daily-items';
-      if (marker.properties.category.includes('food') || marker.properties.category.includes('grocery')){
-        $(div).html("<h3 class='animated fadeIn delay-1s'>Daily Special</h3>");
-      }
-
-      var drops = marker.properties.itemDrops;
-      for (var i=0; i<drops.length; i++){
-        var item1 = "<span class='animated bounceIn delay-1s'><img class='animated jackInTheBox' src='icons/"+items[drops[i]]+"' onclick='addItem(this, \""+drops[i]+"\")' /></span>";
-        $(div).append(item1);
-      }
       $(popup).append(div);
+
+    } else {
+      if (marker.properties.itemDrops){
+        var div = document.createElement("div");
+        div.className = 'daily-items';
+        if (marker.properties.category.includes('food') || marker.properties.category.includes('grocery')){
+          $(div).html("<h3 class='animated fadeIn delay-1s'>Daily Special</h3>");
+        }
+
+        var drops = marker.properties.itemDrops;
+        for (var i=0; i<drops.length; i++){
+          var item1 = "<span class='animated bounceIn delay-1s'><img class='animated jackInTheBox' src='icons/"+items[drops[i]]+"' onclick='addItem(this, \""+drops[i]+"\")' /></span>";
+          $(div).append(item1);
+        }
+        $(popup).append(div);
+      }
     }
   }
 

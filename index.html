@@ -178,8 +178,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqc
   var map = new mapboxgl.Map({
       container: 'map',
       //style: "mapbox://styles/rhymeandreason/cjlk0pudx2k8z2rofajpxci6t",
-      style: 'mapbox://styles/rhymeandreason/cjjf890109lsh2srrs76gocfu',
-      center: [-122.258216, 37.801343],
+      style: 'mapbox://styles/rhymeandreason/cjr2gbqn509sl2rmo43v7t58y',
+      center: [-122.397,37.793],
       zoom: 14
   });
   map.setMinZoom(14);
@@ -188,327 +188,76 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqc
 
 var geoJson = {
   "type": "FeatureCollection",
-  "features": [{
-      "id": "basil-pizzeria",
-      "type": "Feature",
-      "geometry": {
-          "type": "Point",
-          "coordinates": [-122.26934,37.80411]
-      },
-      "properties": {
-          "id": "basil-pizzeria",
-          "title": "Basil Pizzeria",
-          "description": "",
-          "category": "food",
-          "className": "food level-3",
-          "itemDrops": ['pizza'],
-          "radius": 10,
-          "icon": {
-              "iconUrl": "543-pizza-1.svg",
-              "iconSize": [50, 50], // size of the icon
-              "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-              "popupAnchor": [0, -25] // point from which the popup should open relative to the iconAnchor
-          },
-          "dialog": ["The sandwiches are made with pizza dough bread fresh from the oven.",
-                    "Can't go wrong with a classic margherita pizza."],
-          "shop": pizza_shop
-      }
-  }, {
-      "id": "b-dama",
-      "type": "Feature",
-      "geometry": {
-          "type": "Point",
-          "coordinates": [-122.274694,
-                    37.801683]
-      },
-      "properties": {
-          "id": "b-dama",
-          "title": "B-Dama",
-          "description": "",
-          "category": "food",
-          "className": "food level-3",
-          "itemDrops": ['onigiri', "rice-bowl", "sushi"],
-          "radius": 10,
-          "icon": {
-              "iconUrl": "546-rice-ball.svg",
-              "iconSize": [50, 50],
-              "iconAnchor": [50, 50],
-              "popupAnchor": [0, -55],
-          },
-          "dialog": ["The karage (fried chicken) here is super good!",
-          "At lunch they have combo sets. I like the salmon set the best."],
-          "shop": japanese_shop
-      }
-    },{
-        "id": "pietisserie",
-        "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-122.254895,
-                      37.799250]
-        },
-        "properties": {
-            "id": "pietisserie",
-            "title": "Pietisserie",
-            "description": "The best pies this side of the bay",
-            "category": "food",
-            "className": "food level-3",
-            "itemDrops": ['coffee'],
-            "radius": 10,
-            "icon": {
-                "iconUrl": "561-shortcake.svg",
-                "iconSize": [50, 50],
-                "iconAnchor": [50, 50],
-                "popupAnchor": [0, -55],
-            },
-            "dialog": ["Oh look, now they do breakfast here, that's new!",
-                      "The choclate raspberry pie is to die for."],
-            "shop": pie_shop
-        }
-      }
+  "features": [
   ]
 };
 
-addMarkerInfo("haley-law",  "Haley Law Office", [-122.272317, 37.807024],"",
-            "haley-law.png", 50, 'landmark level-4', ["This is my favorite building in Oakland. It looks like it's made of Legos!"],[]);
+//SF Locations
+addMarkerInfo("sf-transamerica",  "Transamerica Pyramid", [ -122.40274, 37.79501],
+"content/transamerica.html","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("preservation-park",  "Preservation Park", [ -122.276437, 37.805538],"",
-            "preservation-park.png", 50, 'landmark', [],[]);
+addMarkerInfo("sf-ferry-building",  "Ferry Building", [ -122.39361, 37.79544 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("paramount",  "Paramount Theater", [ -122.268012, 37.809610],"",
-            "paramount.png", 40, 'landmark', [],[]);
+addMarkerInfo("sf-coit-tower",  "Coit Tower", [ -122.40582 , 37.80239 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("caffe-817",  "Caffe 817", [  -122.274850, 37.801119],"",
-            "567-hot-beverage-2.svg", 50, 'food', ["The lattes here are fantastic.", "Get a chocolate chip cookie, you won't regret it!"],["coffee", "cookie"], coffee_shop);
+addMarkerInfo("sf-expoloratorium",  "Exploratorium", [ -122.39748, 37.80154],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("malonga",  "Malonga Casquelourd Center", [-122.265980, 37.802945],"",
-            "malonga.png", 50, 'dance', [],[]);
+addMarkerInfo("sf-grace-cathedral",  "Grace Cathedral", [-122.41337,  37.79185],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("buddhist-temple",  "Buddhist Church of Oakland", [-122.267660, 37.798410],"",
-            "buddhist-temple.png", 55, 'landmark level-4', [],[]);
+addMarkerInfo("sf-castro-theater",  "Castro Theater", [-122.43475, 37.76203 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("chinese-junk",  "Junk Boat in Lincoln Park", [-122.268312, 37.800003],
-"This popular local play structure was originally built by the Wa Sung Community Service Club in 1961. It was inspired by an oceangoing junk called the Free China which sailed from Formosa to San Francisco in 1955. It is currently closed for repairs.",
-            "chinese-junk.png", 80, 'landmark', ["Will be great to see this when they finish the repairs!"],[]);
+addMarkerInfo("sf-portal-past",  "Portals to the Past", [-122.48249, 37.77071 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("scottish-rite",  "Oakland Scottish Rite Center", [-122.261906, 37.802874],
-"The Scottish Rite Center was built in 1883, just three decades after the then-young city of Oakland was first incorporated into Alameda County. There are private, members-only sections of the temple, but the historic building also opens for public events — everything from weddings to Super Bowl parties — and is home to the Childhood Language Center, a nonprofit speech clinic.",
-            "scottish-rite.png", 80, 'landmark level-4', ["The men's restroom has a barber shop inside!"],[]);
+addMarkerInfo("sf-legion-honor",  "Legion of Honor", [-122.50084, 37.78446 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("veterans-building",  "Veterans Memorial Building", [-122.261421, 37.811031],
-"Constructed in 1926, the Veterans Memorial Building has an auditorium and two floors. It is also home of the Lake Merritt Dance Center, which offers dance lessons throughout the week.",
-            "veterans-building.png", 90, 'landmark', [],[]);
+addMarkerInfo("sf-olympus",  "Mt. Olympus", [-122.44557 , 37.76338 ],
+"","orange-marker.svg", 20, "landmark level-3",[],[]);
 
-addMarkerInfo("bandstand",  "Edoff Memorial Bandstand", [-122.260152, 37.807674],
-"Built in 1918 for the Oakland Municipal Band, the Edoff Memorial Bandstand was fashioned in the likeness of another bandstand in Milan. Though the band doesn’t get funding from the city anymore, it still performs here each summer. You can check out its free concerts starting on July 4th and each subsequent Sunday in July.",
-            "bandstand.png", 60, 'landmark level-4', [],[]);
+addMarkerInfo("sf-central-tower",  "Central Tower", [ -122.40364 , 37.78726],
+"","orange-marker.svg", 20, "landmark level-3",[],[]);
 
-addMarkerInfo("rotary-nature-center",  "Rotary Nature Center", [-122.256209, 37.807142],
-"Built in 1953, it helps maintain and protect the lake and other open spaces in Oakland. The Center offers natural science presentations and summer camps for youth. It also houses various exhibits, including a working observation beehive and some live animals.",
-            "rotary-nature-center.png", 50, 'landmark', [],[]);
+addMarkerInfo("sfmoma",  "San Francisco Museum of Modern Art", [-122.40105, 37.78571  ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("schilling-garden",  "Schilling Garden", [-122.263911, 37.805963],
-"Schilling Garden, a nineteenth-century lakeside estate, was owned by August Schilling, cofounder of the A. Schilling spice company. The family opened the gardens to public viewings around 1911 and for years it was known as a place for high-class parties and weddings. Although the gardens are no longer open to the public, and are much smaller than they once were, people have been known to peek through the gates — which have an “A” for August — to have a look.",
-            "schilling-garden.png", 40, 'landmark', [],[]);
+addMarkerInfo("sf-palace-fine-arts",  "Palace of Fine Arts", [-122.44841, 37.80292 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-//addMarkerInfo("cathedral-building",  "Cathedral Building", [-122.270248, 37.80621],"",
-//            "cathedral-building.png", 50, 'landmark level-4', []);
+addMarkerInfo("sf-cal-academy",  "California Academy of Sciences", [ -122.46609 ,37.76986],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("oaklandish",  "Oaklandish", [-122.270664, 37.804881],
-"Hip locally inspired apparel",
-            "oaklandish.png", 40, 'store level-4', ["Best spot for Oakland t-shirts!", "The company sponsors community projects every year. And they offer t-shirt printing services."],["acorn"]);
+addMarkerInfo("sf-dragon-gate",  "Dragon Gate", [-122.40561, 37.79069],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("fox-theater",  "Fox Theater", [-122.270115, 37.808004],"",
-            "fox-theater.png", 90, 'landmark', [],[]);
+addMarkerInfo("sf-painted-ladies",  "Painted Ladies", [-122.43275, 37.77625 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-//addMarkerInfo("E14",  "E14 Gallery", [-122.273844, 37.801179],"",
-  //          "600-artist-palette.svg", 50, 'gallery level-3', []);
+addMarkerInfo("sf-camera-obscura",  "Camera Obscura", [ -122.51423, 37.77826 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("flax-art",  "FLAX Art & Design", [-122.275509, 37.807162],"",
-            "600-artist-palette.svg", 50, 'art-supply level-3', [],["acorn"]);
+addMarkerInfo("sf-palace-hotel",  "Palace Hotel", [ -122.40186, 37.78803  ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("kon-tiki",  "The Kon-Tiki", [-122.268653, 37.803238],"",
-            "572-tropical-drink.svg", 50, 'food level-3', ["This place used to be called Longitude, and it was empty. Guess the new name helps!"],["mai-tai"], kon_tiki);
+addMarkerInfo("sf-columbus-tower",  "Columbus Tower", [ -122.40504, 37.79648 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("shandong",  "Shandong Restaurant", [  -122.270016, 37.800587],"",
-            "dumpling.png", 40, 'food', ["This place is too popular now, there's always a line out the door.", "Make sure to order the 'special' hand cut noodles."],["rice-bowl"], chinese_food);
+addMarkerInfo("sf-wells-fargo-museum",  "Wells Fargo Museum", [  -122.40263, 37.79337],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("alice-cafe",  "Alice Bakery Cafe", [ -122.268380, 37.799706],"",
-            "556-cookie.svg", 50, 'food level-2', ["I love the red bean buns here, they're cute and delicious!"],["cookie"], asian_bakery);
+addMarkerInfo("sf-mechanics-library",  "Mechanic's Institute Library", [ -122.40301, 37.78885 ],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("luckyduck-cafe",  "Luckyduck Bicycle Cafe", [ -122.268660, 37.801724],"",
-            "567-hot-beverage-2.svg", 50, 'food level-3', ["They have Oat milk now!"], ["coffee"], coffee_shop);
+addMarkerInfo("sf-hearst",  "Hearst Building", [-122.40264 , 37.78698],
+"","orange-marker.svg", 20, "landmark",[],[]);
 
-addMarkerInfo("cat-town",  "Cat Town", [ -122.263224,37.817363],"",
-      "447-cat-face.svg", 50, 'food level-3', ["You can adopt a cat here!"], ["coffee"], coffee_shop);
-
-addMarkerInfo("little-giant",  "Little Giant", [-122.269855, 37.809155],"",
-            "551-soft-ice-cream-1.svg", 50, 'food icecream level-3', ["If you come on a Sunday, sundae toppings are free!"],["soft_serve"], icecream_shop);
-
-addMarkerInfo("humphrey-slocombe-oakland",  "Humphrey Slowcombe", [-122.266562, 37.812627],"",
-        "551-soft-ice-cream-1.svg", 50, 'food icecream level-2', ["Used to trek to SF for this, now it's so close!"],["soft_serve"], icecream_shop);
-
-addMarkerInfo("firebrand-bakery",  "Firebrand Bakery", [-122.265989, 37.812948],"",
-        "536-bread.svg", 50, 'food bakery level-2', [],[], bakery);
-
-addMarkerInfo("drakes-dealership",  "Drake's Dealership", [-122.266433, 37.812682],"",
-      "577-beer-mug.svg", 50, 'food level-3', ["The house tap is San Leandro Brewery.", "This spot used to have an auto shop."],[], pizza_shop);
-
-addMarkerInfo("donut-savant",  "Donut Savant", [-122.268533, 37.808374],"",
-            "554-doughnut-1.svg", 50, 'food level-3', [],["donut"], donut_shop);
-
-addMarkerInfo("aburya",  "Aburya", [-122.267637, 37.805969],"",
-            "538-poultry-leg.svg", 50, 'food level-2', ["My favorite fried chicken place!", "Wonder if I should get the fried avocado...hmmm..."],["drumstick", "rice-bowl"]);
-
-addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
-"Oak trees are sacred to the local Ohlone people, who lived in this area thousands of years before European settlers. <br><br> Mayor John L. Davie planted this coast live oak in front of City Hall in 1917. It was named to honor Oakland’s most famous author, who died in November 1916.",
-          "acorn.png", 40, 'level-2', [],[]);
-
-  addMarkerInfo("omca",  "Oakland Museum of Art", [-122.26437, 37.79846],
-  "Artifacts & interactive displays in a modern building focusing on state art, history & science.",
-            "omca.png", 60, 'landmark', ["I went to the Black Pather show here a while back too.", "I usually come here on Friday nights when tickets are half-off."],[]);
-
-  addMarkerInfo("fairyland",  "Children's Fairyland", [-122.260697, 37.808927],
-  "Built in 1950, Fairyland is one of the earliest themed amusement parks in the United States, and was an inspiration for Walt Disney.",
-              "fairyland.png", 70, 'landmark', [],[]);
-
-  addMarkerInfo("stanford-house",  "Camron-Stanford House", [-122.26197481,37.801230850],
-  "The last of the beautiful 19th century mansions that once surrounded Lake Merritt.",
-              "stanford-house.png", 80, 'landmark',[],[]);
-
-  addMarkerInfo("gondola",  "Lake Merritt Gondola", [-122.257533, 37.80242614],[],
-              "gondola.png", 80, 'landmark',[],[]);
-
-  addMarkerInfo("ampitheater",  "Henry J. Kaiser Ampitheater", [-122.261545, 37.7975516],
-  "An Oakland landmark built in 1914. It served as a makeshift hospital during the 1918 flu pandemic. <br><br>It's been used for concerts (from Elvis to the Grateful Dead), science fiction conventions, roller derby tournaments, symphony performances and public speaking events (from Bill Clinton to the Dalai Lama). Unfortunately it's been closed since 2006.",
-              "ampitheater.png", 100, 'landmark level-4',[],[]);
-
-  addMarkerInfo("torii-gate",  "Torii Gate Garden", [-122.25826, 37.806107],
-  "The Fukuoka Junior Chamber of Commerce gave the Torii Gate to the City of Oakland in 1969. It was rebuilt in 2002 on the 40th anniversary.",
-              "torii-gate.png", 60, 'landmark',[],[]);
-
-  addMarkerInfo("bellevue-staten",  "Bellevue-Staten Building", [-122.25377, 37.807864],"",
-              "bellevue-staten.png", 60, 'landmark',[],[]);
-
-  addMarkerInfo("christ-cathedral",  "Cathedral of Christ the Light", [-122.2631, 37.810398],"",
-              "christ-cathedral.png", 80, 'landmark',[],[]);
-
-  addMarkerInfo("lucky-grocery",  "Lucky", [-122.2533394 ,37.7996664],"",
-              "527-red-apple.svg", 50, "grocery level-3",[],[], grocery);
-
-  addMarkerInfo("pergola",  "Pergola and Collonade", [-122.2496 ,37.8086],
-                "Designed by architect Walter Reed in 1913, it was originally built with benches overlooking the lake. It was formerly nicknamed 'El Embarcadero’, which is now the name of the cross-street.",
-                "pergola.png", 100, "landmark",[],[]);
-
-  addMarkerInfo("boating-center",  "Lake Merritt Boating Center", [-122.2577 ,37.8051],"",
-                "boating-center.png", 80, "landmark level-4",[],[]);
-
-  addMarkerInfo("library-main",  "Oakland Public Library", [-122.2636 ,37.8011],
-  "Main branch library",
-                "book.svg", 50, "library level-3",[],[]);
-
-  addMarkerInfo("city-hall",  "Oakland City Hall", [-122.2722 ,	37.8052],
-  "When completed in 1914, it was the tallest building west of the Mississippi. The building was designed by New York-based architecture firm Palmer & Hornbostel in 1910, who won the $5,000 grand prize in a nationwide competition out of 27 competing designs. After damage in the 1989 Loma Prieta earthquake, it was seismically retrofit for $85 million and can now move 18-20 inches laterally in an earthquake.<br><br> In 2011, it was the main protest site of the Occupy Oakland movement.",
-                "city-hall.png", 50, "landmark",[],[]);
-
-  addMarkerInfo("tribune-tower",  "Oakland Tribune Tower", [-122.2707,	37.8032],
-                "The Oakland Tribune moved into the adjacent building after the 1906 SF earthquake. Publisher Joseph Knowland commissioned the tower inspired by the campanile of Saint Mark’s Basilica in Venice, Italy. Completed in 1923, it was the tallest skyscraper in the East Bay.",
-                "tribune-tower.png", 32, "landmark",[],[]);
-
-  addMarkerInfo("James-cupcake",  "James and the Giant Cupcake", [-122.267142 ,	37.805555],
-  "","561-shortcake.svg", 50, "food level-2",[],[], cupcake_shop);
-
-  addMarkerInfo("Rudy-diner",  "Rudy's Can't Fail Cafe", [-122.270185 ,37.807728],
-  "Classic style diner named for a Clash song","541-hamburger-3.svg", 50, "food level-2",[],[], diner);
-
-  addMarkerInfo("samurai-sushi",  "Samurai Sushi Boat", [-122.246618 ,37.813347],
-  "","549-sushi.svg", 50, "food level-3",[],[], sushi_shop);
-
-  addMarkerInfo("gogi-time",  "Gogi Time", [-122.267644 ,37.815429],
-  "All you can eat Korean BBQ","547-cooked-rice.svg", 50, "food",[],[], korean_shop);
-
-  addMarkerInfo("uc-dessert",  "UC Dessert", [-122.271816 ,37.800394],"",
-  "561-shortcake.svg", 50, "food level-2",[],[], dessert_shop);
-
-  addMarkerInfo("peets-coffee",  "Peet's Coffee", [-122.244572 ,37.810441],"",
-  "567-hot-beverage-2.svg", 50, "food level-2",["Great place to sit with a laptop and work.", "Try the Matcha Fog, it's bright green but really good."],[], coffee_shop);
-
-  addMarkerInfo("grocery-store",  "Trader Joe's", [-122.244436 ,37.809983],"",
-  "527-red-apple.svg", 50, "grocery level-3",["Hard to park here, but nice to bicycle!", "Hm, Truffle Potato chips, haven't had these before."],[], grocery);
-
-  addMarkerInfo("arizmendi",  "Arizmendi Bakery", [-122.244843 ,37.810649],"",
-  "536-bread.svg", 50, "food level-3",["I come here for lunch all the time.", "Best croissants, gotta get here in the morning to get them!", "I really like how this place is worker-owned."],[], bakery);
-
-  addMarkerInfo("tacos-mi-rancho",  "Tacos Mi Ranco", [ -122.256599, 37.798937],"",
-              "taco.svg", 50, 'food level-3', ["These are the best carnitas burritos in the east bay.", "The burritos are giant!"],[], taco_shop);
-
-  addMarkerInfo("xolo",  "Xolo", [ -122.269727, 37.808410],"",
-              "taco.svg", 50, 'food level-2', ["I like the burritos here, nice blend of ingredients and not too giant."],[], taco_shop);
-
-  addMarkerInfo("tierra-mia",  "Tierra Mia Coffee", [  -122.268261 , 37.809273],
-  "","coffee.svg", 50, "food level-2",[],[], coffee_shop);
-
-  addMarkerInfo("modern-coffee",  "Modern Coffee", [  -122.267398 , 37.807071],
-  "","coffee.svg", 50, "food level-3",[],[], coffee_shop);
-
-  addMarkerInfo("howden-market",  "Howden Market", [ -122.267334 , 37.805560],
-  "","apple.svg", 50, "grocery level-3",[],[], grocery);
-
-  addMarkerInfo("good-news-cafe",  "Good News Cafe", [  -122.262785 , 37.804301],
-  "","coffee.svg", 50, "food level-3",[],[], coffee_shop);
-
-  addMarkerInfo("haddon-hill",  "Haddon Hill", [ -122.248888 , 37.804954],
-  "","coffee.svg", 50, "food level-3",[],[], coffee_shop);
-
-  addMarkerInfo("leaning-tower",  "Leaning Tower", [ -122.249549 , 37.804643],
-  "","pizza.svg", 50, "food ",[],[], pizza_shop);
-
-  addMarkerInfo("cosecha",  "Cosecha", [-122.274913 , 37.801720],
-  "","taco.svg", 50, "food level-2",[],[], taco_shop);
-
-  addMarkerInfo("grand-lake-theater",  "Grand Lake Theater", [-122.247762 , 37.811521],
-  "","grand-lake-theater.png", 60, "landmark theater",[],[]);
-
-  addMarkerInfo("lanesplitter",  "Lanesplitter Pizza", [ -122.246490, 37.810276],
-  "","pizza.svg", 50, "food level-3",[],[], pizza_shop);
-
-  addMarkerInfo("itani",  "Itani Ramen", [ -122.269959, 37.807517],
-  "","onigiri.svg", 50, "food level-2",[],[], japanese_shop);
-
-  addMarkerInfo("taiwan-bento",  "Taiwan Bento", [-122.266490, 37.810907],
-  "","onigiri.svg", 50, "food level-3",[],[], bento_shop);
-
-  addMarkerInfo("small-wonder",  "Small Wonder", [-122.265908, 37.811355],
-  "","coffee.svg", 50, "food level-3",[],[], coffee_shop);
-
-  addMarkerInfo("pintoh-thai",  "Pintoh Thai", [ -122.269374, 37.804565],
-  "","rice-bowl.svg", 50, "food level-2",[],[], thai_food);
-
-  addMarkerInfo("library-asian",  "Oakland Public Library, Asian Branch", [-122.271112, 37.800631],
-  "","book.svg", 50, "library level-3",[],[]);
-
-  addMarkerInfo("library-lakeshore",  "Oakland Public Library, Lakeshore", [-122.248978, 37.809121],
-  "","book.svg", 50, "library level-3",[],[]);
-
-  addMarkerInfo("grand-lake-kitchen",  "Grand Lake Kitchen", [ -122.250034, 37.809292],
-  "","hamburger.svg", 50, "food level-3",[],[]);
-
-  addMarkerInfo("neecha-thai",  "Neecha Thai Cuisine", [ -122.247385, 37.812070],
-  "","rice-bowl.svg", 40, "food level-3",[],[], thai_food);
-
-  addMarkerInfo("chao-thai",  "Chao Thai Cuisine", [ -122.247119, 37.811044],
-  "","rice-bowl.svg", 40, "food level-3",[],[], thai_food);
-
-  addMarkerInfo("Fentons",  "Fenton's Creamery", [-122.250160, 37.828008],"",
-          "551-soft-ice-cream-1.svg", 50, 'food icecream ', ["They invented Rocky Road ice cream here back in the day.","This place inspired the ice cream shop in the Pixar movie UP."],[""], icecream_shop);
-
-  addMarkerInfo("Smitten-Rockridge",  "Smitten Ice Cream", [-122.251821, 37.846084],"",
-      "551-soft-ice-cream-1.svg", 50, 'food icecream level-3', ["It's really fun watching their machines make the liquid nitrogen ice cream."],[""], icecream_shop);
-
- addMarkerInfo("Dreyers",  "Dreyer's Grand Ice Cream", [ -122.252210, 37.847592],"",
-      "551-soft-ice-cream-1.svg", 50, 'food icecream', ["They say that they invented rocky road ice cream at the original Dreyer's here."],[""], icecream_shop);
-
-//Hayes Valley Locations
+      addMarkerInfo("sf-city-hall",  "San Francisco City Hall", [ -122.41926, 37.77925],
+      "","sf-city-hall.png", 70, "landmark",[],[]);
 
       addMarkerInfo("20th-century",  "20th Century Cafe", [ -122.42244, 37.77492],
       "","561-shortcake.svg", 40, "food level-3",[],[], dessert_shop);
@@ -524,9 +273,6 @@ addMarkerInfo("oak-tree",  "Jack London Oak", [-122.272116, 37.804880],
 
       addMarkerInfo("Smitten-Hayes",  "Smitten Ice Cream", [ -122.42419, 37.77636],
       "","551-soft-ice-cream-1.svg", 40, "food level-3",[],[], icecream_shop);
-
-      addMarkerInfo("sf-city-hall",  "San Francisco City Hall", [ -122.41926, 37.77925],
-      "","sf-city-hall.png", 70, "landmark",[],[]);
 
       addMarkerInfo("sf-symphony",  "Davies Symphony Hall", [  -122.4205, 37.77767],
       "","violin.png", 40, "landmark",[],[]);
