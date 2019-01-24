@@ -400,15 +400,17 @@ $(".marker").click(function(){
   //console.log(this);
 
   var id = $( this ).data( "name");
-  //console.log(place);
-
+  var place = geoJson.features.find(place => place.id === id);
+  console.log(place);
   if (isTracking ){
     if ($( this ).hasClass( "active-marker")){
       showLocation(this, id);
     }
   } else {
-    showLocation(this, id);
+    //showLocation(this, id);
   }
+
+  map.flyTo( {center: place.geometry.coordinates} );
 });
 
 
