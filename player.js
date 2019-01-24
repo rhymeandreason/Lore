@@ -11,6 +11,7 @@ var Player = {
   },
   "quests_progress": {},
   "quests_complete": {},
+  "mainquest_progress": 0,
   "landmarks": {},
   "places": {},
   "coins": 10,
@@ -46,7 +47,7 @@ function addItem(el, name){
   $("#new-item").attr('src', "icons/"+items[name]);
   $("#add-item-anim").fadeIn();
   $("#add-item-anim #new-item").css("bottom","20px");
-  $("new-item").attr('src', )
+  $("new-item").attr('src', );
   $("#add-item-anim #new-item").animate({bottom: '-32px'}, "slow", function(){$("#add-item-anim").fadeOut('fast');});
 }
 

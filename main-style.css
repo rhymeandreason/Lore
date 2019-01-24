@@ -427,13 +427,14 @@
     display: block;
   }
   .place-description{
-    width: 75%;
-    margin: 16px auto;
+    //width: 75%;
+    //margin: 16px auto;
     font-size: 24px;
     line-height: 34px;
-    text-align: center;
+    //text-align: center;
     color: #4A4A4A;
     font-family: Wilder;
+    padding: 8px 36px;
   }
 
   .player{
@@ -462,6 +463,7 @@
   .daily-items {
     width: 100%;
     text-align: center;
+    margin-top: 16px;
   }
 
   .popup h3{
@@ -537,13 +539,22 @@
     height: 100px;
     margin-top: 16px;
   }
+  #purchases .clues{
+    height: 125px;
+  }
+
   .shop_item img, #purchases .item img{
     height: 70px;
-    //width:80%;
     width:65%;
     object-fit: contain;
     display: inline-block;
   }
+  #purchases .clues img{
+    height: 100%;
+    width: default;
+    object-fit: contain;
+  }
+
   .shop_item .price::before{
     content: "";
     background-image: url("icons/acorn-mono.png");
@@ -738,9 +749,10 @@
   .card h2{
     font-size: 56px;
     line-height: 60px;
-    text-align: center;
-    margin-top: 16px;
+    //text-align: center;
+    //margin-top: 16px;
     font-family: Wilder;
+    padding: 36px;
   }
   .card-tabs{
     text-align: center;
@@ -910,3 +922,31 @@
     display:inline-block;
     padding:2px 2px 5px 2px;
   }
+.main-quest {
+  text-align: center;
+}
+.main-quest .full{
+  width: 100%;
+}
+.main-quest .item{
+  width: 50px;
+}
+.main-quest p{
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+h3.quest-clue{
+  text-align: center;
+padding: 32px;
+font-family: courier new, monospace;
+font-size: 36px;
+font-weight: normal;
+}
+
+p.quest-clue{
+  font-family: Wilder;
+font-size: 36px;
+padding: 0px 50px;
+}

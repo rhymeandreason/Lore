@@ -1,3 +1,39 @@
+var MainQuest = {
+  clues : [
+    {icon: "Clue1.png",
+     description: "quests/clue1.html",
+     solution: [-122.40274, 37.79501],
+     location: "sf-transamerica"
+    },
+    {icon: "Clue2.png",
+     description: "quests/clue2.html",
+     solution: [-122.41337, 37.79185],
+     location: "sf-grace-cathedral"
+    },
+    {icon: "Clue3.png",
+     description: "quests/clue3.html",
+     solution: [-122.41926, 37.77925],
+     location: "sf-city-hall"
+    }
+  ]
+}
+
+function showClue(n){
+  $("#item-card-content").load(MainQuest.clues[n].description);
+  $("#item-card").fadeIn('slow');
+}
+
+function MainQuestProgress(el){
+  Player.mainquest_progress++;
+  $(el).fadeOut();
+  $("#new-item").attr('src', $(el).attr('src'));
+  $("#add-item-anim").fadeIn();
+  $("#add-item-anim #new-item").css("bottom","20px");
+  $("new-item").attr('src', );
+  $("#add-item-anim #new-item").animate({bottom: '-32px'}, "slow", function(){$("#add-item-anim").fadeOut('fast');});
+}
+
+
 var LM_Spelunker = []; // Lake Merritt Quest
 LM_Spelunker[0] = { "text": "Nice day to be walking around in Oakland.",
              options: [    { "response": "Yes it's such a nice day!", "next": 1 }
@@ -309,6 +345,14 @@ var Quests = {
 }
 
 function check_quest_progress(place){
+  //var checkLocation = MainQuest.clues[Player.mainquest_progress].solution;
+  //check the main quest
+  var isQuestLocation = false;
+  if (MainQuest.clues[Player.mainquest_progress].location ==place.properties.id){
+    console.log("Well done!");
+    $("#"+place.properties.id+" .main-quest").show();
+  }
+
   for (var questname in Player.quests_progress){
 
     var isQuestLocation = false;
@@ -332,7 +376,6 @@ function check_quest_progress(place){
           Achieve_Quest_Progress(questname, place.id);
         }
     }
-
   }
 }
 

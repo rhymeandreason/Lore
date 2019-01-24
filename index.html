@@ -88,6 +88,14 @@
   </div>
 </div>
 
+<div id="item-card" class="card">
+  <div id="item-card-content">
+  </div>
+  <span class="close">
+    <img src="icons/close-x-bottom.svg"  />
+  </span>
+</div>
+
 <div id="journal-card" class="card">
   <span class="close">
     <img src="icons/close-x-bottom.svg"  />
@@ -384,7 +392,7 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
 $(".active").click();
 
 function SF_Map(){
-  map.flyTo({center: [-122.41783, 37.77946]});
+  map.flyTo( {center: [-122.41783, 37.77946]} );
 }
 
 //Show Place
@@ -476,8 +484,15 @@ function updateInventory(){
     }
   }
   */
-  var purchases = Object.keys(Player.purchases);
+
   $("#purchases").html("");
+  //put the clue items first
+  for (var i=0; i<=Player.mainquest_progress; i++){
+    var item = "<span class='item clues' onclick='showClue( "+i+" )'><img src='icons/"+MainQuest.clues[i].icon+"' /></span>";
+    $("#purchases").append(item);
+  }
+
+  var purchases = Object.keys(Player.purchases);
   for (var i=0; i<purchases.length; i++) {
     var count = Player.purchases[purchases[i]];
     if (count >0){
@@ -732,6 +747,7 @@ function ClearData(){
     },
     "quests_progress": {},
     "quests_complete": {},
+    "mainquest_progress": 0,
     "landmarks": {},
     "places": {},
     "coins": 10,
