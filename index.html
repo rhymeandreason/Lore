@@ -212,10 +212,16 @@ addMarkerInfo("sf-castro-theater",  "Castro Theater", [-122.43475, 37.76203 ],
 "","orange-marker.svg", 20, "landmark",[],[]);
 
 addMarkerInfo("sf-portal-past",  "Portals to the Past", [-122.48249, 37.77071 ],
-"","sf-snowlake.png", 80, "landmark",[],[]);
+"","sf-portal-past.png", 70, "landmark level-3",[],[]);
 
 addMarkerInfo("sf-legion-honor",  "Legion of Honor", [-122.50084, 37.78446 ],
 "","sf-legion-of-honor.png", 85, "landmark",[],[]);
+
+addMarkerInfo("sf-de-young",  "De Young Museum", [-122.46867, 37.77146 ],
+"","sf-deyoung.png", 75, "landmark",[],[]);
+
+addMarkerInfo("sf-bison",  "Bison Paddock", [-122.49832, 37.76989 ],
+"","sf-bison.png", 50, "landmark",[],[]);
 
 addMarkerInfo("sf-olympus",  "Mt. Olympus", [-122.44557 , 37.76338 ],
 "","orange-marker.svg", 20, "landmark level-3",[],[]);
@@ -227,7 +233,7 @@ addMarkerInfo("sfmoma",  "San Francisco Museum of Modern Art", [-122.40105, 37.7
 "","sf-sfmoma.png", 60, "landmark",[],[]);
 
 addMarkerInfo("sf-palace-fine-arts",  "Palace of Fine Arts", [-122.44841, 37.80292 ],
-"","sf-palace-fine-arts.png", 70, "landmark",[],[]);
+"","sf-palace-fine-arts.png", 90, "landmark",[],[]);
 
 addMarkerInfo("sf-cal-academy",  "California Academy of Sciences", [ -122.46609 ,37.76986],
 "","orange-marker.svg", 20, "landmark",[],[]);
@@ -236,7 +242,7 @@ addMarkerInfo("sf-dragon-gate",  "Dragon Gate", [-122.40561, 37.79069],
 "","sf-dragon-gate.png", 20, "landmark",[],[]);
 
 addMarkerInfo("sf-painted-ladies",  "Painted Ladies", [-122.43275, 37.77625 ],
-"","orange-marker.svg", 20, "landmark",[],[]);
+"","sf-painted-ladies.png", 50, "landmark",[],[]);
 
 addMarkerInfo("sf-camera-obscura",  "Camera Obscura", [ -122.51423, 37.77826 ],
 "","orange-marker.svg", 20, "landmark",[],[]);
@@ -248,7 +254,7 @@ addMarkerInfo("sf-columbus-tower",  "Columbus Tower", [ -122.40504, 37.79648 ],
 "","sf-columbus-tower.png", 40, "landmark",[],[]);
 
 addMarkerInfo("sf-wells-fargo-museum",  "Wells Fargo Museum", [  -122.40263, 37.79337],
-"","orange-marker.svg", 20, "landmark",[],[]);
+"","orange-marker.svg", 20, "landmark level-3",[],[]);
 
 addMarkerInfo("sf-mechanics-library",  "Mechanic's Institute Library", [ -122.40301, 37.78885 ],
 "","orange-marker.svg", 20, "landmark",[],[]);
@@ -257,7 +263,7 @@ addMarkerInfo("sf-hearst",  "Hearst Building", [-122.40264 , 37.78698],
 "","orange-marker.svg", 20, "landmark",[],[]);
 
       addMarkerInfo("sf-city-hall",  "San Francisco City Hall", [ -122.41926, 37.77925],
-      "","sf-city-hall.png", 70, "landmark",[],[]);
+      "","sf-city-hall.png", 85, "landmark",[],[]);
 
       addMarkerInfo("20th-century",  "20th Century Cafe", [ -122.42244, 37.77492],
       "","561-shortcake.svg", 40, "food level-3",[],[], dessert_shop);
@@ -285,6 +291,15 @@ addMarkerInfo("sf-hearst",  "Hearst Building", [-122.40264 , 37.78698],
 
       addMarkerInfo("asian-art-museum",  "Asian Art Museum", [ -122.41619, 37.78016],
       "","asian-art-museum.png", 40, "landmark",[],[]);
+
+      addMarkerInfo("dutch-windmill",  "Dutch Windmill", [ -122.50939, 37.77044],
+      "","sf-windmill.png", 40, "landmark",[],[]);
+
+      addMarkerInfo("sf-arrow",  "Cupid's Span", [-122.38999, 37.79155],
+      "","sf-arrow.png", 70, "landmark",[],[]);
+
+      addMarkerInfo("sf-yoda",  "Yoda Fountain", [-122.45048, 37.79883],
+      "","sf-yoda.png", 30, "landmark",[],[]);
 
 
 function addMarkerInfo(id, title, location, description, icon, size, category, dialog, drops, shop){
@@ -443,7 +458,7 @@ function updateInventory(){
   var coins = "<span class='item'><img src='icons/coin.svg' /><span class='quantity'>"+Player.coins+"</span></span>";
   $("#inventory").append(coins);
 
-  var acorns = "<span class='item'><img src='icons/acorn.svg' /><span class='quantity'>"+Player.inventory.acorn+"</span></span>";
+  var acorns = "<span class='item'><img src='icons/acorn-mono.png' /><span class='quantity'>"+Player.inventory.acorn+"</span></span>";
   $("#inventory").append(acorns);
   /*
   for (var i=0; i<inventory.length; i++) {

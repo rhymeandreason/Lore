@@ -1,5 +1,5 @@
 var items = {
-  "acorn": "acorn.png",
+  "acorn": "acorn-mono.png",
   "coin": "coin.svg",
   "red_apple": "527-red-apple.svg",
   "apple": "527-red-apple.svg",

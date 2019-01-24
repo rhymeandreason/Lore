@@ -546,7 +546,7 @@
   }
   .shop_item .price::before{
     content: "";
-    background-image: url("icons/acorn.png");
+    background-image: url("icons/acorn-mono.png");
     background-size:contain;
     background-repeat: no-repeat;
     display:inline-block;
