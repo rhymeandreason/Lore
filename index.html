@@ -195,7 +195,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqc
       center: [-122.397,37.793],
       zoom: 14
   });
-  map.setMinZoom(14);
+  map.setMinZoom(12);
   map.setMaxZoom(18);
 
 
@@ -370,6 +370,12 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
 
   map.on('zoom',function(){
     //make the food landmarks show up on zoom 15
+    if (map.getZoom() <13.5){
+      $(".marker").hide();
+    } else {
+      $(".marker").show();
+    }
+
     if (map.getZoom() > 14.5){
       //console.log(" level 3");
       $(".level-4").removeClass("hidden-marker");

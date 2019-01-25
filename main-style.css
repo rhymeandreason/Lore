@@ -1007,6 +1007,7 @@
 h3.quest-clue{
   text-align: center;
 padding: 32px;
+padding-bottom: 24px;
 font-family: courier new, monospace;
 font-size: 36px;
 font-weight: normal;
