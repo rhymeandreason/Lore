@@ -47,11 +47,13 @@ function MakeLocation(marker) {
 
   $( el ).data( "name", marker.properties.id);
   //$(el).attr('data-name', marker.properties.id);
+
   var img = document.createElement("IMG");
   img.src = "icons/"+marker.properties.icon.iconUrl;
   img.className='animated bounceIn';
   el.append(img);
   el.style.width = marker.properties.icon.iconSize[0] + 'px';
+
 
   var popup = document.createElement("div");
   popup.className = 'popup ' + marker.properties.className;

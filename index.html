@@ -47,6 +47,11 @@
   </audio>
 
 <div id='map'></div>
+<div id="preview-bubble">
+  <h3>Location Name</h3>
+  <h4>Walk closer to unlock.</h4>
+
+</div>
 
 <div id="place-popup-card" class="card">
   <span id="close_location" class="close">
@@ -372,7 +377,6 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
       $(".level-4").addClass("hidden-marker");
     }
 
-
     if (map.getZoom() > 15){
       //console.log(" level 3");
       $(".level-3").removeClass("hidden-marker");
@@ -391,7 +395,8 @@ function addMarkerInfo(id, title, location, description, icon, size, category, d
 
   map.on('touchstart', function(){
     console.log("map touchstart");
-    $(".marker").removeClass("preview-marker");
+    //$(".marker").removeClass("preview-marker");
+    $("#preview-bubble").fadeOut();
   });
 
 
@@ -412,12 +417,16 @@ $(".marker").click(function(){
     if ($( this ).hasClass( "active-marker")){
       showLocation(this, id);
     } else {
-      $( this ).addClass("preview-marker");
+      //$( this ).addClass("preview-marker");
+      //$(".preview-marker .flag").fadeIn();
+      $("#preview-bubble h3").html(place.properties.title);
+      $("#preview-bubble").fadeIn('slow');
     }
   } else {
     showLocation(this, id);
   }
-
+  //$("#preview-bubble h3").html(place.properties.title);
+  //$("#preview-bubble").fadeIn();
   map.easeTo( {
     center: place.geometry.coordinates
     //speed: 0.5, // make the flying slow
@@ -698,6 +707,7 @@ $("#distance_input").change(function(){
   console.log(active_radius);
 });
 
+/*
 attach_NPC('Spelunker', 'omca');
 attach_NPC('JohnLaw', 'tribune-tower');
 attach_NPC('Librarian', 'library-main');
@@ -705,6 +715,7 @@ attach_NPC('Lisa', 'stanford-house');
 attach_NPC('Bailey', 'boating-center');
 attach_NPC('Mary', 'little-giant');
 attach_NPC('Luke', 'oaklandish');
+*/
 attach_NPC('Norton', 'sf-city-hall');
 
 var GameData= {
