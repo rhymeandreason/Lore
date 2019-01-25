@@ -363,7 +363,9 @@
     border: 1px solid #CCE4E0;
     display:inline-block;
     border-radius: 50%;
-
+  }
+  .preview-marker::after{
+    //content:"Walk closer to unlock."
   }
   .visited img{
     filter: drop-shadow(1px 1px 0 white)
