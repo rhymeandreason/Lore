@@ -14,7 +14,32 @@ var MainQuest = {
      description: "quests/clue3.html",
      solution: [-122.41926, 37.77925],
      location: "sf-city-hall"
-    }
+    },
+    {icon: "Clue4.png",
+     description: "quests/clue4.html",
+     solution: [-122.41926, 37.77925],
+     location: "sf-coit-tower"
+    },
+    {icon: "Clue5.png",
+     description: "quests/clue5.html",
+     solution: [-122.41926, 37.77925],
+     location: "sf-castro-theater"
+    },
+    {icon: "Clue6.png",
+     description: "quests/clue6.html",
+     solution: [-122.41926, 37.77925],
+     location: "sf-portal-past"
+    },
+    {icon: "Clue7.png",
+     description: "quests/clue7.html",
+     solution: [-122.41926, 37.77925],
+     location: "sf-legion-of-honor"
+    },
+    {icon: "Clue8.png",
+     description: "quests/clue8.html",
+     solution: [-122.41926, 37.77925],
+     location: "sf-central-tower"
+    },
   ]
 }
 
