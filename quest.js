@@ -3,42 +3,50 @@ var MainQuest = {
     {icon: "Clue1.png",
      description: "quests/clue1.html",
      solution: [-122.40274, 37.79501],
-     location: "sf-transamerica"
+     location: "sf-transamerica",
+     hint: "There are only so many places with Redwood trees."
     },
     {icon: "Clue2.png",
      description: "quests/clue2.html",
      solution: [-122.41337, 37.79185],
-     location: "sf-grace-cathedral"
+     location: "sf-grace-cathedral",
+     hint: "Sounds kind of like a spiritual place, doesn't it?"
     },
     {icon: "Clue3.png",
      description: "quests/clue3.html",
      solution: [-122.41926, 37.77925],
-     location: "sf-city-hall"
+     location: "sf-city-hall",
+     hint: "There are these funny trees in front, that are all narly and never seem to have leaves."
     },
     {icon: "Clue4.png",
      description: "quests/clue4.html",
      solution: [-122.41926, 37.77925],
-     location: "sf-coit-tower"
+     location: "sf-coit-tower",
+     hint: "It's too bad most people don't realize there are murals here."
     },
     {icon: "Clue5.png",
      description: "quests/clue5.html",
      solution: [-122.41926, 37.77925],
-     location: "sf-castro-theater"
+     location: "sf-castro-theater",
+     hint: "The architect designed this place to evoke a Mexican Cathedral, quite fitting for its neighborhood."
     },
     {icon: "Clue6.png",
      description: "quests/clue6.html",
      solution: [-122.41926, 37.77925],
-     location: "sf-portal-past"
+     location: "sf-portal-past",
+     hint: "It used to be part of an old Nob Hill mansion."
     },
     {icon: "Clue7.png",
      description: "quests/clue7.html",
      solution: [-122.41926, 37.77925],
-     location: "sf-legion-of-honor"
+     location: "sf-legion-of-honor",
+     hint: "Think about it for a bit, the clues are all there!"
     },
     {icon: "Clue8.png",
      description: "quests/clue8.html",
      solution: [-122.41926, 37.77925],
-     location: "sf-central-tower"
+     location: "sf-central-tower",
+     hint: "It's like hidden in plain sight."
     },
   ]
 }
