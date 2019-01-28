@@ -95,6 +95,20 @@
 
 <div id="hint-bubble">
   <span class='npc_icon generic-npc animated bounceInRight delay-1s' onclick=''><img src='icons/fox-icon.svg' /><img class='chatty' src='icons/chatty.svg'/></span>
+
+</div>
+
+<div id="hint-overlay" style="display:none;">
+  <div class="npc-text" id="hint-text">
+    Need a hint?
+  </div>
+  <div id="hint-default" class="replies">
+    <span class="exit">Nope</span>
+    <span onclick='showHint()'>Yes!</span>
+  </div>
+  <div id="hint-reply-2" class="replies" style="display:none;">
+    <span class="exit">Okay</span>
+  </div>
 </div>
 
 <div id="item-card" class="card">
@@ -480,6 +494,14 @@ $(".close").click(function(e){
 
 $(".ok-button").click(function(e){
   $(this).parent().fadeOut();
+});
+
+$(".exit").click(function(){
+  $(this).parent().parent().fadeOut();
+});
+
+$("#hint-bubble").click(function(e){
+  $("#hint-overlay").fadeIn();
 });
 
 $("#backpack").click(function(){

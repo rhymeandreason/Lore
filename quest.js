@@ -16,7 +16,7 @@ var MainQuest = {
      description: "quests/clue3.html",
      solution: [-122.41926, 37.77925],
      location: "sf-city-hall",
-     hint: "There are these funny trees in front, that are all narly and never seem to have leaves."
+     hint: "There are these funny trees in front, that are all gnarly and never seem to have leaves."
     },
     {icon: "Clue4.png",
      description: "quests/clue4.html",
@@ -56,6 +56,18 @@ function showClue(n){
   $("#item-card").fadeIn('slow');
 }
 
+function showHint(){
+  $("#hint-text").html(MainQuest.clues[Player.mainquest_progress].hint);
+  $("#hint-default").hide();
+  $("#hint-reply-2").fadeIn();
+}
+
+function resetHint(){
+  $("#hint-text").html("Need a hint?");
+  $("#hint-default").show();
+  $("#hint-reply-2").hide();
+}
+
 function MainQuestProgress(el){
   Player.mainquest_progress++;
   $(el).fadeOut();
@@ -64,6 +76,7 @@ function MainQuestProgress(el){
   $("#add-item-anim #new-item").css("bottom","20px");
   $("new-item").attr('src', );
   $("#add-item-anim #new-item").animate({bottom: '-32px'}, "slow", function(){$("#add-item-anim").fadeOut('fast');});
+  resetHint();
 }
 
 
@@ -470,6 +483,7 @@ function Quest_Conditions(property, value) {
 }
 
 function NPC_chat(name){
+  $("#hint-bubble").hide();
   $("#npc-portrait").css('background-image', "url('npc/"+name+"-main.png')");
   $("#npc-popup-card").fadeIn();
 
@@ -585,12 +599,14 @@ function NPC_chat_next(npc_name, num){
 
 function NPC_chat_exit(){
   $("#npc-popup-card").fadeOut();
+  $("#hint-bubble").show();
 }
 
 function NPC_chat_exit_reset(npc_name){
   NPC[npc_name].progress = 0;
   $("#npc-popup-card").fadeOut();
   $("#npc-text").hide();
+  $("#hint-bubble").show();
 }
 
 /////functions to save json data
