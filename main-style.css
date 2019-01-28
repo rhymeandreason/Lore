@@ -614,7 +614,7 @@
     margin-top: 16px;
   }
   #purchases .clues{
-    height: 125px;
+    height: 150px;
   }
 
   .shop_item img, #purchases .item img{
@@ -625,6 +625,7 @@
   }
   #purchases .clues img{
     height: 100%;
+    width: 100%;
     width: default;
     object-fit: contain;
   }
@@ -1003,7 +1004,7 @@
   width: 100%;
 }
 .main-quest .item{
-  width: 50px;
+  width: 150px;
 }
 .main-quest p{
   font-size: 20px;
