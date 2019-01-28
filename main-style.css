@@ -1017,3 +1017,14 @@ p.quest-clue{
 font-size: 36px;
 padding: 0px 50px;
 }
+
+#hint-bubble {
+  right: 15px;
+  position: absolute;
+  right: 4;
+
+  z-index: 20;
+}
+#hint-bubble .npc_icon{
+  background: white;
+}
