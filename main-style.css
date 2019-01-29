@@ -1109,6 +1109,7 @@ p.quest-clue{
 }
 #item-card-content{
   height: 100%;
+  width:100%;
 }
 .paper-border{
   background: url("art/paper-border.jpg") no-repeat center center fixed;
@@ -1117,4 +1118,5 @@ p.quest-clue{
   -o-background-size: 100% 100%;
   background-size: 100% 100%;
   height:100%;
+  width:100%;
 }
