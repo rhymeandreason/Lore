@@ -16,7 +16,8 @@ var Player = {
   "places": {},
   "coins": 10,
   "playtime": 0,
-  "join_date": 0
+  "join_date": 0,
+  "NUX": false
 }
 
 function addCoins(num){

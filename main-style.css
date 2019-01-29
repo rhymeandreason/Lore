@@ -68,9 +68,9 @@
     margin-left: -24px;
   }
 
-  #main-nav{
+  #main-nav, #nux-main-nav{
     position:absolute;
-    bottom:22px;
+    bottom:0px;
     left:0px;
     width: 100%;
     z-index:3;
@@ -78,11 +78,11 @@
   #main-nav img{
     height:45px;
   }
-  #journal{
+  #journal, .journal{
     float: left;
     margin: 10px;
   }
-  #backpack{
+  #backpack, .backpack{
     float: right;
     margin: 10px;
   }
@@ -182,7 +182,7 @@
     line-height: 24px;
   }
 
-  .dialog-box .ok-button{
+ .ok-button{
     background-color: white;
     border-radius: 24px;
     padding: 10px 20px;
@@ -192,9 +192,14 @@
     clear: both;
     margin-bottom: 8px;
     margin-top: 24px;
-    width: 70%;
+
     font-weight: bold;
     font-size: 22px;
+    text-align: center;
+  }
+
+  .dialog-box .ok-button{
+    width: 70%;
   }
 
   #place-content{
@@ -1000,7 +1005,7 @@
 .main-quest {
   text-align: center;
 }
-.main-quest .full{
+.full{
   width: 100%;
 }
 .main-quest .item{
@@ -1077,4 +1082,28 @@ padding: 0px 50px;
   font-weight: bold;
   font-size: 22px;
   float: right;
+}
+#intro-image {
+  height: 100%;
+  position:absolute;
+  z-index: 101;
+}
+#intro-image img{
+  height: 100%;
+}
+
+#nux-intro{
+  z-index: 100;
+}
+#nux-intro .ok-button{
+  margin: auto auto;
+  width: 46%;
+  display: block;
+  margin-top: 64px;
+}
+#first-clue-prompt {
+  position: absolute;
+  bottom: 44px;
+  right: 48px;
+  width: 280px;
 }

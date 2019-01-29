@@ -54,10 +54,18 @@ var MainQuest = {
 function showClue(n){
   $("#item-card-content").load(MainQuest.clues[n].description);
   $("#item-card").fadeIn('slow');
+
+  if (Player.NUX == 0){
+    $("#hint-bubble").show();
+  }
 }
 
 function showHint(){
   $("#hint-text").html(MainQuest.clues[Player.mainquest_progress].hint);
+  if (Player.NUX == 0){
+    $("#hint-text").html("The answer is a place in the city. Go to the place, and tap the marker on the map.");
+  }
+
   $("#hint-default").hide();
   $("#hint-reply-2").fadeIn();
 }

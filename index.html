@@ -46,6 +46,16 @@
     <source src="sounds/TownTheme.mp3" type="audio/mp3">
   </audio>
 
+<div id="intro-image" class="click-out">
+  <img src="content/intro-screen.jpg" class="full" onclick="startNUX();"/>
+</div>
+
+<div id="nux-intro" class="card nux">
+  <div id="nux-content"></div>
+  <span class="ok-button">Let's Go!</span>
+  <div class="empty-space"></div>
+</div>
+
 <div id='map'></div>
 <div id="preview-bubble">
   <h3>Location Name</h3>
@@ -114,7 +124,7 @@
 <div id="item-card" class="card">
   <div id="item-card-content">
   </div>
-  <span class="close">
+  <span class="close" onclick="completeNUX()">
     <img src="icons/close-x-bottom.svg"  />
   </span>
 </div>
@@ -139,8 +149,14 @@
 </div>
 
 <div id="main-nav">
-  <div id="backpack"><img src="icons/backpack.svg" /></div>
-  <div id="journal"><img src="icons/journal.svg" /></div>
+  <div id="backpack" class="backpack"><img src="icons/backpack.svg" /></div>
+  <div id="journal" class="journal"><img src="icons/journal.svg" /></div>
+</div>
+
+<div id="nux-main-nav" class="nux" style = "display: none;">
+  <div class="backpack animated pulse infinite"><img src="icons/backpack.svg" /></div>
+  <div class="journal"><img src="icons/journal.svg" /></div>
+  <img id="first-clue-prompt" class="animated fadeInUp" src="content/nux-first-clue-prompt.png" />
 </div>
 
 
@@ -162,6 +178,8 @@
   <img src="icons/close-x-bottom.svg" class="close animated pulse infinite"/>
   <div class="secondary-text">You've made progress on your quest!</div>
 </div>
+
+
 
 <span id='player'></span>
 <!--
@@ -211,7 +229,9 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqc
       //style: "mapbox://styles/rhymeandreason/cjlk0pudx2k8z2rofajpxci6t",
       style: 'mapbox://styles/rhymeandreason/cjr5j2ljn353u2st2k14xrwka',
       center: [-122.397,37.793],
-      zoom: 14
+      zoom: 14,
+      logoPosition: 'top-left',
+      attributionControl: false
   });
   map.setMinZoom(12);
   map.setMaxZoom(18);
@@ -492,6 +512,10 @@ $(".close").click(function(e){
   $(this).parent().fadeOut();
 });
 
+$(".click-out").click(function(){
+  $(this).fadeOut('slow');
+})
+
 $(".ok-button").click(function(e){
   $(this).parent().fadeOut();
 });
@@ -504,11 +528,11 @@ $("#hint-bubble").click(function(e){
   $("#hint-overlay").fadeIn();
 });
 
-$("#backpack").click(function(){
+$(".backpack").click(function(){
   updateInventory();
   $("#inventory-card").fadeIn();
 });
-$("#journal").click(function(){
+$(".journal").click(function(){
   updateJournal();
   $("#journal-card").fadeIn();
 });
@@ -758,6 +782,38 @@ var GameData= {
 LoadGame();
 setInterval(SaveGame, 9000);
 
+//Show nux
+if (Player.NUX ===false ){
+  console.log("yes do nux");
+  $("#nux-content").load("quests/intro.html");
+  $("#hint-bubble").hide();
+  $("#map").hide();
+  $("#main-nav").hide();
+} else {
+  console.log("already did NUX");
+  $("#intro-image").hide();
+  $(".nux").hide();
+  $("#map").show();
+  $("#hint-bubble").show();
+
+}
+
+function startNUX(){
+  $("#nux-intro").show();
+  $("#map").show();
+  $("#nux-main-nav").show();
+
+}
+
+function completeNUX(){
+  Player.NUX = true;
+  SaveGame();
+  $("#hint-bubble").show();
+  $("#nux-main-nav").hide();
+  $("#main-nav").show();
+  resetHint();
+}
+
 var landmarks = Object.keys(Player.landmarks);
 for (var i=0; i<landmarks.length; i++) {
   $("."+landmarks[i]).addClass("visited");
@@ -811,7 +867,8 @@ function ClearData(){
     "places": {},
     "coins": 10,
     "playtime": 0,
-    "join_date": 0
+    "join_date": 0,
+    "NUX": false
   }
 }
 
