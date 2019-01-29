@@ -1019,17 +1019,17 @@
 
 h3.quest-clue{
   text-align: center;
-padding: 32px;
-padding-bottom: 24px;
-font-family: courier new, monospace;
-font-size: 36px;
-font-weight: normal;
+  padding: 32px;
+  padding-bottom: 24px;
+  font-family: courier new, monospace;
+  font-size: 36px;
+  font-weight: normal;
 }
 
 p.quest-clue{
   font-family: Wilder;
-font-size: 36px;
-padding: 0px 50px;
+  font-size: 36px;
+  padding: 0px 60px;
 }
 
 #hint-bubble {
@@ -1106,4 +1106,14 @@ padding: 0px 50px;
   bottom: 44px;
   right: 48px;
   width: 220px;
+}
+#item-card-content{
+  height: 100%;
+}
+.paper-border{
+  background-image: url("art/paper-border.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  height:100%;
 }
