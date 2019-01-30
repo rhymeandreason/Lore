@@ -104,6 +104,7 @@
     overflow-x: hidden;
     overflow-y: scroll; /* has to be scroll, not auto */
     -webkit-overflow-scrolling: touch;
+    color: #384054;
   }
 
   #place-popup-card{
@@ -833,6 +834,7 @@
     //margin-top: 16px;
     font-family: Wilder;
     padding: 36px;
+    color: #384054;
   }
   .card-tabs{
     text-align: center;
@@ -1030,6 +1032,12 @@ p.quest-clue{
   font-family: Wilder;
   font-size: 36px;
   padding: 0px 60px;
+}
+
+.quest-clue br{
+  display: block;
+  content: "";
+  margin-top: 32px;
 }
 
 #hint-bubble {
