@@ -110,7 +110,7 @@ function MakeLocation(marker) {
 
         var drops = marker.properties.itemDrops;
         for (var i=0; i<drops.length; i++){
-          var item1 = "<span class='animated bounceIn delay-1s'><img class='animated jackInTheBox' src='icons/"+items[drops[i]]+"' onclick='addItem(this, \""+drops[i]+"\")' /></span>";
+          var item1 = "<span class='animated bounceIn delay-1s'><img class='wiggle animated jackInTheBox ' src='icons/"+items[drops[i]]+"' onclick='addItem(this, \""+drops[i]+"\")' /></span>";
           $(div).append(item1);
         }
         $(popup).append(div);

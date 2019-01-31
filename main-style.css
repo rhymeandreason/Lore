@@ -29,6 +29,33 @@
   font-weight: normal;
 }
 
+/* safari and chrome */
+@-webkit-keyframes wiggle {
+	0% {-webkit-transform:rotate(4deg);}
+	50% {-webkit-transform:rotate(-4deg);}
+	100% {-webkit-transform:rotate(4deg);}
+}
+
+/* firefox */
+@-moz-keyframes wiggle {
+	0% {-moz-transform:rotate(4deg);}
+	50% {-moz-transform:rotate(-4deg);}
+	100% {-moz-transform:rotate(4deg);}
+}
+
+/* anyone brave enough to implement the ideal method */
+@keyframes wiggle {
+	0% {transform:rotate(4deg);}
+	50% {transform:rotate(-4deg);}
+	100% {transform:rotate(4deg);}
+}
+
+.wiggle {
+	-webkit-animation: wiggle 0.8s infinite;
+	-moz-animation: wiggle 0.8s infinite;
+	animation: wiggle 0.8s infinite;
+}
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -515,12 +542,24 @@
   .place-description{
     //width: 75%;
     //margin: 16px auto;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 34px;
     //text-align: center;
     color: #4A4A4A;
-    font-family: Wilder;
+    font-family: Pangolin;
     padding: 8px 36px;
+  }
+
+  .scene {
+    margin-top: 20px;
+  }
+
+  .scene-caption {
+    color: #4A4A4A;
+    font-family: Pangolin;
+    font-size: 20px;
+    padding: 0px 20px;
+    line-height: 24px;
   }
 
   .player{
@@ -841,6 +880,9 @@
     font-family: Wilder;
     padding: 36px;
     color: #384054;
+    letter-spacing: 0.05em;
+    padding-top: 16px;
+    padding-bottom: 24px;
   }
   .card-tabs{
     text-align: center;
@@ -1049,8 +1091,7 @@ p.quest-clue{
 #hint-bubble {
   right: 15px;
   position: absolute;
-  right: 4;
-
+  top: 12px;
   z-index: 20;
 }
 #hint-bubble .npc_icon{
