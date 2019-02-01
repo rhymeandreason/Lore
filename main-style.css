@@ -121,6 +121,8 @@
   }
   .empty-space{
     height: 150px;
+    width:100%;
+    float: left;
   }
   .card {
     width: 100%;
@@ -921,7 +923,7 @@
 
   #add-item-anim {
     position: absolute;
-    z-index: 15;
+    z-index: 35;
     bottom: 26px;
     right: 10px;
     width: 35px;
