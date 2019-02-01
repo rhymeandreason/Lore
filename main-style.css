@@ -567,6 +567,9 @@
     padding: 0px 20px;
     line-height: 24px;
   }
+  .scene-caption a, .scene-caption a:visited{
+    color: #4A4A4A;
+  }
 
   .player{
     width: 20px;
