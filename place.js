@@ -56,7 +56,7 @@ function MakeLocation(marker) {
 
 
   var popup = document.createElement("div");
-  popup.className = 'popup ' + marker.properties.className;
+  popup.className = 'popup ' ;
   popup.id = marker.properties.id;
 
   var place_header = document.createElement("div");
