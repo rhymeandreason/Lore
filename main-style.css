@@ -140,7 +140,11 @@
     color: #384054;
   }
 
-  #place-popup-card{
+  #place-popup-card {
+    z-index: 30;
+  }
+  #journal-card {
+    z-index: 30;
   }
   .close{
     position: fixed;
