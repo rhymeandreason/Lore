@@ -61,10 +61,10 @@ function MakeLocation(marker) {
 
   var place_header = document.createElement("div");
   place_header.className = 'place-header';
-  var place_img = document.createElement("IMG");
-  //place_img.src = "places/"+marker.properties.id+".jpg";
-  place_img.className = "place-image";
-  place_header.append(place_img);
+  //var place_img = document.createElement("IMG");
+  ////place_img.src = "places/"+marker.properties.id+".jpg";
+  //place_img.className = "place-image";
+  //place_header.append(place_img);
 
   var npc_section = document.createElement("div");
   npc_section.className = 'npc-section';

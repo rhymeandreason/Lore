@@ -309,7 +309,7 @@
   }
 
   #npc-popup-card {
-    z-index: 15;
+    z-index: 35;
     background-color: #79C2C2;
   }
   #npc-portrait{
@@ -1002,7 +1002,7 @@
   #places-quest-progress{
     background-color: #70DBF7;
     text-align: center;
-    z-index: 15;
+    z-index: 36;
   }
   /*
   #places-quest-progress .close{

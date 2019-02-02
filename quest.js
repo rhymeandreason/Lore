@@ -491,7 +491,7 @@ function Quest_Conditions(property, value) {
 }
 
 function NPC_chat(name){
-  $("#hint-bubble").hide();
+  console.log("start chat");
   $("#npc-portrait").css('background-image', "url('npc/"+name+"-main.png')");
   $("#npc-popup-card").fadeIn();
 
