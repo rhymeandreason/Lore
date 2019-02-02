@@ -1024,8 +1024,11 @@
     right: 0;
     margin: auto;
     line-height: 26px;
-    width:60%;
-    font-size: 20px;
+    width:80%;
+    font-size: 30px;
+    font-family: Wilder;
+    font-weight: bold;
+    letter-spacing: .05em;
   }
   #places-quest-progress .quest-description{
     width: 60%;

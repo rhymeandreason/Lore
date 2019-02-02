@@ -387,14 +387,14 @@ var Quests = {
   "Errand for the Emperor": {
     type: 'places',
     description: "Deliver a proclaimation to the Chronicle and retrieve a telegram from Wells Fargo.",
-    count: 3,
+    count: 2,
     progress: [
       {name: "Norton", clue: "Deliver a proclaimation to the Chronicle and retrieve a telegram from Wells Fargo."}
     ],
-    places: ["sf-chronicle", "Wells-Fargo-museum"],
+    places: ["sf-chronicle", "sf-wells-fargo-museum"],
     tag: "",
     icon: "blue-circle",
-    reward: "norton_note.jpg"
+    reward: "norton-note.png"
   }
 }
 
@@ -456,15 +456,15 @@ function Achieve_Quest_Progress(questname, placename){
   $("#places-quest-progress .quest-title").html(questname);
   $("#places-quest-progress .quest-description").html(Quests[questname].description);
   $("#places-quest-progress").fadeIn('slow');
-
 }
 
 function Quest_Progress_Bar(count, total_count, img){
+  console.log(count + ": " + total_count);
   $("#places-quest-progress .progress_bar").html("");
-  for (var i=0; i<=count; i++){
+  for (var i=0; i<count; i++){
     $("#places-quest-progress .progress_bar").append("<img class='animated bounceIn delay-1s' src='icons/"+img+".svg' />");
   }
-  for (var i=count+1; i<total_count; i++){
+  for (var i=count; i<total_count; i++){
     $("#places-quest-progress .progress_bar").append("<img class='empty animated fadeIn ' src='icons/"+img+"-empty.svg' />");
   }
 }
