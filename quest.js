@@ -266,7 +266,7 @@ Luke[0] = { quest: "Downtown Oakland",
                       ]};
 
 var Norton = [];
-Norton[0] = { text: "Good day, my fellow! I am burdened by many tasks today, will you lend your Emperor some assistance?",
+Norton[0] = { text: "Good day, my fellow! I am burdened by many tasks, will you lend your Emperor some assistance?",
   options: [ {  response: "Emperor?", next: 1 },
               {  response: "Sure thing!", next: 2 }
            ]};

@@ -310,14 +310,15 @@
 
   #npc-popup-card {
     z-index: 35;
-    background-color: #79C2C2;
+    //background-color: #79C2C2;
+    background: white;
   }
   #npc-portrait{
     width: 300px;
     height: 300px;
     border-radius: 50%;
     background-image: url("npc/spelunker-main.png");
-    background-color: rgba(255,255,255,.5);
+    background-color: #EBF5F9;
     background-repeat: no-repeat;
     background-position: top center;
     background-size: 100%;
@@ -326,6 +327,7 @@
     left: 0;
     right: 0;
     top: 24px;
+    border: 4px solid #384054;
   }
 
   #npc-text, .npc-text{
@@ -365,17 +367,19 @@
 
   }
   #npc-responses span, .response{
-    background-color: #F18151;
+    background-color: white;
     border-radius: 24px;
     padding: 12px 20px;
-    box-shadow: 0px 7px 0px #F34900;
+    box-shadow: 0px 7px 0px #384054;
+    //box-shadow: 0px 10px 12px rgba(16,94,120,.5);
     display: inline-block;
     clear: both;
     margin-bottom: 18px;
     max-width: 80%;
     position: relative;
     font-weight: 500;
-    color: white;
+    color: #384054;
+    border: 2px solid #384054;
   }
 
   #map { position:absolute; top:0; bottom:0; width:100%; }
