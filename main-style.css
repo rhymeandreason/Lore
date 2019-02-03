@@ -51,9 +51,9 @@
 }
 
 .wiggle {
-	-webkit-animation: wiggle 0.8s infinite;
-	-moz-animation: wiggle 0.8s infinite;
-	animation: wiggle 0.8s infinite;
+	-webkit-animation: wiggle 1s infinite;
+	-moz-animation: wiggle 1s infinite;
+	animation: wiggle 1s infinite;
 }
 
   ::-webkit-scrollbar {
