@@ -1,42 +1,56 @@
 
-<script>
-  ScrollReveal().reveal('.quest-clue span', {
-    interval: 200
-  });
-</script>
+
 <img class="full" src="art/Fox-anim2.gif" />
 
 <p class="quest-clue">
-  <span>
+  <span class="fade">
   Hello friend, we’ve got a game to play.
   </span>
 <br><br>
-<span>
+<span class="fade">
   Plenty fun for an hour or even a day.
   </span>
 <br><br>
-<span>
+<span class="fade">
   Wander your city, there’s treasure to be found—
   </span>
 <br><br>
-<span>
+<span class="fade">
   Art and stories are all around.
   </span>
 <br><br>
-<span>
+<span class="fade">
   8 riddles will lead you place to place,
   </span>
 <br><br>
-<span>
+<span class="fade">
   Solve this first clue to begin the race.
   </span>
 <br><br>
-<span>
+<span class="fade">
   Persevere and the first to complete,
   </span>
 <br><br>
-<span>
+<span class="fade">
   Will win a prize that’s super neat!
   </span>
-
 </p>
+<script>
+
+$('#nux-intro').scroll(function() {
+  //var windowBottom = $(this).scrollTop();
+
+  $(".fade").each(function() {
+    /* Check the location of each desired element */
+    var objectpos = $(this).offset().top;
+    console.log($(this).index()+" objectpos: " +objectpos);
+    /* If the element is completely within bounds of the window, fade it in */
+    if (objectpos < (600) && objectpos> 0) { //object comes into view (scrolling down)
+
+      if ($(this).css("opacity")==0) {$(this).fadeTo(1000,1).delay(500);}
+    } else { //object goes out of view (scrolling up)
+      //if ($(this).css("opacity")==1) {$(this).fadeTo(1000,0);}
+    }
+  });
+});
+</script>

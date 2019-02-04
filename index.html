@@ -17,7 +17,6 @@
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
 <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 <script src='jquery-2.1.0.min.js'></script>
-<script src="https://unpkg.com/scrollreveal"></script>
 <script src='moment.js'></script>
 
 <script src='player.js'></script>
@@ -221,6 +220,10 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoicmh5bWVhbmRyZWFzb24iLCJhIjoiY2loeTFndTh0MDNqc
       later = moment().add(2, 'm');
     }
   }
+
+
+
+
 
   //window.setInterval(respawn, 5000);
 
@@ -807,7 +810,10 @@ function startNUX(){
   $("#nux-intro").show();
   $("#map").show();
   $("#nux-main-nav").show();
-
+  $(".fade").eq(0).delay(500).fadeTo(1000,1);
+  $(".fade").eq(1).delay(1000).fadeTo(1000,1);
+  $(".fade").eq(2).delay(1500).fadeTo(1000,1);
+  $(".fade").eq(3).delay(2000).fadeTo(1000,1);
 }
 
 function completeNUX(){

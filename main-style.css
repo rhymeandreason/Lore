@@ -1191,3 +1191,7 @@ p.quest-clue{
   height:100%;
   width:100%;
 }
+
+.fade{
+  opacity: 0;
+}
