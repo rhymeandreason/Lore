@@ -1107,7 +1107,7 @@ p.quest-clue{
 #hint-bubble {
   right: 15px;
   position: absolute;
-  top: 12px;
+  //top: 12px;
   z-index: 20;
 }
 #hint-bubble .npc_icon{

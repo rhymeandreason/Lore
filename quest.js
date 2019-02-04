@@ -62,18 +62,19 @@ function showClue(n){
 
 function showHint(){
   $("#hint-text").html(MainQuest.clues[Player.mainquest_progress].hint);
-  if (Player.NUX == 0){
-    $("#hint-text").html("The answer is a place in the city. Go to the place, and tap the marker on the map.");
-  }
-
   $("#hint-default").hide();
   $("#hint-reply-2").fadeIn();
 }
 
 function resetHint(){
   $("#hint-text").html("Need a hint?");
+  if (Player.NUX === false){
+    $("#hint-text").html("The answer is a place in the city. Go to the place, and tap the marker on the map.");
+  }
+  completeNUX();
   $("#hint-default").show();
   $("#hint-reply-2").hide();
+  $("#hint-overlay").hide();
 }
 
 function MainQuestProgress(el){

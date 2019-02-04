@@ -111,21 +111,21 @@
 
 <div id="hint-overlay" style="display:none;">
   <div class="npc-text" id="hint-text">
-    Need a hint?
+    The answer is a place in the city. Go to the place, and tap the marker on the map.
   </div>
-  <div id="hint-default" class="replies">
+  <div id="hint-default" class="replies" style="display:none;">
     <span class="exit">Nope</span>
     <span onclick='showHint()'>Yes!</span>
   </div>
-  <div id="hint-reply-2" class="replies" style="display:none;">
-    <span class="exit">Okay</span>
+  <div id="hint-reply-2" class="replies" >
+    <span onclick='resetHint()'>Okay</span>
   </div>
 </div>
 
 <div id="item-card" class="card">
   <div id="item-card-content">
   </div>
-  <span class="close" onclick="completeNUX()">
+  <span class="close">
     <img src="icons/close-x-bottom.svg"  />
   </span>
 </div>
@@ -814,7 +814,6 @@ function completeNUX(){
   $("#hint-bubble").show();
   $("#nux-main-nav").hide();
   $("#main-nav").show();
-  resetHint();
 }
 
 var landmarks = Object.keys(Player.landmarks);
