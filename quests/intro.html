@@ -47,7 +47,7 @@ $('#nux-intro').scroll(function() {
     /* If the element is completely within bounds of the window, fade it in */
     if (objectpos < (600) && objectpos> 0) { //object comes into view (scrolling down)
 
-      if ($(this).css("opacity")==0) {$(this).fadeTo(1000,1).delay(500);}
+      if ($(this).css("opacity")==0) {$(this).delay(400).fadeTo(1700,1);}
     } else { //object goes out of view (scrolling up)
       //if ($(this).css("opacity")==1) {$(this).fadeTo(1000,0);}
     }
