@@ -621,7 +621,7 @@
     padding: 10px;
     border-radius: 50%;
     margin: 8px;
-    background-color: rgba(0,0,0,.05);
+    //background-color: rgba(0,0,0,.05);
     position:relative;
   }
   .daily-items img{
@@ -1182,6 +1182,10 @@ p.quest-clue{
   height: 100%;
   width:100%;
 }
+#item-card .close{
+  bottom: 40px;
+}
+
 .paper-border{
   background: url("art/paper-border.jpg") no-repeat center center fixed;
   -webkit-background-size: 100% 100%;
