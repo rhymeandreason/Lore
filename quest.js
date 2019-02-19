@@ -70,6 +70,7 @@ function resetHint(){
   $("#hint-text").html("Need a hint?");
   if (Player.NUX === false){
     $("#hint-text").html("The answer is a place in the city. Go to the place, and tap the marker on the map.");
+  } else {
   }
   completeNUX();
   $("#hint-default").show();

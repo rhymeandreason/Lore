@@ -105,8 +105,8 @@
   </div>
 </div>
 
-<div id="hint-bubble">
-  <span class='npc_icon generic-npc animated bounceInRight delay-1s' onclick=''><img src='icons/fox-icon.svg' /><img class='chatty' src='icons/chatty.svg'/></span>
+<div id="hint-bubble" style="display:none;">
+  <span class='npc_icon generic-npc animated bounceInRight' onclick=''><img src='icons/fox-icon.svg' /><img class='chatty' src='icons/chatty.svg'/></span>
 
 </div>
 
@@ -126,7 +126,7 @@
 <div id="item-card" class="card">
   <div id="item-card-content">
   </div>
-  <img src="icons/back.svg" class="close back"/>
+  <img src="icons/back.svg" id="exit-item" class="close back"/>
   <!--
   <span class="close">
     <img src="icons/close-x-bottom.svg"  />
@@ -805,7 +805,7 @@ if (Player.NUX ===false ){
   $("#intro-image").hide();
   $(".nux").hide();
   $("#map").show();
-  $("#hint-bubble").show();
+  //$("#hint-bubble").show();
 
 }
 
