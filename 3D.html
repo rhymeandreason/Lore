@@ -112,7 +112,7 @@
 
         renderer.gammaInput = true;
 				renderer.gammaOutput = true;
-        effect = new THREE.OutlineEffect( renderer ,{defaultThickness: 0.1,});
+        effect = new THREE.OutlineEffect( renderer ,{defaultThickness: 0.015, defaultColor: [ 8/255, 36/255, 46/255 ]});
 				//
 
 				window.addEventListener( 'resize', onWindowResize, false );
@@ -129,8 +129,8 @@
 				window.requestAnimationFrame( animate );
 
 				controls.update();
-				renderer.render( scene, camera );
-
+				//renderer.render( scene, camera );
+        effect.render( scene, camera );
 			}
 
 
