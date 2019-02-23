@@ -44,7 +44,7 @@ THREE.DeviceOrientationControls = function ( object ) {
 		//var q1 = new THREE.Quaternion( - Math.sqrt( 0.25 ), 0, 0, Math.sqrt( 0.25 ) ); // - PI/2 around the x-axis
 
     var q1 = new THREE.Quaternion();
-    q1.setFromEuler(new THREE.Euler( 1, 0, 0, 'XYZ' ));
+    q1.setFromEuler(new THREE.Euler( -1, 0, 0, 'XYZ' ));
 
 		return function ( quaternion, alpha, beta, gamma, orient ) {
 
