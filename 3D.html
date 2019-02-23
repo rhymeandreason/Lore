@@ -52,7 +52,9 @@
 
 				//camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
         camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-				camera.position.z = 400;
+
+        //camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
+        camera.position.z = 400;
 
         // LIGHTS
 				ambientLight = new THREE.AmbientLight( 0x333333 );	// 0.2
@@ -78,7 +80,7 @@
 
 				teapot = new THREE.Mesh( teapotGeometry, material );
 
-				controls = new THREE.DeviceOrientationControls( teapot );
+				//controls = new THREE.DeviceOrientationControls( teapot );
 
 				scene = new THREE.Scene();
 
@@ -92,12 +94,14 @@
 				scene.add( light );
 				//
 
-
-
 				//
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
+        window.addEventListener('deviceorientation', function(e) {
+          var gammaRotation = e.gamma ? e.gamma * (Math.PI / 600) : 0;
+          teapot.rotation.y = gammaRotation;
+        });
 
 			}
 
@@ -105,10 +109,12 @@
 
 				window.requestAnimationFrame( animate );
 
-				controls.update();
+				//controls.update();
 				renderer.render( scene, camera );
 
 			}
+
+
 
 			function onWindowResize() {
 
