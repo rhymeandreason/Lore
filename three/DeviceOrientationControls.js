@@ -31,6 +31,12 @@ THREE.DeviceOrientationControls = function ( object ) {
 
 	};
 
+  var onDeviceMotionChangeEvent = function ( event ) {
+
+    scope.deviceMotion = event;
+
+  };
+
 	// The angles alpha, beta and gamma form a set of intrinsic Tait-Bryan angles of type Z-X'-Y''
 
 	var setObjectQuaternion = function () {
@@ -66,6 +72,7 @@ THREE.DeviceOrientationControls = function ( object ) {
 
 		window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
 		window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
+    window.addEventListener( 'devicemotion', onDeviceMotionChangeEvent, false );
 
 		scope.enabled = true;
 
@@ -85,7 +92,7 @@ THREE.DeviceOrientationControls = function ( object ) {
 		if ( scope.enabled === false ) return;
 
 		var device = scope.deviceOrientation;
-    var device_rotate = scope.rotationRate;
+    //var device_rotation = scope.deviceMotion.rotationRate;
 
 		if ( device ) {
 
@@ -93,7 +100,7 @@ THREE.DeviceOrientationControls = function ( object ) {
 
 			var beta = device.beta ? THREE.Math.degToRad( device.beta ) : 0; // X'
 
-			var gamma = device_rotate.gamma ? THREE.Math.degToRad( device.gamma ) : 0; // Y''
+			var gamma = device.gamma ? THREE.Math.degToRad( device.gamma ) : 0; // Y''
 
 			var orient = scope.screenOrientation ? THREE.Math.degToRad( scope.screenOrientation ) : 0; // O
 
