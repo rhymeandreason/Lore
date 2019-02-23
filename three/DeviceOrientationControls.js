@@ -85,6 +85,7 @@ THREE.DeviceOrientationControls = function ( object ) {
 		if ( scope.enabled === false ) return;
 
 		var device = scope.deviceOrientation;
+    var device_rotate = scope.rotationRate;
 
 		if ( device ) {
 
@@ -92,7 +93,7 @@ THREE.DeviceOrientationControls = function ( object ) {
 
 			var beta = device.beta ? THREE.Math.degToRad( device.beta ) : 0; // X'
 
-			var gamma = device.gamma ? THREE.Math.degToRad( device.gamma ) : 0; // Y''
+			var gamma = device_rotate.gamma ? THREE.Math.degToRad( device.gamma ) : 0; // Y''
 
 			var orient = scope.screenOrientation ? THREE.Math.degToRad( scope.screenOrientation ) : 0; // O
 
