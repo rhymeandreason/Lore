@@ -49,7 +49,7 @@ THREE.DeviceOrientationControls = function ( object ) {
 
 			quaternion.setFromEuler( euler ); // orient the device
 
-			quaternion.multiply( q1 ); // camera looks out the back of the device, not the top
+			//quaternion.multiply( q1 ); // camera looks out the back of the device, not the top
 
 			quaternion.multiply( q0.setFromAxisAngle( zee, - orient ) ); // adjust for screen orientation
 
