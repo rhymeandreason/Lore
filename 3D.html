@@ -82,7 +82,7 @@
 
 				teapot = new THREE.Mesh( teapotGeometry, material );
 
-				//controls = new THREE.DeviceOrientationControls( teapot );
+				controls = new THREE.DeviceOrientationControls( teapot );
 
 				scene = new THREE.Scene();
 
@@ -99,19 +99,19 @@
 				//
 
 				window.addEventListener( 'resize', onWindowResize, false );
-
+/*
         window.addEventListener('deviceorientation', function(e) {
           var gammaRotation = e.gamma ? e.gamma * (Math.PI / 600) : 0;
           teapot.rotation.y = gammaRotation;
         });
-
+*/
 			}
 
 			function animate() {
 
 				window.requestAnimationFrame( animate );
 
-				//controls.update();
+				controls.update();
 				renderer.render( scene, camera );
 
 			}
