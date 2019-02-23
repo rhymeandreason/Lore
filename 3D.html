@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - controls - deviceorientation</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1">
+		<style>
+			body {
+				margin: 0px;
+				background-color: #000000;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				top: 0px; width: 100%;
+				color: #ffffff;
+				padding: 5px;
+				font-family:Monospace;
+				font-size:13px;
+				font-weight: bold;
+				text-align:center;
+				box-sizing: border-box;
+			}
+
+			a {
+				color: #ff8800;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - equirectangular panorama demo with DeviceOrientation controls.
+			photo by <a href="http://www.flickr.com/photos/jonragnarsson/2294472375/" target="_blank" rel="noopener">Jón Ragnarsson</a>.
+		</div>
+
+		<script src="three/three.min.js"></script>
+		<script src="three/DeviceOrientationControls.js"></script>
+    <script src="three/TeapotBufferGeometry.js"></script>
+
+		<script>
+
+			var camera, scene, renderer, controls, light, ambientLight;
+      var teapotSize = 100;
+      var teapot, mesh;
+
+			init();
+			animate();
+
+			function init() {
+
+				//camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
+        camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera.position.z = 400;
+
+        // LIGHTS
+				ambientLight = new THREE.AmbientLight( 0x333333 );	// 0.2
+
+				light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+
+        renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+        var materialColor = new THREE.Color();
+				materialColor.setRGB( 1.0, 1.0, 1.0 );
+        var material = new THREE.MeshPhongMaterial( { color: materialColor, side: THREE.DoubleSide } );
+
+        var teapotGeometry = new THREE.TeapotBufferGeometry( teapotSize,
+					15,
+					true,
+					true,
+					true,
+					false,
+					false );
+
+				teapot = new THREE.Mesh( teapotGeometry, material );
+
+				controls = new THREE.DeviceOrientationControls( teapot );
+
+				scene = new THREE.Scene();
+
+        var geometry1 = new THREE.BoxBufferGeometry( 200, 200, 200 );
+				var material1 = new THREE.MeshBasicMaterial( );
+        mesh = new THREE.Mesh( geometry1, material1 );
+				//scene.add( mesh );
+
+        scene.add( teapot );
+        scene.add( ambientLight );
+				scene.add( light );
+				//
+
+
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+
+			}
+
+			function animate() {
+
+				window.requestAnimationFrame( animate );
+
+				controls.update();
+				renderer.render( scene, camera );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+		</script>
+	</body>
+</html>
