@@ -82,11 +82,13 @@
 					false );
 
 				teapot = new THREE.Mesh( teapotGeometry, material );
-        teapot.rotation.x=1;
+        //teapot.rotation.x=1;
+        //teapot.rotation.y = -.5;
         object_pivot = new THREE.Object3D();
         object_pivot.add(teapot);
+        object_pivot.rotation.x = 1;
 
-        controls = new THREE.DeviceOrientationControls( object_pivot );
+        controls = new THREE.DeviceOrientationControls( teapot );
 
 				scene = new THREE.Scene();
 
