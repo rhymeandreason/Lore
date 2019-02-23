@@ -46,6 +46,7 @@
       var teapot, mesh;
       var width = window.innerWidth ;
       var height = window.innerHeight ;
+      var object_pivot;
 
 			init();
 			animate();
@@ -81,8 +82,11 @@
 					false );
 
 				teapot = new THREE.Mesh( teapotGeometry, material );
+        teapot.rotation.x=1;
+        object_pivot = new THREE.Object3D();
+        object_pivot.add(teapot);
 
-				controls = new THREE.DeviceOrientationControls( teapot );
+        controls = new THREE.DeviceOrientationControls( object_pivot );
 
 				scene = new THREE.Scene();
 
@@ -91,7 +95,7 @@
         mesh = new THREE.Mesh( geometry1, material1 );
 				//scene.add( mesh );
 
-        scene.add( teapot );
+        scene.add( object_pivot );
         scene.add( ambientLight );
 				scene.add( light );
 				//
