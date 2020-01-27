@@ -1,0 +1,101 @@
+<DOCTYPE html>
+<html>
+  <head>
+    <script src='jquery-2.1.0.min.js'></script>
+    <style>
+      #container {
+        width: 100%;
+        height: 100%;
+        max-width: 375px;
+        max-height: 812px;
+        margin: auto auto;
+
+        font-family: sans-serif;
+        padding-top:10%;
+        text-align: center;
+      }
+      h1 {
+        text-align: center;
+      }
+      #compass{
+        width:150px;
+        transform-origin: 50% 50%;
+        -webkit-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+        margin: auto auto;
+      }
+      #compass-container{
+        text-align: center;
+      }
+    </style>
+    <script>
+      var geo_id;
+
+      function init() {
+        getLocation();
+
+        var compass = document.getElementById('compass');
+        if(window.DeviceOrientationEvent) {
+
+          window.addEventListener('deviceorientation', function(event) {
+                var alpha;
+                //Check for iOS property
+                if(event.webkitCompassHeading) {
+                  alpha = event.webkitCompassHeading;
+                  //Rotation is reversed for iOS
+                  compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
+                }
+                //non iOS
+                else {
+                  alpha = event.alpha;
+                  webkitAlpha = alpha;
+                  if(!window.chrome) {
+                    //Assume Android stock (this is crude, but good enough for our example) and apply offset
+                    webkitAlpha = alpha-270;
+                  }
+                }
+
+                compass.style.Transform = 'rotate(' + alpha + 'deg)';
+                compass.style.WebkitTransform = 'rotate('+ webkitAlpha + 'deg)';
+                //Rotation is reversed for FF
+                compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
+
+                $("#compass-rotation").html(alpha);
+                //getLocation();
+
+              }, false);
+
+        }
+      }
+
+      function getLocation() {
+          if (navigator.geolocation) {
+              //navigator.geolocation.getCurrentPosition(showPosition);
+              geo_id = navigator.geolocation.watchPosition(showPosition);
+              console.log(navigator.geolocation.position);
+              //location_logger = setInterval(checkDistance, 1000);
+          } else {
+              console.log("Geolocation is not supported by this browser.");
+          }
+        }
+
+      function showPosition(position) {
+        $("latitude").html(position.coords.latitude);
+        $("longitude").html(position.coords.longitude);
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <div id="container">
+      <h1 contenteditable="true">Place Name</h1>
+
+      <div id="compass-container">
+        <img src="art/compass.png" id="compass"/>
+      </div>
+      <h2> compass: <span id="compass-rotation">0</span></h2>
+      <h2> latitude: <span id="latitude"></span>   </h2>
+      <h2> longitude: <span id="longitude"></span>   </h2>
+
+    </div>
+  </body>
+</html>
