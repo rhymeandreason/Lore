@@ -30,6 +30,7 @@
     </style>
     <script>
       var geo_id;
+      var compassdir;
 
       function init() {
         getLocation();
@@ -37,11 +38,14 @@
         var compass = document.getElementById('compass');
         if(window.DeviceOrientationEvent) {
 
+
           window.addEventListener('deviceorientation', function(event) {
+
                 var alpha;
                 //Check for iOS property
                 if(event.webkitCompassHeading) {
                   alpha = event.webkitCompassHeading;
+                  compassdir = eventData.webkitCompassHeading;
                   //Rotation is reversed for iOS
                   compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
                 }
@@ -49,6 +53,8 @@
                 else {
                   alpha = event.alpha;
                   webkitAlpha = alpha;
+
+                  compassdir = eventData.alpha;
                   if(!window.chrome) {
                     //Assume Android stock (this is crude, but good enough for our example) and apply offset
                     webkitAlpha = alpha-270;
@@ -60,7 +66,7 @@
                 //Rotation is reversed for FF
                 compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
 
-                $("#compass-rotation").html(alpha);
+                $("#compass-rotation").html(compassdir);
                 //getLocation();
 
               }, false);
