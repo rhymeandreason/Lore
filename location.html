@@ -59,7 +59,7 @@
                 //Check for iOS property
                 if(event.webkitCompassHeading) {
                   alpha = event.webkitCompassHeading;
-                  compassdir = eventData.webkitCompassHeading;
+                  compassdir = event.webkitCompassHeading;
                   //Rotation is reversed for iOS
                   compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
                 }
@@ -68,7 +68,7 @@
                   alpha = event.alpha;
                   webkitAlpha = alpha;
 
-                  compassdir = eventData.alpha;
+                  compassdir = event.alpha;
                   if(!window.chrome) {
                     //Assume Android stock (this is crude, but good enough for our example) and apply offset
                     webkitAlpha = alpha-270;
