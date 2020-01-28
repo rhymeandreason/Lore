@@ -80,7 +80,7 @@
                 //Rotation is reversed for FF
                 compass.style.MozTransform = 'rotate(-' + alpha + 'deg)';
 
-                $("#compass-rotation").html(compassdir);
+                $("#compass-rotation").html(Number(compassdir.toFixed(5)));
                 //getLocation();
 
               }, false);
